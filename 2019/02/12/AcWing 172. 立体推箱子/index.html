@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-cn">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="原题链接 题目描述立体推箱子是一个风靡世界的小游戏。 游戏地图是一个N行M列的矩阵，每个位置可能是硬地（用”.”表示）、易碎地面（用”E”表示）、禁地（用”#”表示）、起点（用”X”表示）或终点（用”O”表示）。 你的任务是操作一个1×1×2的长方体。 这个长方体在地面上有两种放置形式，“立”在地面上（1×1的面接触地面）或者“躺”在地面上（1×2的面接触地面）。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AcWing 172. 立体推箱子">
+<meta property="og:url" content="https://gzh-red.github.io/2019/02/12/AcWing 172. 立体推箱子/index.html">
+<meta property="og:site_name" content="秦淮岸灯火阑珊">
+<meta property="og:description" content="原题链接 题目描述立体推箱子是一个风靡世界的小游戏。 游戏地图是一个N行M列的矩阵，每个位置可能是硬地（用”.”表示）、易碎地面（用”E”表示）、禁地（用”#”表示）、起点（用”X”表示）或终点（用”O”表示）。 你的任务是操作一个1×1×2的长方体。 这个长方体在地面上有两种放置形式，“立”在地面上（1×1的面接触地面）或者“躺”在地面上（1×2的面接触地面）。">
+<meta property="og:locale" content="zh-cn">
+<meta property="og:updated_time" content="2019-02-07T12:36:17.249Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="AcWing 172. 立体推箱子">
+<meta name="twitter:description" content="原题链接 题目描述立体推箱子是一个风靡世界的小游戏。 游戏地图是一个N行M列的矩阵，每个位置可能是硬地（用”.”表示）、易碎地面（用”E”表示）、禁地（用”#”表示）、起点（用”X”表示）或终点（用”O”表示）。 你的任务是操作一个1×1×2的长方体。 这个长方体在地面上有两种放置形式，“立”在地面上（1×1的面接触地面）或者“躺”在地面上（1×2的面接触地面）。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://gzh-red.github.io/2019/02/12/AcWing 172. 立体推箱子/">
+
+
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入密码') !== ''){
+                alert('密码错误');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+
+
+  <title>AcWing 172. 立体推箱子 | 秦淮岸灯火阑珊</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?25dad7ccff5338a032af7b69cd47250a";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-cn">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">秦淮岸灯火阑珊</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://gzh-red.github.io/2019/02/12/AcWing 172. 立体推箱子/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="秦淮岸灯火阑珊">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="秦淮岸灯火阑珊">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">AcWing 172. 立体推箱子</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-02-12T13:23:18+08:00">
+                2019-02-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><a href="https://www.acwing.com/problem/content/174/" target="_blank" rel="noopener">原题链接</a></p>
+<h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>立体推箱子是一个风靡世界的小游戏。</p>
+<p>游戏地图是一个N行M列的矩阵，每个位置可能是硬地（用”.”表示）、易碎地面（用”E”表示）、禁地（用”#”表示）、起点（用”X”表示）或终点（用”O”表示）。</p>
+<p>你的任务是操作一个1×1×2的长方体。</p>
+<p>这个长方体在地面上有两种放置形式，“立”在地面上（1×1的面接触地面）或者“躺”在地面上（1×2的面接触地面）。<br><a id="more"></a><br>在每一步操作中，可以按上下左右四个键之一。</p>
+<p>按下按键之后，长方体向对应的方向沿着棱滚动90度。</p>
+<p>任意时刻，长方体不能有任何部位接触禁地，并且不能立在易碎地面上。</p>
+<p>字符”X”标识长方体的起始位置，地图上可能有一个”X”或者两个相邻的”X”。</p>
+<p>地图上唯一的一个字符”O”标识目标位置。</p>
+<p>求把长方体移动到目标位置（即立在”O”上）所需要的最少步数。</p>
+<p>在移动过程中，”X”和”O”标识的位置都可以看作是硬地被利用。</p>
+<p>输入格式<br>输入包含多组测试用例。</p>
+<p>对于每个测试用例，第一行包括两个整数N和M。</p>
+<p>接下来N行用来描述地图，每行包括M个字符，每个字符表示一块地面的具体状态。</p>
+<p>当输入用例N=0，M=0时，表示输入终止，且该用例无需考虑。</p>
+<p>输出格式<br>每个用例输出一个整数表示所需的最少步数，如果无解则输出”Impossible”。</p>
+<p>每个结果占一行。</p>
+<p>数据范围<br>$3≤N,M≤500$</p>
+<h4 id="样例"><a href="#样例" class="headerlink" title="样例"></a>样例</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">输入样例：</span><br><span class="line">7 7</span><br><span class="line">#######</span><br><span class="line">#..X###</span><br><span class="line">#..##O#</span><br><span class="line">#....E#</span><br><span class="line">#....E#</span><br><span class="line">#.....#</span><br><span class="line">#######</span><br><span class="line">0 0</span><br><span class="line">输出样例：</span><br><span class="line">10</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="广度优先搜索-广搜"><a href="#广度优先搜索-广搜" class="headerlink" title="广度优先搜索(广搜)"></a>广度优先搜索(广搜)</h3><h5 id="具体看代码吧-代码每一句话都有注释-清晰地不要不要的-如果还是看不懂-那就call我吧"><a href="#具体看代码吧-代码每一句话都有注释-清晰地不要不要的-如果还是看不懂-那就call我吧" class="headerlink" title="具体看代码吧,代码每一句话都有注释,清晰地不要不要的.如果还是看不懂,那就call我吧."></a>具体看代码吧,代码每一句话都有注释,清晰地不要不要的.如果还是看不懂,那就call我吧.</h5><h4 id="C-代码"><a href="#C-代码" class="headerlink" title="C++ 代码"></a>C++ 代码</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br></pre></td><td class="code"><pre><span class="line">//这道题目估计每一句话都有注释,QwQ</span><br><span class="line">//一边写题目,一边写注释,感觉思路清晰地很啊!</span><br><span class="line">#include &lt;bits/stdc++.h&gt;//万能头文件</span><br><span class="line">using namespace std;//命名空间</span><br><span class="line">#define N 510 //最大数据范围</span><br><span class="line">#define fir(i,a,b) for(int i=a;i&lt;=b;i++)//for循环,宏定义</span><br><span class="line">const int dx[4]=&#123;0,0,-1,1&#125;,dy[4]=&#123;-1,1,0,0&#125;;//普通的方向数组</span><br><span class="line">struct rec</span><br><span class="line">&#123;</span><br><span class="line">    int x,y,lie;//x坐标,y坐标,lie表示放置的方式,以及上下放置,还是左右放置.0为竖着放置,1,2为上下,左右放置</span><br><span class="line">&#125;;</span><br><span class="line">char s[N][N];//地图</span><br><span class="line">rec st,ed;//起点和终点</span><br><span class="line">int n,m,d[N][N][3];//d数组记录步数</span><br><span class="line">queue&lt;rec&gt; q;//状态的队列</span><br><span class="line">bool valid(int x,int y)//判断在不在地图的边界内</span><br><span class="line">&#123;</span><br><span class="line">    return x&gt;=1 &amp;&amp; x&lt;=n &amp;&amp; y&gt;=1 &amp;&amp; y&lt;=m;//如果都满足了,说明的确在地图的边界内</span><br><span class="line">&#125;</span><br><span class="line">void st_ed()//找起点and终点</span><br><span class="line">&#123;</span><br><span class="line">    fir(i,1,n)</span><br><span class="line">        fir(j,1,m)//遍历地图</span><br><span class="line">            if (s[i][j]==&apos;O&apos;)//终点</span><br><span class="line">            &#123;</span><br><span class="line">                ed.x=i;//初始化</span><br><span class="line">                ed.y=j;</span><br><span class="line">                ed.lie=0;//为0是1*1站着的方式</span><br><span class="line">                s[i][j]=&apos;.&apos;;//可以看作是硬地被利用.(题目描述)</span><br><span class="line">            &#125;</span><br><span class="line">            else if (s[i][j]==&apos;X&apos;)//起点</span><br><span class="line">            &#123;</span><br><span class="line">                fir(k,0,3)//四个方向</span><br><span class="line">                &#123;</span><br><span class="line">                    int x=i+dx[k],y=j+dy[k];//四个方向临时变量</span><br><span class="line">                    if (valid(x,y) &amp;&amp; s[x][y]==&apos;X&apos;)//两个相邻的起点.(题目描述)</span><br><span class="line">                    &#123;</span><br><span class="line">                        st.x=min(i,x);//选择最小的那个</span><br><span class="line">                        st.y=min(j,y);//选择最小的那个</span><br><span class="line">                        st.lie=k&lt;2?1:2;//1为左右,2为上下</span><br><span class="line">                        s[i][j]=s[x][y]=&apos;.&apos;;//统统看作是硬地.(题目描述)</span><br><span class="line">                        break;//因为只有两个,现在找到了,可以退出这个四个方向的循环了</span><br><span class="line">                    &#125;</span><br><span class="line">                    if (s[i][j]==&apos;X&apos;)//发现只有一个起点</span><br><span class="line">                    &#123;</span><br><span class="line">                        st.x=i;//初始化</span><br><span class="line">                        st.y=j;</span><br><span class="line">                        st.lie=0;//为0是1*1站着的方式</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">&#125;</span><br><span class="line">bool check(rec Next)//判断这个滚动是否合法,满足题意</span><br><span class="line">&#123;</span><br><span class="line">    if (!valid(Next.x,Next.y))//不在地图的范围内</span><br><span class="line">        return 0;</span><br><span class="line">    if (s[Next.x][Next.y]==&apos;#&apos;)//这个位置是禁地,不可以(题目描述)</span><br><span class="line">        return 0;</span><br><span class="line">    if (Next.lie==0 &amp;&amp; s[Next.x][Next.y]!=&apos;.&apos;)//如果是1*1直立方式,但是脚下是易碎地面,不可以(题目描述)</span><br><span class="line">        return 0;</span><br><span class="line">    if (Next.lie==1 &amp;&amp; s[Next.x][Next.y+1]==&apos;#&apos;)//如果说是上下横放置的话,且下面是禁地,不可以(题目描述)</span><br><span class="line">        return 0;</span><br><span class="line">    if (Next.lie==2 &amp;&amp; s[Next.x+1][Next.y]==&apos;#&apos;)//如果说是左右横放置的话,且右边是禁地,不可以(题目描述)</span><br><span class="line">        return 0;</span><br><span class="line">    return 1;//全部都满足了条件</span><br><span class="line">&#125;</span><br><span class="line">const int Next_x[3][4]=&#123;&#123;0,0,-2,1&#125;,&#123;0,0,-1,1&#125;,&#123;0,0,-1,2&#125;&#125;;//在横竖两种摆放方式下的,x坐标的四个方向走法.</span><br><span class="line">const int Next_y[3][4]=&#123;&#123;-2,1,0,0&#125;,&#123;-1,2,0,0&#125;,&#123;-1,1,0,0&#125;&#125;;//在横竖两种摆放方式下的,y坐标的四个方向走法.</span><br><span class="line">const int Next_lie[3][4]=&#123;&#123;1,1,2,2&#125;,&#123;0,0,1,1&#125;,&#123;2,2,0,0&#125;&#125;;//不同走法下,横竖坐标的变化.</span><br><span class="line">int bfs()</span><br><span class="line">&#123;</span><br><span class="line">    fir(i,1,n)//x坐标</span><br><span class="line">        fir(j,1,m)//y坐标</span><br><span class="line">            fir(k,0,2)//0,1,2三种摆放方式</span><br><span class="line">                d[i][j][k]=-1;//坐标(i,j)的第k种摆放方式,初始化为-1</span><br><span class="line">    while(q.size())//将上一次剩余的状态,全部清空</span><br><span class="line">        q.pop();</span><br><span class="line">    d[st.x][st.y][st.lie]=0;//起点步数为0</span><br><span class="line">    q.push(st);//将起点压入队列</span><br><span class="line">    while(q.size())//当还有状态时</span><br><span class="line">    &#123;</span><br><span class="line">        rec now=q.front();//取出队头状态</span><br><span class="line">        q.pop();//以及拿出来了,需要弹出了</span><br><span class="line">        fir(i,0,3)//四个方向开始枚举</span><br><span class="line">        &#123;</span><br><span class="line">            rec Next;//定义下一步的点</span><br><span class="line">            Next.x=now.x+Next_x[now.lie][i];//x坐标进入下一步</span><br><span class="line">            Next.y=now.y+Next_y[now.lie][i];//y坐标进入下一步</span><br><span class="line">            Next.lie=Next_lie[now.lie][i];//lie进入下一步</span><br><span class="line">            if (check(Next) &amp;&amp; d[Next.x][Next.y][Next.lie]==-1)//如果这一步都满足了条件</span><br><span class="line">            &#123;</span><br><span class="line">                d[Next.x][Next.y][Next.lie]=d[now.x][now.y][now.lie]+1;//上一步的步数+1</span><br><span class="line">                q.push(Next);//将这个状态压入队列之中</span><br><span class="line">                if (Next.x==ed.x &amp;&amp; Next.y==ed.y &amp;&amp; Next.lie==ed.lie)//发现这个点是终点</span><br><span class="line">                    return d[Next.x][Next.y][Next.lie];//返回最小步数</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return -1;//无解</span><br><span class="line">&#125;</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    while(cin&gt;&gt;n&gt;&gt;m &amp;&amp; n &amp;&amp; m)//如果当前还在读入</span><br><span class="line">    &#123;</span><br><span class="line">        fir(i,1,n)</span><br><span class="line">            scanf(&quot;%s&quot;,s[i]+1);//每一个s[i]字符串都从第一位开始读入</span><br><span class="line">        st_ed();//找起点和终点</span><br><span class="line">        int ans=bfs();//搜索答案</span><br><span class="line">        if(ans==-1)//找不到答案</span><br><span class="line">            printf(&quot;Impossible\n&quot;);//无解</span><br><span class="line">        else</span><br><span class="line">            printf(&quot;%d\n&quot;,ans);//输出最小步数</span><br><span class="line">    &#125;</span><br><span class="line">    return 0;//程序完美结束</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/02/12/AcWing 171. 送礼物/" rel="next" title="AcWing 171. 送礼物">
+                <i class="fa fa-chevron-left"></i> AcWing 171. 送礼物
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/02/12/AcWing 173. 矩阵距离/" rel="prev" title="AcWing 173. 矩阵距离">
+                AcWing 173. 矩阵距离 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">秦淮岸灯火阑珊</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.chicago01.top/" title="chicago01" target="_blank">chicago01</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#题目描述"><span class="nav-number">1.</span> <span class="nav-text">题目描述</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#样例"><span class="nav-number">1.1.</span> <span class="nav-text">样例</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#广度优先搜索-广搜"><span class="nav-number">2.</span> <span class="nav-text">广度优先搜索(广搜)</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#具体看代码吧-代码每一句话都有注释-清晰地不要不要的-如果还是看不懂-那就call我吧"><span class="nav-number">2.0.1.</span> <span class="nav-text">具体看代码吧,代码每一句话都有注释,清晰地不要不要的.如果还是看不懂,那就call我吧.</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#C-代码"><span class="nav-number">2.1.</span> <span class="nav-text">C++ 代码</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">秦淮岸灯火阑珊</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/clicklove.js"></script>
+</html>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/clicklove.js"></script>

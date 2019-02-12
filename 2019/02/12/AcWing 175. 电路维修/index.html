@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-cn">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="原题链接 题目描述达达是来自异世界的魔女，她在漫无目的地四处漂流的时候，遇到了善良的少女翰翰，从而被收留在地球上。 翰翰的家里有一辆飞行车。 有一天飞行车的电路板突然出现了故障，导致无法启动。 电路板的整体结构是一个R行C列的网格（R,C≤500），如下图所示。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AcWing 175. 电路维修">
+<meta property="og:url" content="https://gzh-red.github.io/2019/02/12/AcWing 175. 电路维修/index.html">
+<meta property="og:site_name" content="秦淮岸灯火阑珊">
+<meta property="og:description" content="原题链接 题目描述达达是来自异世界的魔女，她在漫无目的地四处漂流的时候，遇到了善良的少女翰翰，从而被收留在地球上。 翰翰的家里有一辆飞行车。 有一天飞行车的电路板突然出现了故障，导致无法启动。 电路板的整体结构是一个R行C列的网格（R,C≤500），如下图所示。">
+<meta property="og:locale" content="zh-cn">
+<meta property="og:image" content="https://www.acwing.com/media/article/image/2019/01/16/19_be6ff7a219-%E7%94%B5%E8%B7%AF.png">
+<meta property="og:image" content="https://www.acwing.com/media/article/image/2019/01/16/19_a0e8e80a19-%E7%94%B5%E8%B7%AF2.png">
+<meta property="og:updated_time" content="2019-02-07T12:36:11.793Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="AcWing 175. 电路维修">
+<meta name="twitter:description" content="原题链接 题目描述达达是来自异世界的魔女，她在漫无目的地四处漂流的时候，遇到了善良的少女翰翰，从而被收留在地球上。 翰翰的家里有一辆飞行车。 有一天飞行车的电路板突然出现了故障，导致无法启动。 电路板的整体结构是一个R行C列的网格（R,C≤500），如下图所示。">
+<meta name="twitter:image" content="https://www.acwing.com/media/article/image/2019/01/16/19_be6ff7a219-%E7%94%B5%E8%B7%AF.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://gzh-red.github.io/2019/02/12/AcWing 175. 电路维修/">
+
+
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入密码') !== ''){
+                alert('密码错误');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+
+
+  <title>AcWing 175. 电路维修 | 秦淮岸灯火阑珊</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?25dad7ccff5338a032af7b69cd47250a";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-cn">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">秦淮岸灯火阑珊</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://gzh-red.github.io/2019/02/12/AcWing 175. 电路维修/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="秦淮岸灯火阑珊">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="秦淮岸灯火阑珊">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">AcWing 175. 电路维修</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-02-12T13:23:18+08:00">
+                2019-02-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><a href="https://www.acwing.com/problem/content/177/" target="_blank" rel="noopener">原题链接</a></p>
+<h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>达达是来自异世界的魔女，她在漫无目的地四处漂流的时候，遇到了善良的少女翰翰，从而被收留在地球上。</p>
+<p>翰翰的家里有一辆飞行车。</p>
+<p>有一天飞行车的电路板突然出现了故障，导致无法启动。</p>
+<p>电路板的整体结构是一个R行C列的网格（R,C≤500），如下图所示。<br><a id="more"></a><br><img src="https://www.acwing.com/media/article/image/2019/01/16/19_be6ff7a219-%E7%94%B5%E8%B7%AF.png" alt="电路.png"></p>
+<p>每个格点都是电线的接点，每个格子都包含一个电子元件。</p>
+<p>电子元件的主要部分是一个可旋转的、连接一条对角线上的两个接点的短电缆。</p>
+<p>在旋转之后，它就可以连接另一条对角线的两个接点。</p>
+<p>电路板左上角的接点接入直流电源，右下角的接点接入飞行车的发动装置。</p>
+<p>达达发现因为某些元件的方向不小心发生了改变，电路板可能处于断路的状态。</p>
+<p>她准备通过计算，旋转最少数量的元件，使电源与发动装置通过若干条短缆相连。</p>
+<p>不过，电路的规模实在是太大了，达达并不擅长编程，希望你能够帮她解决这个问题。</p>
+<p>输入格式<br>输入文件包含多组测试数据。</p>
+<p>第一行包含一个整数T，表示测试数据的数目。</p>
+<p>对于每组测试数据，第一行包含正整数R和C，表示电路板的行数和列数。</p>
+<p>之后R行，每行C个字符，字符是”/“和”\”中的一个，表示标准件的方向。</p>
+<p>输出格式<br>对于每组测试数据，在单独的一行输出一个正整数，表示所需的缩小旋转次数。</p>
+<p>如果无论怎样都不能使得电源和发动机之间连通，输出NO SOLUTION。</p>
+<p>数据范围<br>$1≤R,C≤500$<br>$1≤T≤5$</p>
+<p>只需要按照下面的方式旋转标准件，就可以使得电源和发动机之间连通。</p>
+<p><img src="https://www.acwing.com/media/article/image/2019/01/16/19_a0e8e80a19-%E7%94%B5%E8%B7%AF2.png" alt="电路2.png"></p>
+<h4 id="样例"><a href="#样例" class="headerlink" title="样例"></a>样例</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">输入样例：</span><br><span class="line">1</span><br><span class="line">3 5</span><br><span class="line">\\/\\</span><br><span class="line">\\///</span><br><span class="line">/\\\\</span><br><span class="line">输出样例：</span><br><span class="line">1</span><br><span class="line">样例解释</span><br><span class="line">样例的输入对应于题目描述中的情况。</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="双端队列-广度优先搜索"><a href="#双端队列-广度优先搜索" class="headerlink" title="双端队列+广度优先搜索"></a>双端队列+广度优先搜索</h3><h5 id="首先把电路板上每一个格子点-交叉点-看作无向图中的节点-我们认为两个节点x和y是某个小方格的两个对角-那么如果说x和y的线段’-’-那么我们可以认为边权为0-反之如果x和y线段是’-‘-那么我们的边权视为1-说明要旋转一次才能够连上"><a href="#首先把电路板上每一个格子点-交叉点-看作无向图中的节点-我们认为两个节点x和y是某个小方格的两个对角-那么如果说x和y的线段’-’-那么我们可以认为边权为0-反之如果x和y线段是’-‘-那么我们的边权视为1-说明要旋转一次才能够连上" class="headerlink" title="首先把电路板上每一个格子点(交叉点)看作无向图中的节点,我们认为两个节点x和y是某个小方格的两个对角,那么如果说x和y的线段’\’,那么我们可以认为边权为0,反之如果x和y线段是’/‘,那么我们的边权视为1,说明要旋转一次才能够连上."></a>首先把电路板上每一个格子点(交叉点)看作无向图中的节点,我们认为两个节点x和y是某个小方格的两个对角,那么如果说x和y的线段’\’,那么我们可以认为边权为0,反之如果x和y线段是’/‘,那么我们的边权视为1,说明要旋转一次才能够连上.</h5><h5 id="现在我们得到了一张完美的边权0或1的无向图-那么和普通广搜一样-我们唯一的改变就是-如果说当前新状态的边权为0-那么我们就放到队头先走-因为我们要满足两端性和单调性-而为了这个单调性-如果说当前新状态边权为1-那么我们就只能压入到队尾"><a href="#现在我们得到了一张完美的边权0或1的无向图-那么和普通广搜一样-我们唯一的改变就是-如果说当前新状态的边权为0-那么我们就放到队头先走-因为我们要满足两端性和单调性-而为了这个单调性-如果说当前新状态边权为1-那么我们就只能压入到队尾" class="headerlink" title="现在我们得到了一张完美的边权0或1的无向图,那么和普通广搜一样,我们唯一的改变就是,如果说当前新状态的边权为0,那么我们就放到队头先走,因为我们要满足两端性和单调性,而为了这个单调性,如果说当前新状态边权为1,那么我们就只能压入到队尾."></a>现在我们得到了一张完美的边权0或1的无向图,那么和普通广搜一样,我们唯一的改变就是,如果说当前新状态的边权为0,那么我们就放到队头先走,因为我们要满足两端性和单调性,而为了这个单调性,如果说当前新状态边权为1,那么我们就只能压入到队尾.</h5><h5 id="具体小细节就看代码吧-hh"><a href="#具体小细节就看代码吧-hh" class="headerlink" title="具体小细节就看代码吧.hh"></a>具体小细节就看代码吧.hh</h5><h4 id="C-代码"><a href="#C-代码" class="headerlink" title="C++ 代码"></a>C++ 代码</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;bits/stdc++.h&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">#define fir(i,a,b) for(int i=a;i&lt;=b;i++)</span><br><span class="line">const int N=510;</span><br><span class="line">const int dxy1[4][2]= &#123;&#123;1,1&#125;,&#123;-1,-1&#125;,&#123;1,-1&#125;,&#123;-1,1&#125;&#125;,dxy2[4][2]= &#123;&#123;1,1&#125;,&#123;0,0&#125;,&#123;1,0&#125;,&#123;0,1&#125;&#125;;//两种不同走法(因为两种线路),所以要两个方向数组</span><br><span class="line">struct node</span><br><span class="line">&#123;</span><br><span class="line">	int x,y;</span><br><span class="line">&#125;;</span><br><span class="line">int t,n,m,ans=1e8,dis[N][N];</span><br><span class="line">char s[N][N];</span><br><span class="line">bool vis[N][N];</span><br><span class="line">deque&lt;node&gt; q;//双端队列</span><br><span class="line">int check(int x,int y)</span><br><span class="line">&#123;</span><br><span class="line">	return x&gt;=0 &amp;&amp; x&lt;=n &amp;&amp; y&gt;=0 &amp;&amp; y&lt;=m;//范围内</span><br><span class="line">&#125;</span><br><span class="line">void bfs()</span><br><span class="line">&#123;</span><br><span class="line">	vis[0][0]=1;</span><br><span class="line">	memset(vis,0,sizeof(vis));</span><br><span class="line">	memset(dis,0x3f,sizeof(dis));//初始化最大值</span><br><span class="line">	q.push_front(node &#123;0,0&#125;);//0开始,是因为读入的不是坐标,而是两种线路,然后你就会发现其实坐标点是要从0开始的,当然你n+1,m+1也是可以的</span><br><span class="line">	dis[0][0]=0;</span><br><span class="line">	while(q.size())</span><br><span class="line">	&#123;</span><br><span class="line">		node now=q.front();</span><br><span class="line">		q.pop_front();</span><br><span class="line">		fir(i,0,3)//四种方向</span><br><span class="line">		&#123;</span><br><span class="line">			int tx=now.x+dxy1[i][0],t1=now.x+dxy2[i][0];//如果是&apos;\&apos;</span><br><span class="line">			int ty=now.y+dxy1[i][1],t2=now.y+dxy2[i][1];//如果是&apos;/&apos;</span><br><span class="line">			int tt=(s[t1][t2] != (i&lt;=1? &apos;\\&apos;:&apos;/&apos;));//转义字符要双写,这里用到了三目运算符</span><br><span class="line">			if(check(tx,ty) &amp;&amp; dis[tx][ty]&gt;dis[now.x][now.y]+tt)//check成功,并且当前值更加优秀</span><br><span class="line">			&#123;</span><br><span class="line">				dis[tx][ty]=dis[now.x][now.y]+tt;</span><br><span class="line">				if(tt)</span><br><span class="line">					q.push_back(node &#123;tx,ty&#125;);//边权值为1</span><br><span class="line">				else</span><br><span class="line">					q.push_front(node &#123;tx,ty&#125;);//边权值为0</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">	cin&gt;&gt;t;</span><br><span class="line">	while(t--)</span><br><span class="line">	&#123;</span><br><span class="line">		cin&gt;&gt;n&gt;&gt;m;</span><br><span class="line">		fir(i,1,n)</span><br><span class="line">		fir(j,1,m)</span><br><span class="line">		cin&gt;&gt;s[i][j];</span><br><span class="line">		bfs();</span><br><span class="line">		if(dis[n][m]&lt;1e8)//如果找到了方案</span><br><span class="line">			cout&lt;&lt;dis[n][m]&lt;&lt;endl;</span><br><span class="line">		else</span><br><span class="line">			cout&lt;&lt;&quot;NO SOLUTION&quot;&lt;&lt;endl;</span><br><span class="line">	&#125;</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/02/12/AcWing 173. 矩阵距离/" rel="next" title="AcWing 173. 矩阵距离">
+                <i class="fa fa-chevron-left"></i> AcWing 173. 矩阵距离
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/02/12/AcWing 176. 装满的油箱/" rel="prev" title="AcWing 176. 装满的油箱">
+                AcWing 176. 装满的油箱 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">秦淮岸灯火阑珊</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.chicago01.top/" title="chicago01" target="_blank">chicago01</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#题目描述"><span class="nav-number">1.</span> <span class="nav-text">题目描述</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#样例"><span class="nav-number">1.1.</span> <span class="nav-text">样例</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#双端队列-广度优先搜索"><span class="nav-number">2.</span> <span class="nav-text">双端队列+广度优先搜索</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#首先把电路板上每一个格子点-交叉点-看作无向图中的节点-我们认为两个节点x和y是某个小方格的两个对角-那么如果说x和y的线段’-’-那么我们可以认为边权为0-反之如果x和y线段是’-‘-那么我们的边权视为1-说明要旋转一次才能够连上"><span class="nav-number">2.0.1.</span> <span class="nav-text">首先把电路板上每一个格子点(交叉点)看作无向图中的节点,我们认为两个节点x和y是某个小方格的两个对角,那么如果说x和y的线段’\’,那么我们可以认为边权为0,反之如果x和y线段是’/‘,那么我们的边权视为1,说明要旋转一次才能够连上.</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#现在我们得到了一张完美的边权0或1的无向图-那么和普通广搜一样-我们唯一的改变就是-如果说当前新状态的边权为0-那么我们就放到队头先走-因为我们要满足两端性和单调性-而为了这个单调性-如果说当前新状态边权为1-那么我们就只能压入到队尾"><span class="nav-number">2.0.2.</span> <span class="nav-text">现在我们得到了一张完美的边权0或1的无向图,那么和普通广搜一样,我们唯一的改变就是,如果说当前新状态的边权为0,那么我们就放到队头先走,因为我们要满足两端性和单调性,而为了这个单调性,如果说当前新状态边权为1,那么我们就只能压入到队尾.</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#具体小细节就看代码吧-hh"><span class="nav-number">2.0.3.</span> <span class="nav-text">具体小细节就看代码吧.hh</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#C-代码"><span class="nav-number">2.1.</span> <span class="nav-text">C++ 代码</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">秦淮岸灯火阑珊</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/clicklove.js"></script>
+</html>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/clicklove.js"></script>

@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-cn">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="原题链接 题目描述有N个城市（编号0、1…N-1）和M条道路，构成一张无向图。 在每个城市里边都有一个加油站，不同的加油站的单位油价不一样。 现在你需要回答不超过100个问题，在每个问题中，请计算出一架油箱容量为C的车子，从起点城市S开到终点城市E至少要花多少油钱？">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AcWing 176. 装满的油箱">
+<meta property="og:url" content="https://gzh-red.github.io/2019/02/12/AcWing 176. 装满的油箱/index.html">
+<meta property="og:site_name" content="秦淮岸灯火阑珊">
+<meta property="og:description" content="原题链接 题目描述有N个城市（编号0、1…N-1）和M条道路，构成一张无向图。 在每个城市里边都有一个加油站，不同的加油站的单位油价不一样。 现在你需要回答不超过100个问题，在每个问题中，请计算出一架油箱容量为C的车子，从起点城市S开到终点城市E至少要花多少油钱？">
+<meta property="og:locale" content="zh-cn">
+<meta property="og:updated_time" content="2019-02-08T07:47:01.783Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="AcWing 176. 装满的油箱">
+<meta name="twitter:description" content="原题链接 题目描述有N个城市（编号0、1…N-1）和M条道路，构成一张无向图。 在每个城市里边都有一个加油站，不同的加油站的单位油价不一样。 现在你需要回答不超过100个问题，在每个问题中，请计算出一架油箱容量为C的车子，从起点城市S开到终点城市E至少要花多少油钱？">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://gzh-red.github.io/2019/02/12/AcWing 176. 装满的油箱/">
+
+
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入密码') !== ''){
+                alert('密码错误');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+
+
+  <title>AcWing 176. 装满的油箱 | 秦淮岸灯火阑珊</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?25dad7ccff5338a032af7b69cd47250a";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-cn">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">秦淮岸灯火阑珊</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://gzh-red.github.io/2019/02/12/AcWing 176. 装满的油箱/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="秦淮岸灯火阑珊">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="秦淮岸灯火阑珊">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">AcWing 176. 装满的油箱</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-02-12T13:23:18+08:00">
+                2019-02-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><a href="https://www.acwing.com/problem/content/178/" target="_blank" rel="noopener">原题链接</a></p>
+<h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>有N个城市（编号0、1…N-1）和M条道路，构成一张无向图。</p>
+<p>在每个城市里边都有一个加油站，不同的加油站的单位油价不一样。</p>
+<p>现在你需要回答不超过100个问题，在每个问题中，<strong>请计算出一架油箱容量为C的车子，从起点城市S开到终点城市E至少要花多少油钱？</strong><br><a id="more"></a><br>输入格式<br>第一行包含两个整数N和M。</p>
+<p>第二行包含N个整数，代表N个城市的单位油价，第i个数即为第i个城市的油价pi。</p>
+<p>接下来M行，每行包括三个整数u,v,d，表示城市u与城市v之间存在道路，且车子从u到v需要消耗的油量为d。</p>
+<p>接下来一行包含一个整数q，代表问题数量。</p>
+<p>接下来q行，每行包含三个整数C、S、E，分别表示车子油箱容量、起点城市S、终点城市E。</p>
+<p>输出格式<br>对于每个问题，输出一个整数，表示所需的最少油钱。</p>
+<p><strong>如果无法从起点城市开到终点城市，则输出”impossible”。</strong></p>
+<p>每个结果占一行。</p>
+<p>数据范围<br>$1≤N≤1000$<br>$1≤M≤10000$<br>$1≤pi≤100$<br>$1≤d≤100$<br>$1≤C≤100$</p>
+<h4 id="样例"><a href="#样例" class="headerlink" title="样例"></a>样例</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">输入样例：</span><br><span class="line">5 5</span><br><span class="line">10 10 20 12 13</span><br><span class="line">0 1 9</span><br><span class="line">0 2 8</span><br><span class="line">1 2 1</span><br><span class="line">1 3 11</span><br><span class="line">2 3 7</span><br><span class="line">2</span><br><span class="line">10 0 3</span><br><span class="line">20 1 4</span><br><span class="line">输出样例：</span><br><span class="line">170</span><br><span class="line">impossible</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="优先队列-BFS-dijiskla"><a href="#优先队列-BFS-dijiskla" class="headerlink" title="优先队列+BFS(dijiskla)"></a>优先队列+BFS(dijiskla)</h3><h5 id="看到上面标黑的字-相信给位已经很清楚了这道题目就是一道最短路的题目"><a href="#看到上面标黑的字-相信给位已经很清楚了这道题目就是一道最短路的题目" class="headerlink" title="看到上面标黑的字,相信给位已经很清楚了这道题目就是一道最短路的题目."></a>看到上面标黑的字,相信给位已经很清楚了这道题目就是一道最短路的题目.</h5><h5 id="但是这道题目只是用到了思想-我们实现方法还是优先队列-BFS-首先我们可以开一个二元组-city-fuel-表示状态-city为城市编号-fuel为剩余的汽油量-既然这样的话-我们的起始状态就是-S-0"><a href="#但是这道题目只是用到了思想-我们实现方法还是优先队列-BFS-首先我们可以开一个二元组-city-fuel-表示状态-city为城市编号-fuel为剩余的汽油量-既然这样的话-我们的起始状态就是-S-0" class="headerlink" title="但是这道题目只是用到了思想,我们实现方法还是优先队列+BFS,首先我们可以开一个二元组(city,fuel)表示状态,city为城市编号,fuel为剩余的汽油量,既然这样的话,我们的起始状态就是(S,0)."></a>但是这道题目只是用到了思想,我们实现方法还是优先队列+BFS,首先我们可以开一个二元组(city,fuel)表示状态,city为城市编号,fuel为剩余的汽油量,既然这样的话,我们的起始状态就是(S,0).</h5><h5 id="接下来就是两种可选择的方案"><a href="#接下来就是两种可选择的方案" class="headerlink" title="接下来就是两种可选择的方案"></a>接下来就是两种可选择的方案</h5><ol>
+<li>如果说当前fuel&lt;C,还没有装满油的话,那么我们可以选择加一升汽油,然后拓展到新的状态,也就是(city,fuel+1)</li>
+<li>对于每一条边而言,我们可以通过这条边到达一个城市,那么如果说当前剩余油量可以走完这条路,那么我们就拓展新状态(Next,fuel-w)</li>
+</ol>
+<h5 id="综上所述-我们不断地取出当前花费最少的状态进行拓展-然后每一次拓展用ans数组记录最小花费即可-具体可看代码实现"><a href="#综上所述-我们不断地取出当前花费最少的状态进行拓展-然后每一次拓展用ans数组记录最小花费即可-具体可看代码实现" class="headerlink" title="综上所述,我们不断地取出当前花费最少的状态进行拓展,然后每一次拓展用ans数组记录最小花费即可.具体可看代码实现"></a>综上所述,我们不断地取出当前花费最少的状态进行拓展,然后每一次拓展用ans数组记录最小花费即可.具体可看代码实现</h5><h4 id="C-代码"><a href="#C-代码" class="headerlink" title="C++ 代码"></a>C++ 代码</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;bits/stdc++.h&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">const int N=1010;</span><br><span class="line">const int M=10100;</span><br><span class="line">int wn[N],head[N],Next[2*M],ver[2*M],dis[2*M],ans[N][102];</span><br><span class="line">bool vis[N][102];</span><br><span class="line">int c,s,e,n,m,t,tot=-1;</span><br><span class="line">void add(int x,int y,int z)//链式前向星</span><br><span class="line">&#123;</span><br><span class="line">	ver[++tot]=y;//这条边到达的点</span><br><span class="line">	Next[tot]=head[x];//链接</span><br><span class="line">	dis[tot]=z;//权值</span><br><span class="line">	head[x]=tot;//标记x起点</span><br><span class="line">&#125;</span><br><span class="line">struct node</span><br><span class="line">&#123;</span><br><span class="line">	int u,f,w;</span><br><span class="line">	node(int x,int y,int z):u(x),f(y),w(z) &#123;&#125;</span><br><span class="line">	friend bool operator &lt; (node a,node b)</span><br><span class="line">	&#123;</span><br><span class="line">		return a.w&gt;b.w;//权值从小到大排序,记住是小根堆</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line">priority_queue &lt;node&gt; q;</span><br><span class="line">bool check1(int u,int f)</span><br><span class="line">&#123;</span><br><span class="line">	if(f+1&lt;=c &amp;&amp; !vis[u][f+1] &amp;&amp; (ans[u][f+1]&gt;ans[u][f]+wn[u]))//如果油还在油箱限制内,且这买油一定更好的话</span><br><span class="line">		return 1;</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br><span class="line">bool check2(int f,int v,int p,int w)</span><br><span class="line">&#123;</span><br><span class="line">	if(f&gt;=p &amp;&amp; !vis[v][f-p] &amp;&amp; ans[v][f-p]&gt;w)//如果说当前这个点没有访问过,且当前剩余油大于路径花费油</span><br><span class="line">		return 1;</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br><span class="line">int BFS()</span><br><span class="line">&#123;</span><br><span class="line">	while(!q.empty())</span><br><span class="line">		q.pop();</span><br><span class="line">	memset(vis,false,sizeof(vis));</span><br><span class="line">	memset(ans,0x3f,sizeof(ans));</span><br><span class="line">	ans[s][0]=0;</span><br><span class="line">	q.push(node(s,0,0));//s为起点,0为剩余油量,0为权值</span><br><span class="line">	while(!q.empty())</span><br><span class="line">	&#123;</span><br><span class="line">		node now=q.top();</span><br><span class="line">		q.pop();</span><br><span class="line">		int u=now.u;</span><br><span class="line">		int f=now.f;</span><br><span class="line">		int w=now.w;</span><br><span class="line">		vis[u][f]=true;//访问过了</span><br><span class="line">		if(u==e)//到达终点了</span><br><span class="line">			return w;</span><br><span class="line">		if(check1(u,f))//判断</span><br><span class="line">		&#123;</span><br><span class="line">			ans[u][f+1]=ans[u][f]+wn[u];//加上一升油的钱</span><br><span class="line">			q.push(node(u,f+1,ans[u][f+1]));//购买一升油的状态</span><br><span class="line">		&#125;</span><br><span class="line">		for(int i=head[u]; i; i=Next[i])//遍历</span><br><span class="line">		&#123;</span><br><span class="line">			int v=ver[i],p=dis[i];</span><br><span class="line">			if(check2(f,v,p,w))//判断</span><br><span class="line">			&#123;</span><br><span class="line">				ans[v][f-p]=w;//耗费油</span><br><span class="line">				q.push(node(v,f-p,w));</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	return -1;</span><br><span class="line">&#125;</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">	ios::sync_with_stdio(false);</span><br><span class="line">	cin&gt;&gt;n&gt;&gt;m;</span><br><span class="line">	for(int i=0; i&lt;n; i++)</span><br><span class="line">		cin&gt;&gt;wn[i];</span><br><span class="line">	for(int i=1; i&lt;=m; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		int x,y,z;</span><br><span class="line">		cin&gt;&gt;x&gt;&gt;y&gt;&gt;z;</span><br><span class="line">		add(x,y,z);</span><br><span class="line">		add(y,x,z);//无向图两条边</span><br><span class="line">	&#125;</span><br><span class="line">	cin&gt;&gt;t;</span><br><span class="line">	while(t--)</span><br><span class="line">	&#123;</span><br><span class="line">		cin&gt;&gt;c&gt;&gt;s&gt;&gt;e;</span><br><span class="line">		int ans=BFS();</span><br><span class="line">		if(ans==-1)</span><br><span class="line">			printf(&quot;impossible\n&quot;);//无解</span><br><span class="line">		else</span><br><span class="line">			printf(&quot;%d\n&quot;,ans);</span><br><span class="line">	&#125;</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/02/12/AcWing 175. 电路维修/" rel="next" title="AcWing 175. 电路维修">
+                <i class="fa fa-chevron-left"></i> AcWing 175. 电路维修
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/02/12/AcWing 183. 靶形数独/" rel="prev" title="AcWing 183. 靶形数独">
+                AcWing 183. 靶形数独 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">秦淮岸灯火阑珊</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.chicago01.top/" title="chicago01" target="_blank">chicago01</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#题目描述"><span class="nav-number">1.</span> <span class="nav-text">题目描述</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#样例"><span class="nav-number">1.1.</span> <span class="nav-text">样例</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#优先队列-BFS-dijiskla"><span class="nav-number">2.</span> <span class="nav-text">优先队列+BFS(dijiskla)</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#看到上面标黑的字-相信给位已经很清楚了这道题目就是一道最短路的题目"><span class="nav-number">2.0.1.</span> <span class="nav-text">看到上面标黑的字,相信给位已经很清楚了这道题目就是一道最短路的题目.</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#但是这道题目只是用到了思想-我们实现方法还是优先队列-BFS-首先我们可以开一个二元组-city-fuel-表示状态-city为城市编号-fuel为剩余的汽油量-既然这样的话-我们的起始状态就是-S-0"><span class="nav-number">2.0.2.</span> <span class="nav-text">但是这道题目只是用到了思想,我们实现方法还是优先队列+BFS,首先我们可以开一个二元组(city,fuel)表示状态,city为城市编号,fuel为剩余的汽油量,既然这样的话,我们的起始状态就是(S,0).</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#接下来就是两种可选择的方案"><span class="nav-number">2.0.3.</span> <span class="nav-text">接下来就是两种可选择的方案</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#综上所述-我们不断地取出当前花费最少的状态进行拓展-然后每一次拓展用ans数组记录最小花费即可-具体可看代码实现"><span class="nav-number">2.0.4.</span> <span class="nav-text">综上所述,我们不断地取出当前花费最少的状态进行拓展,然后每一次拓展用ans数组记录最小花费即可.具体可看代码实现</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#C-代码"><span class="nav-number">2.1.</span> <span class="nav-text">C++ 代码</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">秦淮岸灯火阑珊</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/clicklove.js"></script>
+</html>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/clicklove.js"></script>
