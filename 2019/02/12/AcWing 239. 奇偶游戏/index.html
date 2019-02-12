@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="原题链接更好的阅读体验 题目描述小A和小B在玩一个游戏。 首先，小A写了一个由0和1组成的序列S，长度为N。 然后，小B向小A提出了M个问题。 在每个问题中，小B指定两个数 l 和 r，小A回答 S[l~r] 中有奇数个1还是偶数个1。 机智的小B发现小A有可能在撒谎。 例如，小A曾经回答过 S[1~3] 中有奇数个1， S[4~6] 中有偶数个1，现在又回答 S[1~6] 中有偶数个1，显然这是">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AcWing 239. 奇偶游戏">
+<meta property="og:url" content="https://gzh-red.github.io/2019/02/12/AcWing 239. 奇偶游戏/index.html">
+<meta property="og:site_name" content="秦淮岸灯火阑珊&#39;blog">
+<meta property="og:description" content="原题链接更好的阅读体验 题目描述小A和小B在玩一个游戏。 首先，小A写了一个由0和1组成的序列S，长度为N。 然后，小B向小A提出了M个问题。 在每个问题中，小B指定两个数 l 和 r，小A回答 S[l~r] 中有奇数个1还是偶数个1。 机智的小B发现小A有可能在撒谎。 例如，小A曾经回答过 S[1~3] 中有奇数个1， S[4~6] 中有偶数个1，现在又回答 S[1~6] 中有偶数个1，显然这是">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-02-12T12:35:21.663Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="AcWing 239. 奇偶游戏">
+<meta name="twitter:description" content="原题链接更好的阅读体验 题目描述小A和小B在玩一个游戏。 首先，小A写了一个由0和1组成的序列S，长度为N。 然后，小B向小A提出了M个问题。 在每个问题中，小B指定两个数 l 和 r，小A回答 S[l~r] 中有奇数个1还是偶数个1。 机智的小B发现小A有可能在撒谎。 例如，小A曾经回答过 S[1~3] 中有奇数个1， S[4~6] 中有偶数个1，现在又回答 S[1~6] 中有偶数个1，显然这是">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://gzh-red.github.io/2019/02/12/AcWing 239. 奇偶游戏/">
+
+
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入密码') !== ''){
+                alert('密码错误');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+
+
+  <title>AcWing 239. 奇偶游戏 | 秦淮岸灯火阑珊'blog</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?25dad7ccff5338a032af7b69cd47250a";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">秦淮岸灯火阑珊'blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://gzh-red.github.io/2019/02/12/AcWing 239. 奇偶游戏/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="秦淮岸灯火阑珊">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://www.acwing.com/media/user/profile/photo/1130_md_37170c4e16.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="秦淮岸灯火阑珊'blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">AcWing 239. 奇偶游戏</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-12T20:35:21+08:00">
+                2019-02-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><a href="https://www.acwing.com/problem/content/241/" target="_blank" rel="noopener">原题链接</a><br><a href="">更好的阅读体验</a></p>
+<h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>小A和小B在玩一个游戏。</p>
+<p>首先，小A写了一个由0和1组成的序列S，长度为N。</p>
+<p>然后，小B向小A提出了M个问题。</p>
+<p>在每个问题中，小B指定两个数 l 和 r，小A回答 S[l~r] 中有奇数个1还是偶数个1。</p>
+<p>机智的小B发现小A有可能在撒谎。</p>
+<p>例如，小A曾经回答过 S[1~3] 中有奇数个1， S[4~6] 中有偶数个1，现在又回答 S[1~6] 中有偶数个1，显然这是自相矛盾的。</p>
+<p>请你帮助小B检查这M个答案，并指出在至少多少个回答之后可以确定小A一定在撒谎。</p>
+<p>即求出一个最小的k，使得01序列S满足第1~k个回答，但不满足第1~k+1个回答。</p>
+<p>输入格式<br>第一行包含一个整数N，表示01序列长度。</p>
+<p>第二行包含一个整数M，表示问题数量。</p>
+<p>接下来M行，每行包含一组问答：两个整数l和r，以及回答“even”或“odd”，用以描述S[l~r] 中有奇数个1还是偶数个1。</p>
+<p>输出格式<br>输出一个整数k，表示01序列满足第1~k个回答，但不满足第1~k+1个回答，如果01序列满足所有回答，则输出问题总数量。</p>
+<p>数据范围<br>$N≤10^9,M≤10000$</p>
+<h4 id="样例"><a href="#样例" class="headerlink" title="样例"></a>样例</h4><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">输入样例：</span><br><span class="line"><span class="number">10</span></span><br><span class="line"><span class="number">5</span></span><br><span class="line"><span class="number">1</span> <span class="number">2</span> even</span><br><span class="line"><span class="number">3</span> <span class="number">4</span> odd</span><br><span class="line"><span class="number">5</span> <span class="number">6</span> even</span><br><span class="line"><span class="number">1</span> <span class="number">6</span> even</span><br><span class="line"><span class="number">7</span> <span class="number">10</span> odd</span><br><span class="line">输出样例：</span><br><span class="line"><span class="number">3</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="前缀和-异或性质-并查集-离散化"><a href="#前缀和-异或性质-并查集-离散化" class="headerlink" title="前缀和+异或性质+并查集+离散化"></a>前缀和+异或性质+并查集+离散化</h3><h5 id="我们可以用sum数组表示序列S的前缀和-那么会得到以下性质"><a href="#我们可以用sum数组表示序列S的前缀和-那么会得到以下性质" class="headerlink" title="我们可以用sum数组表示序列S的前缀和,那么会得到以下性质."></a>我们可以用sum数组表示序列S的前缀和,那么会得到以下性质.</h5><ol>
+<li>s[l~r]有偶数个1,等价于sum[l-1]与sum[r]奇偶性相同 (1+0=1 0+0=0,1是奇数,0是偶数)</li>
+<li>s[l~r]有奇数个1,等价于sum[l-1]与sum[r]奇偶性不同 (1+1=0 0+1=0,1是奇数,0是偶数)</li>
+</ol>
+<h5 id="以下是传递关系细目表"><a href="#以下是传递关系细目表" class="headerlink" title="以下是传递关系细目表"></a>以下是传递关系细目表</h5><ol>
+<li>如果说$x_1$和$x_2$奇偶性质相同,$x_2$与$x_3$奇偶性质相同,那么$x_1$和$x_3$也相同</li>
+<li>如果说$x_1$和$x_2$奇偶性质相同,$x_2$与$x_3$奇偶性质不同,那么$x_1$和$x_3$也不同</li>
+<li>如果说$x_1$和$x_2$奇偶性质不同,$x_2$与$x_3$奇偶性质不同,那么$x_1$和$x_3$就相同</li>
+<li>上面看清楚地啊,别看错了,尤其是相同和不同</li>
+</ol>
+<h5 id="离散化-这道题目N超大-但是M却少-所以记得离散化-最讨厌离散化了"><a href="#离散化-这道题目N超大-但是M却少-所以记得离散化-最讨厌离散化了" class="headerlink" title="离散化:这道题目N超大,但是M却少,所以记得离散化.(最讨厌离散化了)"></a>离散化:这道题目N超大,但是M却少,所以记得离散化.(<del>最讨厌离散化了</del>)</h5><h5 id="异或-我们可以通过异或来满足上面的传递关系-具体可以看代码-我懒了-主要是太久没有写题解了-今天晚上要写至少八篇-好累哎-QwQ"><a href="#异或-我们可以通过异或来满足上面的传递关系-具体可以看代码-我懒了-主要是太久没有写题解了-今天晚上要写至少八篇-好累哎-QwQ" class="headerlink" title="异或:我们可以通过异或来满足上面的传递关系,具体可以看代码.我懒了,主要是太久没有写题解了,今天晚上要写至少八篇,好累哎.QwQ"></a>异或:我们可以通过异或来满足上面的传递关系,具体可以看代码.<del>我懒了,主要是太久没有写题解了,今天晚上要写至少八篇,好累哎.QwQ</del></h5><h5 id="不懂得记得call下博主啊-不要将问题留在心里"><a href="#不懂得记得call下博主啊-不要将问题留在心里" class="headerlink" title="不懂得记得call下博主啊!不要将问题留在心里!!!"></a>不懂得记得call下博主啊!不要将问题留在心里!!!</h5><h4 id="C-代码"><a href="#C-代码" class="headerlink" title="C++ 代码"></a>C++ 代码</h4><figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#include&lt;bits/stdc++.h&gt;</span></span><br><span class="line">using namespace std;</span><br><span class="line">const <span class="keyword">int</span> N=<span class="number">10010</span>&lt;&lt;<span class="number">1</span>;</span><br><span class="line">struct node</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">int</span> l,r,ans;</span><br><span class="line">&#125; <span class="string">q[N]</span>;</span><br><span class="line"><span class="keyword">int</span> a[N],fa[N],d[N],n,<span class="keyword">m</span>,t_n;</span><br><span class="line"><span class="keyword">int</span> get(<span class="keyword">int</span> <span class="keyword">x</span>)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">x</span>==fa[<span class="keyword">x</span>])</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">x</span>;</span><br><span class="line">    <span class="keyword">int</span> root=get(fa[<span class="keyword">x</span>]);</span><br><span class="line">    d[<span class="keyword">x</span>]^=d[fa[<span class="keyword">x</span>]];<span class="regexp">//</span>异或</span><br><span class="line">    <span class="keyword">return</span> fa[<span class="keyword">x</span>]=root;</span><br><span class="line">&#125;</span><br><span class="line">inline <span class="keyword">int</span> read_init()//离散化</span><br><span class="line">&#123;</span><br><span class="line">    cin&gt;&gt;n&gt;&gt;<span class="keyword">m</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=<span class="keyword">m</span>;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        char str[<span class="number">5</span>];</span><br><span class="line">        scanf(<span class="string">"%d%d%s"</span>,&amp;<span class="string">q[i]</span>.l,&amp;<span class="string">q[i]</span>.r,str);</span><br><span class="line">        <span class="string">q[i]</span>.ans=(str[<span class="number">0</span>]==<span class="string">'e'</span>?<span class="number">0</span>:<span class="number">1</span>);</span><br><span class="line">        a[++t_n]=<span class="string">q[i]</span>.l-<span class="number">1</span>;</span><br><span class="line">        a[++t_n]=<span class="string">q[i]</span>.r;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">sort</span>(a+<span class="number">1</span>,a+<span class="number">1</span>+t_n);</span><br><span class="line">    n=unique(a+<span class="number">1</span>,a+<span class="number">1</span>+t_n)-a-<span class="number">1</span>;<span class="regexp">//</span>去重</span><br><span class="line">&#125;</span><br><span class="line">inline <span class="keyword">int</span> work()</span><br><span class="line">&#123;</span><br><span class="line">    read_init();</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">        fa[i]=i;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=<span class="keyword">m</span>;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">int</span> <span class="keyword">x</span>=lower_bound(a+<span class="number">1</span>,a+<span class="number">1</span>+n,<span class="string">q[i]</span>.l-<span class="number">1</span>)-a;<span class="regexp">//</span>离散化后要找数</span><br><span class="line">        <span class="keyword">int</span> <span class="keyword">y</span>=lower_bound(a+<span class="number">1</span>,a+<span class="number">1</span>+n,<span class="string">q[i]</span>.r)-a;</span><br><span class="line">        <span class="keyword">int</span> p=get(<span class="keyword">x</span>),q2=get(<span class="keyword">y</span>);</span><br><span class="line">        <span class="keyword">if</span> (p==q2)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> ((d[<span class="keyword">x</span>]^d[<span class="keyword">y</span>])!=<span class="string">q[i]</span>.ans)//变量要相等,但是却不相等了.</span><br><span class="line">            &#123;</span><br><span class="line">                cout&lt;&lt;i-<span class="number">1</span>&lt;&lt;endl;</span><br><span class="line">                <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; </span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            fa[p]=q2;<span class="regexp">//</span>合并merge.两方代码就懒得写函数了,见谅</span><br><span class="line">            d[p]^=d[<span class="keyword">x</span>]^d[<span class="keyword">y</span>]^<span class="string">q[i]</span>.ans;<span class="regexp">//</span>统统异或</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    cout&lt;&lt;<span class="keyword">m</span>;<span class="regexp">//</span>数据过于优秀,一个问题都没有</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">int</span> main()</span><br><span class="line">&#123;</span><br><span class="line">    work();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    秦淮岸灯火阑珊
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://gzh-red.github.io/2019/02/12/AcWing 239. 奇偶游戏/" title="AcWing 239. 奇偶游戏">https://gzh-red.github.io/2019/02/12/AcWing 239. 奇偶游戏/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+		<div>
+      
+        
+
+      
+</div>
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/02/12/AcWing 238. 银河英雄传说/" rel="next" title="AcWing 238. 银河英雄传说">
+                <i class="fa fa-chevron-left"></i> AcWing 238. 银河英雄传说
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/02/12/AcWing 240. 食物链/" rel="prev" title="AcWing 240. 食物链">
+                AcWing 240. 食物链 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://www.acwing.com/media/user/profile/photo/1130_md_37170c4e16.jpg" alt="秦淮岸灯火阑珊">
+            
+              <p class="site-author-name" itemprop="name">秦淮岸灯火阑珊</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.chicago01.top/" title="chicago01" target="_blank">chicago01</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#题目描述"><span class="nav-number">1.</span> <span class="nav-text">题目描述</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#样例"><span class="nav-number">1.1.</span> <span class="nav-text">样例</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#前缀和-异或性质-并查集-离散化"><span class="nav-number">2.</span> <span class="nav-text">前缀和+异或性质+并查集+离散化</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#我们可以用sum数组表示序列S的前缀和-那么会得到以下性质"><span class="nav-number">2.0.1.</span> <span class="nav-text">我们可以用sum数组表示序列S的前缀和,那么会得到以下性质.</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#以下是传递关系细目表"><span class="nav-number">2.0.2.</span> <span class="nav-text">以下是传递关系细目表</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#离散化-这道题目N超大-但是M却少-所以记得离散化-最讨厌离散化了"><span class="nav-number">2.0.3.</span> <span class="nav-text">离散化:这道题目N超大,但是M却少,所以记得离散化.(最讨厌离散化了)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#异或-我们可以通过异或来满足上面的传递关系-具体可以看代码-我懒了-主要是太久没有写题解了-今天晚上要写至少八篇-好累哎-QwQ"><span class="nav-number">2.0.4.</span> <span class="nav-text">异或:我们可以通过异或来满足上面的传递关系,具体可以看代码.我懒了,主要是太久没有写题解了,今天晚上要写至少八篇,好累哎.QwQ</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#不懂得记得call下博主啊-不要将问题留在心里"><span class="nav-number">2.0.5.</span> <span class="nav-text">不懂得记得call下博主啊!不要将问题留在心里!!!</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#C-代码"><span class="nav-number">2.1.</span> <span class="nav-text">C++ 代码</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">秦淮岸灯火阑珊</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+  
+
+  
+
+</body>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/clicklove.js"></script>
+</html>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/clicklove.js"></script>
