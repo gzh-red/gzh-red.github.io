@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Acwing,线段树,扫描线,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="原题链接更好的阅读体验 题目描述有几个古希腊书籍中包含了对传说中的亚特兰蒂斯岛的描述。 其中一些甚至包括岛屿部分地图。 但不幸的是，这些地图描述了亚特兰蒂斯的不同区域。 您的朋友Bill必须知道地图的总面积。 你自告奋勇写了一个计算这个总面积的程序。 输入格式输入包含多组测试用例。 对于每组测试用例，第一行包含整数n，表示总的地图数量。 接下来n行，描绘了每张地图，每行包含四个数字$x1,y1,x">
+<meta name="keywords" content="Acwing,线段树,扫描线">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AcWing 247. 亚特兰蒂斯">
+<meta property="og:url" content="https://gzh-red.github.io/2019/02/15/AcWing 247. 亚特兰蒂斯/index.html">
+<meta property="og:site_name" content="秦淮岸灯火阑珊&#39;blog">
+<meta property="og:description" content="原题链接更好的阅读体验 题目描述有几个古希腊书籍中包含了对传说中的亚特兰蒂斯岛的描述。 其中一些甚至包括岛屿部分地图。 但不幸的是，这些地图描述了亚特兰蒂斯的不同区域。 您的朋友Bill必须知道地图的总面积。 你自告奋勇写了一个计算这个总面积的程序。 输入格式输入包含多组测试用例。 对于每组测试用例，第一行包含整数n，表示总的地图数量。 接下来n行，描绘了每张地图，每行包含四个数字$x1,y1,x">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://img-blog.csdn.net/20130726113310406?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQva2szMDM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="https://img-blog.csdn.net/20130726113323484?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQva2szMDM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="https://img-blog.csdn.net/20130726113335390?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQva2szMDM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="https://img-blog.csdn.net/20130726113346718?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQva2szMDM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="https://img-blog.csdn.net/20130726113358093?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQva2szMDM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="https://img-blog.csdn.net/20130726113407109?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQva2szMDM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:updated_time" content="2019-02-15T12:35:35.977Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="AcWing 247. 亚特兰蒂斯">
+<meta name="twitter:description" content="原题链接更好的阅读体验 题目描述有几个古希腊书籍中包含了对传说中的亚特兰蒂斯岛的描述。 其中一些甚至包括岛屿部分地图。 但不幸的是，这些地图描述了亚特兰蒂斯的不同区域。 您的朋友Bill必须知道地图的总面积。 你自告奋勇写了一个计算这个总面积的程序。 输入格式输入包含多组测试用例。 对于每组测试用例，第一行包含整数n，表示总的地图数量。 接下来n行，描绘了每张地图，每行包含四个数字$x1,y1,x">
+<meta name="twitter:image" content="https://img-blog.csdn.net/20130726113310406?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQva2szMDM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://gzh-red.github.io/2019/02/15/AcWing 247. 亚特兰蒂斯/">
+
+
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入密码') !== ''){
+                alert('密码错误');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+
+
+  <title>AcWing 247. 亚特兰蒂斯 | 秦淮岸灯火阑珊'blog</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?25dad7ccff5338a032af7b69cd47250a";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">秦淮岸灯火阑珊'blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://gzh-red.github.io/2019/02/15/AcWing 247. 亚特兰蒂斯/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="秦淮岸灯火阑珊">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://www.acwing.com/media/user/profile/photo/1130_md_37170c4e16.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="秦淮岸灯火阑珊'blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">AcWing 247. 亚特兰蒂斯</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-15T20:35:35+08:00">
+                2019-02-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法竞赛进阶指南/" itemprop="url" rel="index">
+                    <span itemprop="name">算法竞赛进阶指南</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><a href="https://www.acwing.com/problem/content/description/249/" target="_blank" rel="noopener">原题链接</a><br><a href="">更好的阅读体验</a></p>
+<h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>有几个古希腊书籍中包含了对传说中的亚特兰蒂斯岛的描述。</p>
+<p>其中一些甚至包括岛屿部分地图。</p>
+<p>但不幸的是，这些地图描述了亚特兰蒂斯的不同区域。</p>
+<p>您的朋友Bill必须知道地图的总面积。</p>
+<p><strong>你自告奋勇</strong>写了一个计算这个<strong>总面积</strong>的程序。</p>
+<p>输入格式<br>输入包含多组测试用例。</p>
+<p>对于每组测试用例，第一行包含整数n，表示总的地图数量。</p>
+<p>接下来n行，描绘了每张地图，每行包含四个数字$x1,y1,x2,y2$<strong>（不一定是整数）</strong>,$(x1,y1)$和$(x2,y2)$分别是地图的左上角位置和右下角位置。</p>
+<p>当输入用例$n=0$时，表示输入终止，该用例无需处理。</p>
+<p><strong>输出格式</strong><br>每组测试用例输出两行。</p>
+<p>第一行输出”Test case #k”，其中k是测试用例的编号，从1开始。</p>
+<p>第二行输出“Total explored area：a”，其中a是总地图面积（即此测试用例中所有矩形的面积并，注意如果一片区域被多个地图包含，则在计算总面积时只计算一次），<strong>精确到小数点后两位数</strong>。</p>
+<p>在每个测试用例后输出一个空行。</p>
+<p>数据范围<br>$1≤n≤100$<br>$0≤x_1&lt;x_2≤100000$<br>$0≤y_1&lt;y_2≤100000$</p>
+<h4 id="样例"><a href="#样例" class="headerlink" title="样例"></a>样例</h4><figure class="highlight subunit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">输入样例：</span><br><span class="line">2</span><br><span class="line">10 10 20 20</span><br><span class="line">15 15 25 25.5</span><br><span class="line">0</span><br><span class="line">输出样例：</span><br><span class="line"><span class="keyword">Test </span>case #1</span><br><span class="line">Total explored area: 180.00</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="线段树-扫描线-二分查找-离散化"><a href="#线段树-扫描线-二分查找-离散化" class="headerlink" title="线段树+扫描线+二分查找+离散化"></a>线段树+扫描线+二分查找+离散化</h3><h5 id="这道题目是真的有毒还是我太菜了-各种算法大杂烩-最后还是看了五篇优秀的blog东凑西凑才理解的-为什么我要自告奋勇写这道题目-可见出题人的内心有多么友好啊……"><a href="#这道题目是真的有毒还是我太菜了-各种算法大杂烩-最后还是看了五篇优秀的blog东凑西凑才理解的-为什么我要自告奋勇写这道题目-可见出题人的内心有多么友好啊……" class="headerlink" title="这道题目是真的有毒还是我太菜了,各种算法大杂烩,最后还是看了五篇优秀的blog东凑西凑才理解的.为什么我要自告奋勇写这道题目,可见出题人的内心有多么友好啊……"></a>这道题目是真的有毒<del>还是我太菜了</del>,各种算法大杂烩,最后还是看了五篇优秀的blog东凑西凑才理解的.<del>为什么我要自告奋勇写这道题目,可见出题人的内心有多么友好啊……</del></h5><h5 id="离散化-首先坐标太大了-我们需要离散化"><a href="#离散化-首先坐标太大了-我们需要离散化" class="headerlink" title="离散化:首先坐标太大了,我们需要离散化."></a>离散化:首先坐标太大了,我们需要离散化.</h5><h5 id="二分-既然离散化了-自然就要二分找坐标了"><a href="#二分-既然离散化了-自然就要二分找坐标了" class="headerlink" title="二分:既然离散化了,自然就要二分找坐标了."></a>二分:既然离散化了,自然就要二分找坐标了.</h5><h5 id="扫描线-题目告诉我们-需要将二维转化成为一维-所以我们需要扫描线这种变态级别神器来解答这道题目-具体来说-我们就是要取出N个矩阵的左右边界-然后从下往上或者从左往右的方向-不断地扫描-然后我们就会求出每一条扫描线在矩阵上覆盖的长度L-然后这一段面积就是L-宽度"><a href="#扫描线-题目告诉我们-需要将二维转化成为一维-所以我们需要扫描线这种变态级别神器来解答这道题目-具体来说-我们就是要取出N个矩阵的左右边界-然后从下往上或者从左往右的方向-不断地扫描-然后我们就会求出每一条扫描线在矩阵上覆盖的长度L-然后这一段面积就是L-宽度" class="headerlink" title="扫描线:题目告诉我们,需要将二维转化成为一维,所以我们需要扫描线这种变态级别神器来解答这道题目.具体来说,我们就是要取出N个矩阵的左右边界,然后从下往上或者从左往右的方向,不断地扫描,然后我们就会求出每一条扫描线在矩阵上覆盖的长度L,然后这一段面积就是L*宽度."></a>扫描线:题目告诉我们,需要将二维转化成为一维,所以我们需要扫描线这种<del>变态级别神器</del>来解答这道题目.具体来说,我们就是要取出N个矩阵的左右边界,然后从下往上或者从左往右的方向,不断地扫描,然后我们就会求出每一条扫描线在矩阵上覆盖的长度L,然后这一段面积就是L*宽度.</h5><h5 id="我觉得自己讲得不好-主要是思路也有些混乱-所以给出几位网上大佬的题解-希望能让各位不浪费点击我这条博客的流量-虽然图片很多-手动滑稽"><a href="#我觉得自己讲得不好-主要是思路也有些混乱-所以给出几位网上大佬的题解-希望能让各位不浪费点击我这条博客的流量-虽然图片很多-手动滑稽" class="headerlink" title="我觉得自己讲得不好,主要是思路也有些混乱,所以给出几位网上大佬的题解,希望能让各位不浪费点击我这条博客的流量,虽然图片很多.手动滑稽"></a>我觉得自己讲得不好,主要是思路也有些混乱,所以给出几位网上大佬的题解,希望能让各位不浪费点击我这条博客的流量,虽然图片很多.<del>手动滑稽</del></h5><p>以下为<a href="https://blog.csdn.net/riba2534/article/details/76851233" target="_blank" rel="noopener">riba大佬的优秀讲解,个人觉得很好的一篇blog</a></p>
+<p>现在假设我们有一根线，从下往上开始扫描<br>如图所示，我们可以把整个矩形分成如图各个颜色不同的小矩形，那么这个小矩形的高就是我们扫过的距离，那么剩下了一个变量，那就是矩形的长一直在变化。<br><img src="https://img-blog.csdn.net/20130726113310406?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQva2szMDM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="blog1"><br><img src="https://img-blog.csdn.net/20130726113323484?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQva2szMDM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="blog2"><br><img src="https://img-blog.csdn.net/20130726113335390?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQva2szMDM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="blog3"><br><img src="https://img-blog.csdn.net/20130726113346718?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQva2szMDM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="blog4"><br><img src="https://img-blog.csdn.net/20130726113358093?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQva2szMDM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="blog5"><br><img src="https://img-blog.csdn.net/20130726113407109?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQva2szMDM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="blog6"><br>我们的线段树就是为了维护矩形的长，我们给每一个矩形的上下边进行标记，下面的边标记为1，上面的边标记为-1，每遇到一个矩形时，我们知道了标记为1的边，我们就加进来这一条矩形的长，等到扫描到-1时，证明这一条边需要删除，就删去，利用1和-1可以轻松的到这种状态。<br>还要注意这里的线段树指的并不是线段的一个端点，而指的是一个区间，所以我们要计算的时候r+1和r-1<br>再提一下离散化，离散化就是把一段很大的区间映射到一个小区间内，这样会节省大量空间，要进行离散化，我们先对端点进行排序，然后去重，然后二分找值就可以了</p>
+<p><a href="https://www.cnblogs.com/KonjakJuruo/p/6024266.html" target="_blank" rel="noopener">以下为另外一位大佬的blog</a><br>这道题我一直在纠结，怎么求当前有扫描线上有的线段总长？怎么lazy下放？我一直想的是每个点维护的都是它维护的这个区间内的总的cnt等等。<br>后来我发现换个思路，一切都很简单！<br>我的每个节点t[x].l~t[x].r维护的其实是线段t[x].l~(t[x].r+1)，也就是若干条线段，因为点分成左右孩子的时候会有问题（比如[3,3]维护的到底是什么？）。<br>我们要把每个节点看成是一条线段。<br>对于每个节点维护两个值：<br>cnt：这个点所代表的线段被覆盖了多少次。<br>len：以这个点为根的子树中被覆盖的区间一共有多长。<br>当一条线段进来的时候，在代表它的那若干个节点上cnt++，其它节点cnt不用加。<br>然后len维护的就是这个区间内那些cnt&gt;0的节点所覆盖的区间总长。<br>其实线段树上每个节点都可以有它的实际意义</p>
+<h4 id="C-代码"><a href="#C-代码" class="headerlink" title="C++ 代码"></a>C++ 代码</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//这道题目码风有些诡异,虽然我已经尽量变成我这种通俗易懂的码风了.</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">1100</span>;</span><br><span class="line"><span class="keyword">double</span> dis[N];</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">node</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="keyword">double</span> x1,x2,h;</span><br><span class="line">	<span class="keyword">int</span> f;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">(<span class="keyword">double</span> l2,<span class="keyword">double</span> r2,<span class="keyword">double</span> h2,<span class="keyword">int</span> key)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		x1=l2;</span><br><span class="line">		x2=r2;</span><br><span class="line">		h=h2;</span><br><span class="line">		f=key;</span><br><span class="line">	&#125;</span><br><span class="line">&#125; line[N];</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">line_tree</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">int</span> l,r,f;</span><br><span class="line">    <span class="keyword">double</span> len;</span><br><span class="line">&#125; t[N&lt;&lt;<span class="number">2</span>];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">cmp</span><span class="params">(node a,node b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> a.h&lt;b.h;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">build</span><span class="params">(<span class="keyword">int</span> p,<span class="keyword">int</span> l,<span class="keyword">int</span> r)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    t[p].l=l;</span><br><span class="line">    t[p].r=r;</span><br><span class="line">    t[p].f=<span class="number">0</span>;</span><br><span class="line">    t[p].len=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span> (l==r)</span><br><span class="line">        <span class="keyword">return</span> ;</span><br><span class="line">    <span class="keyword">int</span> mid=(l+r)&gt;&gt;<span class="number">1</span>;</span><br><span class="line">    build(p&lt;&lt;<span class="number">1</span>,l,mid);</span><br><span class="line">    build((p&lt;&lt;<span class="number">1</span>)+<span class="number">1</span>,mid+<span class="number">1</span>,r);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">get_len</span><span class="params">(<span class="keyword">int</span> p)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (t[p].f&gt;=<span class="number">1</span>)</span><br><span class="line">        t[p].len=dis[t[p].r+<span class="number">1</span>]-dis[t[p].l];<span class="comment">//这里记得+1</span></span><br><span class="line">    <span class="keyword">else</span>    </span><br><span class="line">        t[p].len=t[p&lt;&lt;<span class="number">1</span>].len+t[(p&lt;&lt;<span class="number">1</span>)|<span class="number">1</span>].len;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">change</span><span class="params">(<span class="keyword">int</span> p,<span class="keyword">int</span> l,<span class="keyword">int</span> r,<span class="keyword">int</span> v)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (t[p].l==l &amp;&amp; r==t[p].r)</span><br><span class="line">    &#123;</span><br><span class="line">        t[p].f+=v;</span><br><span class="line">        get_len(p);</span><br><span class="line">        <span class="keyword">return</span> ;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> mid=(t[p].l+t[p].r)&gt;&gt;<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span> (r&lt;=mid)</span><br><span class="line">        change(p&lt;&lt;<span class="number">1</span>,l,r,v);</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (l&gt;mid)</span><br><span class="line">        change((p&lt;&lt;<span class="number">1</span>)+<span class="number">1</span>,l,r,v);</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        change(p&lt;&lt;<span class="number">1</span>,l,mid,v);</span><br><span class="line">        change((p&lt;&lt;<span class="number">1</span>)+<span class="number">1</span>,mid+<span class="number">1</span>,r,v);</span><br><span class="line">    &#125;</span><br><span class="line">    get_len(p);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">find</span><span class="params">(<span class="keyword">double</span> p,<span class="keyword">int</span> l,<span class="keyword">int</span> r)</span><span class="comment">//诡异版二分</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">while</span>(l&lt;=r)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">int</span> mid=(l+r)&gt;&gt;<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span> (dis[mid]==p)</span><br><span class="line">            <span class="keyword">return</span> mid;</span><br><span class="line">        <span class="keyword">if</span> (dis[mid]&lt;p)</span><br><span class="line">            l=mid+<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            r=mid<span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> ts=<span class="number">0</span>,n;</span><br><span class="line">    <span class="keyword">while</span>(<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;n)!=EOF)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (n==<span class="number">0</span>)</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"Test case #%d\n"</span>,(++ts));</span><br><span class="line">        <span class="keyword">int</span> num=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">double</span> x1,x2,y1,y2;</span><br><span class="line">            <span class="built_in">scanf</span>(<span class="string">"%lf%lf%lf%lf"</span>,&amp;x1,&amp;y1,&amp;x2,&amp;y2);</span><br><span class="line">            line[num].init(x1,x2,y1,<span class="number">1</span>);</span><br><span class="line">            dis[num++]=x1;</span><br><span class="line">            line[num].init(x1,x2,y2,<span class="number">-1</span>);</span><br><span class="line">            dis[num++]=x2;</span><br><span class="line">        &#125;</span><br><span class="line">        sort(line,line+num,cmp);</span><br><span class="line">        sort(dis,dis+num);</span><br><span class="line">        <span class="keyword">int</span> dis_num=unique(dis,dis+num)-dis;</span><br><span class="line">        build(<span class="number">1</span>,<span class="number">0</span>,dis_num<span class="number">-1</span>);</span><br><span class="line">        <span class="keyword">double</span> ans=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;num<span class="number">-1</span>;i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">int</span> line_l=find(line[i].x1,<span class="number">0</span>,dis_num);</span><br><span class="line">            <span class="keyword">int</span> line_r=find(line[i].x2,<span class="number">0</span>,dis_num)<span class="number">-1</span>;</span><br><span class="line">            change(<span class="number">1</span>,line_l,line_r,line[i].f);</span><br><span class="line">            ans=ans+t[<span class="number">1</span>].len*(line[i+<span class="number">1</span>].h-line[i].h);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"Total explored area: %.2lf\n\n"</span>,ans);</span><br><span class="line">    &#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    秦淮岸灯火阑珊
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://gzh-red.github.io/2019/02/15/AcWing 247. 亚特兰蒂斯/" title="AcWing 247. 亚特兰蒂斯">https://gzh-red.github.io/2019/02/15/AcWing 247. 亚特兰蒂斯/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Acwing/" rel="tag"># Acwing</a>
+          
+            <a href="/tags/线段树/" rel="tag"># 线段树</a>
+          
+            <a href="/tags/扫描线/" rel="tag"># 扫描线</a>
+          
+        </div>
+      
+		<div>
+      
+        
+
+      
+</div>
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/02/15/AcWing 246. 区间最大公约数/" rel="next" title="AcWing 246. 区间最大公约数">
+                <i class="fa fa-chevron-left"></i> AcWing 246. 区间最大公约数
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://www.acwing.com/media/user/profile/photo/1130_md_37170c4e16.jpg" alt="秦淮岸灯火阑珊">
+            
+              <p class="site-author-name" itemprop="name">秦淮岸灯火阑珊</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">24</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.chicago01.top/" title="chicago01" target="_blank">chicago01</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#题目描述"><span class="nav-number">1.</span> <span class="nav-text">题目描述</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#样例"><span class="nav-number">1.1.</span> <span class="nav-text">样例</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#线段树-扫描线-二分查找-离散化"><span class="nav-number">2.</span> <span class="nav-text">线段树+扫描线+二分查找+离散化</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#这道题目是真的有毒还是我太菜了-各种算法大杂烩-最后还是看了五篇优秀的blog东凑西凑才理解的-为什么我要自告奋勇写这道题目-可见出题人的内心有多么友好啊……"><span class="nav-number">2.0.1.</span> <span class="nav-text">这道题目是真的有毒还是我太菜了,各种算法大杂烩,最后还是看了五篇优秀的blog东凑西凑才理解的.为什么我要自告奋勇写这道题目,可见出题人的内心有多么友好啊……</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#离散化-首先坐标太大了-我们需要离散化"><span class="nav-number">2.0.2.</span> <span class="nav-text">离散化:首先坐标太大了,我们需要离散化.</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#二分-既然离散化了-自然就要二分找坐标了"><span class="nav-number">2.0.3.</span> <span class="nav-text">二分:既然离散化了,自然就要二分找坐标了.</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#扫描线-题目告诉我们-需要将二维转化成为一维-所以我们需要扫描线这种变态级别神器来解答这道题目-具体来说-我们就是要取出N个矩阵的左右边界-然后从下往上或者从左往右的方向-不断地扫描-然后我们就会求出每一条扫描线在矩阵上覆盖的长度L-然后这一段面积就是L-宽度"><span class="nav-number">2.0.4.</span> <span class="nav-text">扫描线:题目告诉我们,需要将二维转化成为一维,所以我们需要扫描线这种变态级别神器来解答这道题目.具体来说,我们就是要取出N个矩阵的左右边界,然后从下往上或者从左往右的方向,不断地扫描,然后我们就会求出每一条扫描线在矩阵上覆盖的长度L,然后这一段面积就是L*宽度.</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#我觉得自己讲得不好-主要是思路也有些混乱-所以给出几位网上大佬的题解-希望能让各位不浪费点击我这条博客的流量-虽然图片很多-手动滑稽"><span class="nav-number">2.0.5.</span> <span class="nav-text">我觉得自己讲得不好,主要是思路也有些混乱,所以给出几位网上大佬的题解,希望能让各位不浪费点击我这条博客的流量,虽然图片很多.手动滑稽</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#C-代码"><span class="nav-number">2.1.</span> <span class="nav-text">C++ 代码</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">秦淮岸灯火阑珊</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+  
+
+  
+
+</body>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/clicklove.js"></script>
+</html>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/clicklove.js"></script>
