@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Acwing,线段树,前缀和,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="原题链接更好的阅读体验 题目描述给定长度为$N$的数列$A$，以及$M$条指令，每条指令可能是以下两种之一： 1、“1 x y”，查询区间 $[x,y]$ 中的最大连续子段和，即$\max_{x \le l \le r \le y} \sum_{i=l}^r A[i]$ 2、“2 x y”，把 $A[x]$ 改成 y。 对于每个查询指令，输出一个整数表示答案。 输入格式第一行两个整数$N$,$M$">
+<meta name="keywords" content="Acwing,线段树,前缀和">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AcWing 245. 你能回答这些问题吗">
+<meta property="og:url" content="https://gzh-red.github.io/2019/02/14/AcWing 245. 你能回答这些问题吗/index.html">
+<meta property="og:site_name" content="秦淮岸灯火阑珊&#39;blog">
+<meta property="og:description" content="原题链接更好的阅读体验 题目描述给定长度为$N$的数列$A$，以及$M$条指令，每条指令可能是以下两种之一： 1、“1 x y”，查询区间 $[x,y]$ 中的最大连续子段和，即$\max_{x \le l \le r \le y} \sum_{i=l}^r A[i]$ 2、“2 x y”，把 $A[x]$ 改成 y。 对于每个查询指令，输出一个整数表示答案。 输入格式第一行两个整数$N$,$M$">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-02-14T13:30:44.033Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="AcWing 245. 你能回答这些问题吗">
+<meta name="twitter:description" content="原题链接更好的阅读体验 题目描述给定长度为$N$的数列$A$，以及$M$条指令，每条指令可能是以下两种之一： 1、“1 x y”，查询区间 $[x,y]$ 中的最大连续子段和，即$\max_{x \le l \le r \le y} \sum_{i=l}^r A[i]$ 2、“2 x y”，把 $A[x]$ 改成 y。 对于每个查询指令，输出一个整数表示答案。 输入格式第一行两个整数$N$,$M$">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://gzh-red.github.io/2019/02/14/AcWing 245. 你能回答这些问题吗/">
+
+
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入密码') !== ''){
+                alert('密码错误');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+
+
+  <title>AcWing 245. 你能回答这些问题吗 | 秦淮岸灯火阑珊'blog</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?25dad7ccff5338a032af7b69cd47250a";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">秦淮岸灯火阑珊'blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://gzh-red.github.io/2019/02/14/AcWing 245. 你能回答这些问题吗/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="秦淮岸灯火阑珊">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://www.acwing.com/media/user/profile/photo/1130_md_37170c4e16.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="秦淮岸灯火阑珊'blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">AcWing 245. 你能回答这些问题吗</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-14T21:30:05+08:00">
+                2019-02-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法竞赛进阶指南/" itemprop="url" rel="index">
+                    <span itemprop="name">算法竞赛进阶指南</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><a href="https://www.acwing.com/problem/content/description/246/" target="_blank" rel="noopener">原题链接</a><br><a href="">更好的阅读体验</a></p>
+<h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>给定长度为$N$的数列$A$，以及$M$条指令，每条指令可能是以下两种之一：</p>
+<p>1、“1 x y”，查询区间 $[x,y]$ 中的最大连续子段和，即$\max_{x \le l \le r \le y} \sum_{i=l}^r A[i]$</p>
+<p>2、“2 x y”，把 $A[x]$ 改成 y。</p>
+<p>对于每个查询指令，输出一个整数表示答案。</p>
+<p>输入格式<br>第一行两个整数$N$,$M$。</p>
+<p>第二行N个整数$A[i]$。</p>
+<p>接下来M行每行3个整数k,x,y，k=1表示查询<strong>（此时如果x&gt;y，请交换x,y）</strong>，k=2表示修改。</p>
+<p>输出格式<br>对于每个查询指令输出一个整数表示答案。</p>
+<p>每个答案占一行。</p>
+<p>数据范围<br>$N≤500000,M≤100000$</p>
+<h4 id="样例"><a href="#样例" class="headerlink" title="样例"></a>样例</h4><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">输入样例：</span><br><span class="line"><span class="number">5</span> <span class="number">3</span></span><br><span class="line"><span class="number">1</span> <span class="number">2</span> <span class="number">-3</span> <span class="number">4</span> <span class="number">5</span></span><br><span class="line"><span class="number">1</span> <span class="number">2</span> <span class="number">3</span></span><br><span class="line"><span class="number">2</span> <span class="number">2</span> <span class="number">-1</span></span><br><span class="line"><span class="number">1</span> <span class="number">3</span> <span class="number">2</span></span><br><span class="line">输出样例：</span><br><span class="line"><span class="number">2</span></span><br><span class="line"><span class="number">-1</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="线段树"><a href="#线段树" class="headerlink" title="线段树"></a>线段树</h3><h5 id="区间最大连续字段和是一道非常经典的问题-这道题目中我们唯一与线段树模板不同的地方-也就是这里"><a href="#区间最大连续字段和是一道非常经典的问题-这道题目中我们唯一与线段树模板不同的地方-也就是这里" class="headerlink" title="区间最大连续字段和是一道非常经典的问题,这道题目中我们唯一与线段树模板不同的地方,也就是这里."></a>区间最大连续字段和是一道非常经典的问题,这道题目中我们唯一与线段树模板不同的地方,也就是这里.</h5><h5 id="最大连续子段和-根据区间可见性-我们知道这里面必然会增加两个变量-lmax-和-rmax-分别管理前缀最大子段和和后缀最大子段和-然后根据区间可见性-显然-l-r-区间的最大子段和就是左区间的最大子段和-右区间最大子段和-以及左右两区间结合在一起中间的最大子段和"><a href="#最大连续子段和-根据区间可见性-我们知道这里面必然会增加两个变量-lmax-和-rmax-分别管理前缀最大子段和和后缀最大子段和-然后根据区间可见性-显然-l-r-区间的最大子段和就是左区间的最大子段和-右区间最大子段和-以及左右两区间结合在一起中间的最大子段和" class="headerlink" title="最大连续子段和,根据区间可见性,我们知道这里面必然会增加两个变量$lmax$和$rmax$分别管理前缀最大子段和和后缀最大子段和.然后根据区间可见性,显然$[l,r]$区间的最大子段和就是左区间的最大子段和,右区间最大子段和,以及左右两区间结合在一起中间的最大子段和."></a>最大连续子段和,根据区间可见性,我们知道这里面必然会增加两个变量$lmax$和$rmax$分别管理前缀最大子段和和后缀最大子段和.然后根据区间可见性,显然$[l,r]$区间的最大子段和就是左区间的最大子段和,右区间最大子段和,以及左右两区间结合在一起中间的最大子段和.</h5><h4 id="C-代码"><a href="#C-代码" class="headerlink" title="C++ 代码"></a>C++ 代码</h4><figure class="highlight excel"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;bits/stdc++.h&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">const <span class="built_in">int</span> <span class="built_in">N</span>=<span class="number">500000</span>&lt;&lt;<span class="number">2</span>;</span><br><span class="line">struct line_tree</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">int</span> lmax,rmax,<span class="built_in">sum</span>,dat,l,r;</span><br><span class="line">&#125; <span class="built_in">t</span>[<span class="built_in">N</span>];</span><br><span class="line"><span class="built_in">int</span> <span class="built_in">n</span>,m,a[<span class="built_in">N</span>&gt;&gt;<span class="number">2</span>];</span><br><span class="line"><span class="built_in">int</span> build(<span class="built_in">int</span> p,<span class="built_in">int</span> l,<span class="built_in">int</span> r)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">t</span>[p].l=l;</span><br><span class="line">    <span class="built_in">t</span>[p].r=r;</span><br><span class="line">    <span class="built_in">if</span>(<span class="built_in">t</span>[p].l==<span class="built_in">t</span>[p].r)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">t</span>[p].dat=<span class="built_in">t</span>[p].<span class="built_in">sum</span>=<span class="built_in">t</span>[p].lmax=<span class="built_in">t</span>[p].rmax=a[l];</span><br><span class="line">        return <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">int</span> <span class="built_in">mid</span>=(l+r)&gt;&gt;<span class="number">1</span>;</span><br><span class="line">    build(p&lt;&lt;<span class="number">1</span>,l,<span class="built_in">mid</span>);</span><br><span class="line">    build(p*<span class="number">2</span>+<span class="number">1</span>,<span class="built_in">mid</span>+<span class="number">1</span>,r);</span><br><span class="line">    <span class="built_in">t</span>[p].<span class="built_in">sum</span>=<span class="built_in">t</span>[p&lt;&lt;<span class="number">1</span>].<span class="built_in">sum</span>+<span class="built_in">t</span>[p*<span class="number">2</span>+<span class="number">1</span>].<span class="built_in">sum</span>;</span><br><span class="line">    <span class="built_in">t</span>[p].lmax=<span class="built_in">max</span>(<span class="built_in">t</span>[p&lt;&lt;<span class="number">1</span>].lmax,<span class="built_in">t</span>[p&lt;&lt;<span class="number">1</span>].<span class="built_in">sum</span>+<span class="built_in">t</span>[p*<span class="number">2</span>+<span class="number">1</span>].lmax);//本身,以及左边前缀和加上右边前缀最大子段和</span><br><span class="line">    <span class="built_in">t</span>[p].rmax=<span class="built_in">max</span>(<span class="built_in">t</span>[p*<span class="number">2</span>+<span class="number">1</span>].rmax,<span class="built_in">t</span>[p*<span class="number">2</span>+<span class="number">1</span>].<span class="built_in">sum</span>+<span class="built_in">t</span>[p&lt;&lt;<span class="number">1</span>].rmax);//本身,以及右边前缀和加上左边后缀最大子段和.</span><br><span class="line">    <span class="built_in">t</span>[p].dat=<span class="built_in">max</span>(<span class="built_in">max</span>(<span class="built_in">t</span>[p&lt;&lt;<span class="number">1</span>].dat,<span class="built_in">t</span>[p*<span class="number">2</span>+<span class="number">1</span>].dat),<span class="built_in">t</span>[p&lt;&lt;<span class="number">1</span>].rmax+<span class="built_in">t</span>[p*<span class="number">2</span>+<span class="number">1</span>].lmax);</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">int</span> change(<span class="built_in">int</span> p,<span class="built_in">int</span> x,<span class="built_in">int</span> v)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">if</span> (<span class="built_in">t</span>[p].l==<span class="built_in">t</span>[p].r)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">t</span>[p].dat=v;</span><br><span class="line">        <span class="built_in">t</span>[p].<span class="built_in">sum</span>=v;</span><br><span class="line">        <span class="built_in">t</span>[p].lmax=v;</span><br><span class="line">        <span class="built_in">t</span>[p].rmax=v;</span><br><span class="line">        return <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">int</span> <span class="built_in">mid</span>=(<span class="built_in">t</span>[p].l+<span class="built_in">t</span>[p].r)&gt;&gt;<span class="number">1</span>;</span><br><span class="line">    <span class="built_in">if</span> (x&lt;=<span class="built_in">mid</span>)</span><br><span class="line">        change(p&lt;&lt;<span class="number">1</span>,x,v);</span><br><span class="line">    else</span><br><span class="line">        change(p*<span class="number">2</span>+<span class="number">1</span>,x,v);</span><br><span class="line">    <span class="built_in">t</span>[p].<span class="built_in">sum</span>=<span class="built_in">t</span>[p&lt;&lt;<span class="number">1</span>].<span class="built_in">sum</span>+<span class="built_in">t</span>[p*<span class="number">2</span>+<span class="number">1</span>].<span class="built_in">sum</span>;</span><br><span class="line">    <span class="built_in">t</span>[p].lmax=<span class="built_in">max</span>(<span class="built_in">t</span>[p&lt;&lt;<span class="number">1</span>].lmax,<span class="built_in">t</span>[p&lt;&lt;<span class="number">1</span>].<span class="built_in">sum</span>+<span class="built_in">t</span>[p*<span class="number">2</span>+<span class="number">1</span>].lmax);</span><br><span class="line">    <span class="built_in">t</span>[p].rmax=<span class="built_in">max</span>(<span class="built_in">t</span>[p*<span class="number">2</span>+<span class="number">1</span>].rmax,<span class="built_in">t</span>[p*<span class="number">2</span>+<span class="number">1</span>].<span class="built_in">sum</span>+<span class="built_in">t</span>[p&lt;&lt;<span class="number">1</span>].rmax);</span><br><span class="line">    <span class="built_in">t</span>[p].dat=<span class="built_in">max</span>(<span class="built_in">max</span>(<span class="built_in">t</span>[p&lt;&lt;<span class="number">1</span>].dat,<span class="built_in">t</span>[p*<span class="number">2</span>+<span class="number">1</span>].dat),<span class="built_in">t</span>[p&lt;&lt;<span class="number">1</span>].rmax+<span class="built_in">t</span>[p*<span class="number">2</span>+<span class="number">1</span>].lmax);</span><br><span class="line">&#125;</span><br><span class="line">line_tree ask(<span class="built_in">int</span> p,<span class="built_in">int</span> l,<span class="built_in">int</span> r)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">if</span> (l&lt;=<span class="built_in">t</span>[p].l &amp;&amp; r&gt;=<span class="built_in">t</span>[p].r)</span><br><span class="line">        return <span class="built_in">t</span>[p];</span><br><span class="line">    <span class="built_in">int</span> <span class="built_in">mid</span>=(<span class="built_in">t</span>[p].l+<span class="built_in">t</span>[p].r)&gt;&gt;<span class="number">1</span>,val=-(<span class="number">1</span>&lt;&lt;<span class="number">30</span>);</span><br><span class="line">    line_tree a,b,c;</span><br><span class="line">    a.dat=a.sum=a.lmax=a.rmax=val;</span><br><span class="line">    b.dat=b.sum=b.lmax=b.rmax=val;</span><br><span class="line">    c.sum=<span class="number">0</span>;</span><br><span class="line">    <span class="built_in">if</span> (l&lt;=<span class="built_in">mid</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        a=ask(p&lt;&lt;<span class="number">1</span>,l,r);</span><br><span class="line">        c.sum+=a.sum;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">if</span> (r&gt;<span class="built_in">mid</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        b=ask(p*<span class="number">2</span>+<span class="number">1</span>,l,r);</span><br><span class="line">        c.sum+=b.sum;</span><br><span class="line">    &#125;</span><br><span class="line">    c.dat=<span class="built_in">max</span>(<span class="built_in">max</span>(a.dat,b.dat),a.rmax+b.lmax);</span><br><span class="line">    c.lmax=<span class="built_in">max</span>(a.lmax,b.lmax+a.sum);</span><br><span class="line">    <span class="built_in">if</span> (l&gt;<span class="built_in">mid</span>)</span><br><span class="line">        c.lmax=(c.lmax,b.lmax);</span><br><span class="line">    c.rmax=<span class="built_in">max</span>(b.rmax,b.sum+a.rmax);</span><br><span class="line">    <span class="built_in">if</span> (r&lt;=<span class="built_in">mid</span>)</span><br><span class="line">        c.rmax=<span class="built_in">max</span>(c.rmax,a.rmax);</span><br><span class="line">    return c;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">int</span> main()</span><br><span class="line">&#123;</span><br><span class="line">    i<span class="symbol">os:</span><span class="symbol">:sy</span>nc_with_stdio(<span class="built_in">false</span>);</span><br><span class="line">    cin&gt;&gt;<span class="built_in">n</span>&gt;&gt;m;</span><br><span class="line">    for(<span class="built_in">int</span> i=<span class="number">1</span>;i&lt;=<span class="built_in">n</span>;i++)</span><br><span class="line">        cin&gt;&gt;a[i];</span><br><span class="line">    build(<span class="number">1</span>,<span class="number">1</span>,<span class="built_in">n</span>);</span><br><span class="line">    while(m--)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">int</span> k,x,y;</span><br><span class="line">        cin&gt;&gt;k&gt;&gt;x&gt;&gt;y;</span><br><span class="line">        <span class="built_in">if</span> (k==<span class="number">1</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">if</span> (x&gt;y)</span><br><span class="line">                swap(x,y);</span><br><span class="line">            cout&lt;&lt;ask(<span class="number">1</span>,x,y).dat&lt;&lt;endl;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">if</span> (k==<span class="number">2</span>)</span><br><span class="line">            change(<span class="number">1</span>,x,y);</span><br><span class="line">    &#125;</span><br><span class="line">    return <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    秦淮岸灯火阑珊
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://gzh-red.github.io/2019/02/14/AcWing 245. 你能回答这些问题吗/" title="AcWing 245. 你能回答这些问题吗">https://gzh-red.github.io/2019/02/14/AcWing 245. 你能回答这些问题吗/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Acwing/" rel="tag"># Acwing</a>
+          
+            <a href="/tags/线段树/" rel="tag"># 线段树</a>
+          
+            <a href="/tags/前缀和/" rel="tag"># 前缀和</a>
+          
+        </div>
+      
+		<div>
+      
+        
+
+      
+</div>
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/02/13/AcWing 242. 一个简单的整数问题/" rel="next" title="AcWing 242. 一个简单的整数问题">
+                <i class="fa fa-chevron-left"></i> AcWing 242. 一个简单的整数问题
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/02/15/AcWing 246. 区间最大公约数/" rel="prev" title="AcWing 246. 区间最大公约数">
+                AcWing 246. 区间最大公约数 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://www.acwing.com/media/user/profile/photo/1130_md_37170c4e16.jpg" alt="秦淮岸灯火阑珊">
+            
+              <p class="site-author-name" itemprop="name">秦淮岸灯火阑珊</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">23</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.chicago01.top/" title="chicago01" target="_blank">chicago01</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#题目描述"><span class="nav-number">1.</span> <span class="nav-text">题目描述</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#样例"><span class="nav-number">1.1.</span> <span class="nav-text">样例</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#线段树"><span class="nav-number">2.</span> <span class="nav-text">线段树</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#区间最大连续字段和是一道非常经典的问题-这道题目中我们唯一与线段树模板不同的地方-也就是这里"><span class="nav-number">2.0.1.</span> <span class="nav-text">区间最大连续字段和是一道非常经典的问题,这道题目中我们唯一与线段树模板不同的地方,也就是这里.</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#最大连续子段和-根据区间可见性-我们知道这里面必然会增加两个变量-lmax-和-rmax-分别管理前缀最大子段和和后缀最大子段和-然后根据区间可见性-显然-l-r-区间的最大子段和就是左区间的最大子段和-右区间最大子段和-以及左右两区间结合在一起中间的最大子段和"><span class="nav-number">2.0.2.</span> <span class="nav-text">最大连续子段和,根据区间可见性,我们知道这里面必然会增加两个变量$lmax$和$rmax$分别管理前缀最大子段和和后缀最大子段和.然后根据区间可见性,显然$[l,r]$区间的最大子段和就是左区间的最大子段和,右区间最大子段和,以及左右两区间结合在一起中间的最大子段和.</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#C-代码"><span class="nav-number">2.1.</span> <span class="nav-text">C++ 代码</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">秦淮岸灯火阑珊</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+  
+
+  
+
+</body>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/clicklove.js"></script>
+</html>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/clicklove.js"></script>
