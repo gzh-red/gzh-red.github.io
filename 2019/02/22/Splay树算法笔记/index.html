@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Acwing,splay树,双旋,模板&算法笔记,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="更好的阅读体验 Splay树这是一篇宏伟的巨篇首先介绍BST,也就是所有平衡树的开始,他的China名字是二叉查找树. BST性质简介给定一棵二叉树,每一个节点有一个权值,命名为  关键码 ,至于为什么叫这个名字,我也不知道.BST性质也就是,对于树中任何一个节点,都满足一下性质.  这个节点的关键码不小于它的左子树上,任意一个节点的关键码 这个节点的关键码不大于它的右子树上,任意一个节点的关键码">
+<meta name="keywords" content="Acwing,splay树,双旋,模板&amp;算法笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Splay树算法笔记">
+<meta property="og:url" content="https://gzh-red.github.io/2019/02/22/Splay树算法笔记/index.html">
+<meta property="og:site_name" content="秦淮岸灯火阑珊&#39;blog">
+<meta property="og:description" content="更好的阅读体验 Splay树这是一篇宏伟的巨篇首先介绍BST,也就是所有平衡树的开始,他的China名字是二叉查找树. BST性质简介给定一棵二叉树,每一个节点有一个权值,命名为  关键码 ,至于为什么叫这个名字,我也不知道.BST性质也就是,对于树中任何一个节点,都满足一下性质.  这个节点的关键码不小于它的左子树上,任意一个节点的关键码 这个节点的关键码不大于它的右子树上,任意一个节点的关键码">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://gzh-red.github.io/media/article/image/2019/02/22/1130_a193ba4836-QQ截图20190222202301.png">
+<meta property="og:image" content="https://gzh-red.github.io/media/article/image/2019/02/22/1130_cd48293036-QQ截图20190222202419.png">
+<meta property="og:image" content="http://img.blog.csdn.net/20170825215240167?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzA5NzQzNjk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20170825215730979?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzA5NzQzNjk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:updated_time" content="2019-02-22T13:32:27.703Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Splay树算法笔记">
+<meta name="twitter:description" content="更好的阅读体验 Splay树这是一篇宏伟的巨篇首先介绍BST,也就是所有平衡树的开始,他的China名字是二叉查找树. BST性质简介给定一棵二叉树,每一个节点有一个权值,命名为  关键码 ,至于为什么叫这个名字,我也不知道.BST性质也就是,对于树中任何一个节点,都满足一下性质.  这个节点的关键码不小于它的左子树上,任意一个节点的关键码 这个节点的关键码不大于它的右子树上,任意一个节点的关键码">
+<meta name="twitter:image" content="https://gzh-red.github.io/media/article/image/2019/02/22/1130_a193ba4836-QQ截图20190222202301.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://gzh-red.github.io/2019/02/22/Splay树算法笔记/">
+
+
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入密码') !== ''){
+                alert('密码错误');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+
+
+  <title>Splay树算法笔记 | 秦淮岸灯火阑珊'blog</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?25dad7ccff5338a032af7b69cd47250a";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">秦淮岸灯火阑珊'blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://gzh-red.github.io/2019/02/22/Splay树算法笔记/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="秦淮岸灯火阑珊">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://www.acwing.com/media/user/profile/photo/1130_md_37170c4e16.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="秦淮岸灯火阑珊'blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Splay树算法笔记</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-22T21:32:27+08:00">
+                2019-02-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法竞赛进阶指南/" itemprop="url" rel="index">
+                    <span itemprop="name">算法竞赛进阶指南</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><a href="">更好的阅读体验</a></p>
+<h1 id="Splay树"><a href="#Splay树" class="headerlink" title="Splay树"></a>Splay树</h1><p><del>这是一篇宏伟的巨篇</del><br>首先介绍BST,也就是所有平衡树的开始,他的China名字是二叉查找树.</p>
+<h4 id="BST性质简介"><a href="#BST性质简介" class="headerlink" title="BST性质简介"></a>BST性质简介</h4><p>给定一棵二叉树,每一个节点有一个权值,命名为 <strong> 关键码 </strong>,至于为什么叫这个名字,我也不知道.<br>BST性质也就是,对于树中任何一个节点,都满足一下性质.</p>
+<ol>
+<li>这个节点的关键码不小于它的左子树上,任意一个节点的关键码</li>
+<li>这个节点的关键码不大于它的右子树上,任意一个节点的关键码</li>
+</ol>
+<p><img src="/media/article/image/2019/02/22/1130_a193ba4836-QQ截图20190222202301.png" alt="QQ截图20190222202301.png"><br>然后我们就可以发现这棵树的中序遍历,就是一个关键码单调递增的节点序列,说的直白点,就是一个排好序的数组.<br>这就是伟大的BST性质,一个引起无数OIer憎恨的性质.<del>(手动滑稽)</del></p>
+<h4 id="Splay的背景"><a href="#Splay的背景" class="headerlink" title="Splay的背景"></a>Splay的背景</h4><p>什么是Splay,它就是一种可以旋转的平衡树.它可以解决BST树这棵树一个极端情况,也就是退化情况.<br>如下图所示.<br><img src="/media/article/image/2019/02/22/1130_cd48293036-QQ截图20190222202419.png" alt="QQ截图20190222202419.png"><br>我们发现上面这个图是一条链,这种恐怖的数据让时间从$O(log(n))$退化到$O(n)$.<br>于是各种各样的科学家们,就开始了思考人生,开始了丧心病狂地创造出了各种平衡树方法,然后一个异常有名的科学家Tarjan开始了它丧心病狂的Tarjan算法系列.</p>
+<h4 id="Splay思路"><a href="#Splay思路" class="headerlink" title="Splay思路"></a>Splay思路</h4><p>这是一棵特殊的BST树,或者说<strong>平衡树基本都是改变树结构样式,但是却不改变最后得出的排列序列</strong>.<br>来一个yyb大佬的美图<br><img src="http://img.blog.csdn.net/20170825215240167?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzA5NzQzNjk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="yyb1"><br>这张图片大致意思如下所示:正方形部分表示一棵子树,然后圆形表示节点.<strong>(当然了其实你也可以都看作成为节点,可能更好理解吧,看个人看法)</strong></p>
+<h2 id="对于这样一棵树-我们可以做一些特殊的操作-来让它变换树的形态结构-但是最后的答案却是正确的-平衡树的精髓就是这个-就是改变树的形态结构-但是不改变最后的中序遍历-也就是答案数组"><a href="#对于这样一棵树-我们可以做一些特殊的操作-来让它变换树的形态结构-但是最后的答案却是正确的-平衡树的精髓就是这个-就是改变树的形态结构-但是不改变最后的中序遍历-也就是答案数组" class="headerlink" title="对于这样一棵树,我们可以做一些特殊的操作,来让它变换树的形态结构,但是最后的答案却是正确的.平衡树的精髓就是这个,就是改变树的形态结构,但是不改变最后的中序遍历,也就是答案数组."></a>对于这样一棵树,我们可以做一些特殊的操作,来让它变换树的形态结构,但是最后的答案却是正确的.平衡树的精髓就是这个,就是改变树的形态结构,但是不改变最后的中序遍历,也就是答案数组.</h2><h2 id="重点来了-以下为splay精华所在之处-一定要全神贯注地看-并且手中拿着笔和草稿纸-一步步跟着我一起做-那么我保证你看一遍就可以懂-相信自己一定可以明白的-不要因为文字太多而放弃"><a href="#重点来了-以下为splay精华所在之处-一定要全神贯注地看-并且手中拿着笔和草稿纸-一步步跟着我一起做-那么我保证你看一遍就可以懂-相信自己一定可以明白的-不要因为文字太多而放弃" class="headerlink" title="重点来了,以下为splay精华所在之处,一定要全神贯注地看,并且手中拿着笔和草稿纸,一步步跟着我一起做,那么我保证你看一遍就可以懂.相信自己一定可以明白的,不要因为文字太多而放弃."></a><strong>重点来了,以下为splay精华所在之处,一定要全神贯注地看,并且手中拿着笔和草稿纸,一步步跟着我一起做,那么我保证你看一遍就可以懂.相信自己一定可以明白的,不要因为文字太多而放弃.</strong></h2><p>现在我们的现在目标只有一个<strong>x节点往上面爬,爬到它原本的父亲节点y,然后让y节点下降</strong><br>首先思考BST性质,那就是右子树上的点,统统都比父亲节点大对不对,现在我们的x节点是父亲节点y的左节点,也就是比y节点小. <strong>那么我们为了不改变答案顺序,我们可以让y节点成为x节点的右儿子,也就是y节点仍然大于我们的x节点</strong><br>这么做当然是没有问题的,那么我们现在又有一个问题了,x节点的右子树原来是有子树B的,那么如果说现在y节点以及它的右子树(没有左子树,因为曾经x节点是它的左子树),放到了x节点的右子树上,那么岂不是多了什么吗?<br>我们知道 <strong>x节点的右子树必然是大于x节点的,然后y节点必然是大于x节点的右子树和x节点的,因为x节点和它的右子树都是在y节点的左子树,都比它小</strong><br>既然如此的话,我们为什么不把x节点原来的右子树,放在节点y的左子树上面呢?这样的话,我们就巧妙地避开了冲突,达成了x节点上移,y节点下移.<br>移动后的图片<br><img src="http://img.blog.csdn.net/20170825215730979?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzA5NzQzNjk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="sply2"><br>这就是一种情况,但是我们不能够局限一种情况,我们要找到通解.以下为通解<br>若节点x为y节点的位置z.( <strong>z为0,则为左节点,1则为右节点</strong> )</p>
+<ol>
+<li>那么y节点就放到x节点的z^1的位置.(也就是,x节点为y节点的右子树,那么y节点就放到左子树,x节点为y节点左子树,那么y节点就放到右子树位置,这样就完美满足条件)</li>
+<li>如果说x节点的z^1的位置上,已经有节点,或者一棵子树,那么我们就将原来x节点z^1位置上的子树,放到y节点的位置z上面.(自己可以画图理解一下)</li>
+<li>移动完毕.</li>
+</ol>
+<p>yyb大佬的代码,个人认为最精简的代码&amp;最适合理解的代码.<del>主要是因为注释多,不要打我脸</del><br>t是树上节点的结构体，ch数组表示左右儿子，ch[0]是左儿子，ch[1]是右儿子，ff是父节点<br><figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">void update<span class="params">(int x)</span></span><br><span class="line">&#123;</span><br><span class="line">    t[x]<span class="string">.size=t</span>[t[x]<span class="string">.ch</span>[0]]<span class="string">.size</span>+t[t[x]<span class="string">.ch</span>[1]]<span class="string">.size</span>+t[x]<span class="string">.cnt</span>;<span class="string">//</span>左子树+右子树+本身多少个,cnt记录重复个数.</span><br><span class="line">&#125;</span><br><span class="line">void rotate<span class="params">(int x)</span><span class="string">//X</span>是要旋转的节点</span><br><span class="line">&#123;</span><br><span class="line">    int y=t[x]<span class="string">.ff</span>;<span class="string">//X</span>的父亲</span><br><span class="line">    int z=t[y]<span class="string">.ff</span>;<span class="string">//X</span>的祖父</span><br><span class="line">    int k=t[y]<span class="string">.ch</span>[1]==x;<span class="string">//X</span>是Y的哪一个儿子 0是左儿子 1是右儿子</span><br><span class="line">    t[z]<span class="string">.ch</span>[t[z]<span class="string">.ch</span>[1]==y]=x;<span class="string">//Z</span>的原来的Y的位置变为X</span><br><span class="line">    t[x]<span class="string">.ff=z</span>;<span class="string">//X</span>的父亲变成Z</span><br><span class="line">    t[y]<span class="string">.ch</span>[k]=t[x]<span class="string">.ch</span>[k^1];<span class="string">//X</span>的与X原来在Y的相对的那个儿子变成Y的儿子</span><br><span class="line">    t[t[x]<span class="string">.ch</span>[k^1]]<span class="string">.ff=y</span>;<span class="string">//</span>更新父节点</span><br><span class="line">    t[x]<span class="string">.ch</span>[k^1]=y;<span class="string">//X</span>的 与X原来相对位置的儿子变成 Y</span><br><span class="line">    t[y]<span class="string">.ff=x</span>;<span class="string">//</span>更新父节点</span><br><span class="line">    update<span class="params">(y)</span>;update<span class="params">(x)</span>;<span class="string">//yyb</span>大佬忘记写了,这里是上传修改.</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这里面用到了<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">```t[y].ch[1]```是y的右儿子，如果x是右儿子，那么这个式子是1，否则是0，也正好对应着左右儿子,同样的k^1，表示相对的儿子，左儿子0^1=1 右儿子1^1=0.其实上面我的文字们已经讲述清楚了,不过yyb大佬的代码,写得很好看~~这是真心话!!!~~</span><br><span class="line">--------</span><br><span class="line">如果你已经读到了这里,那么恭喜你,现在的你成功完成了splay大部分了,但是你发现这条链表结构还是会卡死你,是不是感觉被耍了,不要气恼&amp;气馁,因为你只需要再来一个splay函数就好了.你已经完成了85%,接下来的很容易的.</span><br><span class="line">--------</span><br><span class="line">如果说**x,y,z这三个节点共线**,也就是x和它的父亲节点y和它的祖先节点在同一条线段上的话,那么我们就需要再来一些特殊处理了,其实就是一些很容易的操作.</span><br><span class="line">下面就是三点共线的一张图片</span><br><span class="line">![QQ截图20190222211102.png](/media/article/image/2019/02/22/1130_52f4b05c36-QQ截图20190222211102.png)</span><br><span class="line">这张图片里面的最长链是Z-&gt;Y-&gt;X-&gt;A</span><br><span class="line">如果说我们一直都是x旋转的话,那么就会得到下面这张图片.</span><br><span class="line">![QQ截图20190222210851.png](/media/article/image/2019/02/22/1130_e7e5663e36-QQ截图20190222210851.png) </span><br><span class="line">而一直旋转x的最长链是X-&gt;Z-&gt;y-&gt;B</span><br><span class="line">我们发现旋转和不旋转似乎并没有任何区别,实际上也没有区别,也就是这些旋转操作后的树和不旋转的树,其实是没有多大区别的.</span><br><span class="line">算法失败了,不过不用害怕,其实我们还有办法.</span><br><span class="line">1. 如果当前处于共线状态的话,那么先旋转y,再旋转x.这样可以强行让他们不处于共线状态,然后平衡这棵树.</span><br><span class="line">2. 如果当前不是共线状态的话,那么只要旋转x即可.</span><br><span class="line"></span><br><span class="line">当你看懂这个以后恭喜你,你已经成功学会了splay的双旋操作了,然后你就可以看yyb大佬的代码了.</span><br><span class="line"></span><br><span class="line">##### splay操作</span><br></pre></td></tr></table></figure></p>
+<p>void splay(int x,int goal)//将x旋转为goal的儿子，如果goal是0则旋转到根<br>{<br>    while(t[x].ff!=goal)//一直旋转到x成为goal的儿子<br>    {<br>        int y=t[x].ff,z=t[y].ff;//父节点祖父节点<br>        if(z!=goal)//如果Y不是根节点，则分为上面两类来旋转<br>            (t[z].ch[0]==y)^(t[y].ch[0]==x)?rotate(x):rotate(y);//判断共线还是不共线<br>            //这就是之前对于x和y是哪个儿子的讨论<br>        rotate(x);//无论怎么样最后的一个操作都是旋转x<br>    }<br>    if(goal==0)root=x;//如果goal是0，则将根节点更新为x<br>}<br><figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">##### 查找find操作</span><br><span class="line">从根节点开始，左侧都比他小，右侧都比他大，</span><br><span class="line">所以只需要相应的往左/右递归</span><br><span class="line">如果当前位置的val已经是要查找的数</span><br><span class="line">那么直接把他Splay到根节点，方便接下来的操作</span><br><span class="line">类似于二分查找，</span><br><span class="line">所以时间复杂度O(logn)</span><br></pre></td></tr></table></figure></p>
+<p>inline void find(int x)//查找x的位置，并将其旋转到根节点<br>{<br>    int u=root;<br>    if(!u)return;//树空<br>    while(t[u].ch[x&gt;t[u].val]&amp;&amp;x!=t[u].val)//当存在儿子并且当前位置的值不等于x<br>        u=t[u].ch[x&gt;t[u].val];//跳转到儿子，查找x的父节点<br>    splay(u,0);//把当前位置旋转到根节点<br>}<br><figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">##### Insert操作</span><br><span class="line">往Splay中插入一个数</span><br><span class="line">类似于Find操作，只是如果是已经存在的数，就可以直接在查找到的节点的进行计数</span><br><span class="line">如果不存在，在递归的查找过程中，会找到他的父节点的位置，</span><br><span class="line">然后就会发现底下没有啦。。。</span><br><span class="line">所以这个时候新建一个节点就可以了</span><br></pre></td></tr></table></figure></p>
+<p>inline void insert(int x)//插入x<br>{<br>    int u=root,ff=0;//当前位置u，u的父节点ff<br>    while(u&amp;&amp;t[u].val!=x)//当u存在并且没有移动到当前的值<br>    {<br>        ff=u;//向下u的儿子，父节点变为u<br>        u=t[u].ch[x&gt;t[u].val];//大于当前位置则向右找，否则向左找<br>    }<br>    if(u)//存在这个值的位置<br>        t[u].cnt++;//增加一个数<br>    else//不存在这个数字，要新建一个节点来存放<br>    {<br>        u=++tot;//新节点的位置<br>        if(ff)//如果父节点非根<br>            t[ff].ch[x&gt;t[ff].val]=u;<br>        t[u].ch[0]=t[u].ch[1]=0;//不存在儿子<br>        t[tot].ff=ff;//父节点<br>        t[tot].val=x;//值<br>        t[tot].cnt=1;//数量<br>        t[tot].size=1;//大小<br>    }<br>    splay(u,0);//把当前位置移到根，保证结构的平衡<br>}<br><figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">##### 前驱/后继操作Next</span><br><span class="line">首先就要执行Find操作</span><br><span class="line">把要查找的数弄到根节点</span><br><span class="line">然后，以前驱为例</span><br><span class="line">先确定前驱比他小，所以在左子树上</span><br><span class="line">然后他的前驱是左子树中最大的值</span><br><span class="line">所以一直跳右结点，直到没有为止</span><br><span class="line">找后继反过来就行了</span><br></pre></td></tr></table></figure></p>
+<p>inline int Next(int x,int f)//查找x的前驱(0)或者后继(1)<br>{<br>    find(x);<br>    int u=root;//根节点，此时x的父节点（存在的话）就是根节点<br>    if(t[u].val&gt;x&amp;&amp;f)return u;//如果当前节点的值大于x并且要查找的是后继<br>    if(t[u].val&lt;x&amp;&amp;!f)return u;//如果当前节点的值小于x并且要查找的是前驱<br>    u=t[u].ch[f];//查找后继的话在右儿子上找，前驱在左儿子上找<br>    while(t[u].ch[f^1])u=t[u].ch[f^1];//要反着跳转，否则会越来越大（越来越小）<br>    return u;//返回位置<br>}<br><figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">##### 删除操作</span><br><span class="line">现在就很简单啦</span><br><span class="line">首先找到这个数的前驱，把他Splay到根节点</span><br><span class="line">然后找到这个数后继，把他旋转到前驱的底下</span><br><span class="line">比前驱大的数是后继，在右子树</span><br><span class="line">比后继小的且比前驱大的有且仅有当前数</span><br><span class="line">在后继的左子树上面，</span><br><span class="line">因此直接把当前根节点的右儿子的左儿子删掉就可以啦</span><br></pre></td></tr></table></figure></p>
+<p>inline void Delete(int x)//删除x<br>{<br>    int last=Next(x,0);//查找x的前驱<br>    int next=Next(x,1);//查找x的后继<br>    splay(last,0);splay(next,last);<br>    //将前驱旋转到根节点，后继旋转到根节点下面<br>    //很明显，此时后继是前驱的右儿子，x是后继的左儿子，并且x是叶子节点<br>    int del=t[next].ch[0];//后继的左儿子<br>    if(t[del].cnt&gt;1)//如果超过一个<br>    {<br>        t[del].cnt–;//直接减少一个<br>        splay(del,0);//旋转<br>    }<br>    else<br>        t[next].ch[0]=0;//这个节点直接丢掉（不存在了）<br>}<br><figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">##### 第K大</span><br><span class="line">从当前根节点开始，检查左子树大小</span><br><span class="line">因为所有比当前位置小的数都在左侧</span><br><span class="line">如果左侧的数的个数多余K，则证明第K大在左子树中</span><br><span class="line">否则，向右子树找，找K-左子树大小-当前位置的数的个数</span><br><span class="line">记住特判K恰好在当前位置</span><br></pre></td></tr></table></figure></p>
+<p>inline int kth(int x)//查找排名为x的数<br>{<br>    int u=root;//当前根节点<br>    if(t[u].size&lt;x)//如果当前树上没有这么多数<br>        return 0;//不存在<br>    while(1)<br>    {<br>        int y=t[u].ch[0];//左儿子<br>        if(x&gt;t[y].size+t[u].cnt)<br>        //如果排名比左儿子的大小和当前节点的数量要大<br>        {<br>            x-=t[y].size+t[u].cnt;//数量减少<br>            u=t[u].ch[1];//那么当前排名的数一定在右儿子上找<br>        }<br>        else//否则的话在当前节点或者左儿子上查找<br>            if(t[y].size&gt;=x)//左儿子的节点数足够<br>                u=y;//在左儿子上继续找<br>            else//否则就是在当前根节点上<br>                return t[u].val;<br>    }<br>}<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">以下为我自己编写的代码,~~其实就是yyb大佬的代码,只不过修改了一丢丢而已了.~~</span><br></pre></td></tr></table></figure></p>
+<p>#include &lt;bits/stdc++.h&gt;<br>using namespace std;<br>const int N=201000;<br>struct splay_tree<br>{<br>    int ff,cnt,ch[2],val,size;<br>} t[N];<br>int root,tot;<br>void update(int x)<br>{<br>    t[x].size=t[t[x].ch[0]].size+t[t[x].ch[1]].size+t[x].cnt;<br>}<br>void rotate(int x)<br>{<br>    int y=t[x].ff;<br>    int z=t[y].ff;<br>    int k=(t[y].ch[1]==x);<br>    t[z].ch[(t[z].ch[1]==y)]=x;<br>    t[x].ff=z;<br>    t[y].ch[k]=t[x].ch[k^1];<br>    t[t[x].ch[k^1]].ff=y;<br>    t[x].ch[k^1]=y;<br>    t[y].ff=x;<br>    update(y);update(x);<br>}<br>void splay(int x,int s)<br>{<br>    while(t[x].ff!=s)<br>    {<br>        int y=t[x].ff,z=t[y].ff;<br>        if (z!=s)<br>            (t[z].ch[0]==y)^(t[y].ch[0]==x)?rotate(x):rotate(y);<br>        rotate(x);<br>    }<br>    if (s==0)<br>        root=x;<br>}<br>void find(int x)<br>{<br>    int u=root;<br>    if (!u)<br>        return ;<br>    while(t[u].ch[x&gt;t[u].val] &amp;&amp; x!=t[u].val)<br>        u=t[u].ch[x&gt;t[u].val];<br>    splay(u,0);<br>}<br>void insert(int x)<br>{<br>    int u=root,ff=0;<br>    while(u &amp;&amp; t[u].val!=x)<br>    {<br>        ff=u;<br>        u=t[u].ch[x&gt;t[u].val];<br>    }<br>    if (u)<br>        t[u].cnt++;<br>    else<br>    {<br>        u=++tot;<br>        if (ff)<br>            t[ff].ch[x&gt;t[ff].val]=u;<br>        t[u].ch[0]=t[u].ch[1]=0;<br>        t[tot].ff=ff;<br>        t[tot].val=x;<br>        t[tot].cnt=1;<br>        t[tot].size=1;<br>    }<br>    splay(u,0);<br>}<br>int Next(int x,int f)<br>{<br>    find(x);<br>    int u=root;<br>    if (t[u].val&gt;x &amp;&amp; f)<br>        return u;<br>    if (t[u].val<x &&="" !f)="" return="" u;="" u="t[u].ch[f];" while(t[u].ch[f^1])="" }="" void="" delete(int="" x)="" {="" int="" last="Next(x,0);" net="Next(x,1);" splay(last,0);="" splay(net,last);="" del="t[Net].ch[0];" if="" (t[del].cnt="">1)<br>    {<br>        t[del].cnt–;<br>        splay(del,0);<br>    }<br>    else<br>        t[Net].ch[0]=0;<br>}<br>int kth(int x)<br>{<br>    int u=root;<br>    while(t[u].size&lt;x)<br>        return 0;<br>    while(1)<br>    {<br>        int y=t[u].ch[0];<br>        if (x&gt;t[y].size+t[u].cnt)<br>        {<br>            x-=t[y].size+t[u].cnt;<br>            u=t[u].ch[1];<br>        }<br>        else if (t[y].size&gt;=x)<br>            u=y;<br>        else<br>            return t[u].val;<br>    }<br>}<br>int main()<br>{<br>    int n;<br>    scanf(“%d”,&amp;n);<br>    insert(1e9);<br>    insert(-1e9);<br>    while(n–)<br>    {<br>        int opt,x;<br>        scanf(“%d%d”,&amp;opt,&amp;x);<br>        if (opt==1)<br>            insert(x);<br>        if (opt==2)<br>            Delete(x);<br>        if (opt==3)<br>        {<br>            find(x);<br>            printf(“%d\n”,t[t[root].ch[0]].size);<br>        }<br>        if (opt==4)<br>            printf(“%d\n”,kth(x+1));<br>        if (opt==5)<br>            printf(“%d\n”,t[Next(x,0)].val);<br>        if (opt==6)<br>            printf(“%d\n”,t[Next(x,1)].val);<br>    }<br>    return 0;<br>}<br>/<em><br>插入数值x。<br>删除数值x(若有多个相同的数，应只删除一个)。<br>查询数值x的排名(若有多个相同的数，应输出最小的排名)。<br>查询排名为x的数值。<br>求数值x的前驱(前驱定义为小于x的最大的数)。<br>求数值x的后继(后继定义为大于x的最小的数)。
+</em>/</x></p>
+<p>作者：秦淮岸灯火阑珊<br>链接：<a href="https://www.acwing.com/activity/content/code/content/24072/" target="_blank" rel="noopener">https://www.acwing.com/activity/content/code/content/24072/</a><br>来源：AcWing<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。<br><code>`</code><br><a href="https://www.cnblogs.com/cjyyb/p/7499020.html" target="_blank" rel="noopener">感谢yyb大佬</a><br>注:我学会splay就是在yyb大佬的blog下成功的,然后成功地将它详细写了一遍,这道题目除了代码和一些图片,其他都是我写的,所以来说也算得上原汁原味的原著吧.</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    秦淮岸灯火阑珊
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://gzh-red.github.io/2019/02/22/Splay树算法笔记/" title="Splay树算法笔记">https://gzh-red.github.io/2019/02/22/Splay树算法笔记/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Acwing/" rel="tag"># Acwing</a>
+          
+            <a href="/tags/splay树/" rel="tag"># splay树</a>
+          
+            <a href="/tags/双旋/" rel="tag"># 双旋</a>
+          
+            <a href="/tags/模板-算法笔记/" rel="tag"># 模板&算法笔记</a>
+          
+        </div>
+      
+		<div>
+      
+        
+
+      
+</div>
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/02/22/AcWing 203. 同余方程/" rel="next" title="AcWing 203. 同余方程">
+                <i class="fa fa-chevron-left"></i> AcWing 203. 同余方程
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://www.acwing.com/media/user/profile/photo/1130_md_37170c4e16.jpg" alt="秦淮岸灯火阑珊">
+            
+              <p class="site-author-name" itemprop="name">秦淮岸灯火阑珊</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">28</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.chicago01.top/" title="chicago01" target="_blank">chicago01</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Splay树"><span class="nav-number">1.</span> <span class="nav-text">Splay树</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#BST性质简介"><span class="nav-number">1.0.0.1.</span> <span class="nav-text">BST性质简介</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Splay的背景"><span class="nav-number">1.0.0.2.</span> <span class="nav-text">Splay的背景</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Splay思路"><span class="nav-number">1.0.0.3.</span> <span class="nav-text">Splay思路</span></a></li></ol></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#对于这样一棵树-我们可以做一些特殊的操作-来让它变换树的形态结构-但是最后的答案却是正确的-平衡树的精髓就是这个-就是改变树的形态结构-但是不改变最后的中序遍历-也就是答案数组"><span class="nav-number">1.1.</span> <span class="nav-text">对于这样一棵树,我们可以做一些特殊的操作,来让它变换树的形态结构,但是最后的答案却是正确的.平衡树的精髓就是这个,就是改变树的形态结构,但是不改变最后的中序遍历,也就是答案数组.</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#重点来了-以下为splay精华所在之处-一定要全神贯注地看-并且手中拿着笔和草稿纸-一步步跟着我一起做-那么我保证你看一遍就可以懂-相信自己一定可以明白的-不要因为文字太多而放弃"><span class="nav-number">1.2.</span> <span class="nav-text">重点来了,以下为splay精华所在之处,一定要全神贯注地看,并且手中拿着笔和草稿纸,一步步跟着我一起做,那么我保证你看一遍就可以懂.相信自己一定可以明白的,不要因为文字太多而放弃.</span></a></li></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">秦淮岸灯火阑珊</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+  
+
+  
+
+</body>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/clicklove.js"></script>
+</html>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/clicklove.js"></script>
