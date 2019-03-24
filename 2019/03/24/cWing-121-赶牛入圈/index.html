@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="二分,双指针,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="原题连接更好的阅读体验 题目描述农夫约翰希望为他的奶牛们建立一个畜栏。 这些挑剔的畜生要求畜栏必须是正方形的，而且至少要包含C单位的三叶草，来当做它们的下午茶。 畜栏的边缘必须与X，Y轴平行。 约翰的土地里一共包含N单位的三叶草，每单位三叶草位于一个1 x 1的土地区域内，区域位置由其左下角坐标表示，并且区域左下角的X,Y坐标都为整数，范围在$1$到$10000$以内。 多个单位的三叶草可能会位于">
+<meta name="keywords" content="二分,双指针">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AcWing 121. 赶牛入圈">
+<meta property="og:url" content="https://gzh-red.github.io/2019/03/24/cWing-121-赶牛入圈/index.html">
+<meta property="og:site_name" content="秦淮岸灯火阑珊&#39;blog">
+<meta property="og:description" content="原题连接更好的阅读体验 题目描述农夫约翰希望为他的奶牛们建立一个畜栏。 这些挑剔的畜生要求畜栏必须是正方形的，而且至少要包含C单位的三叶草，来当做它们的下午茶。 畜栏的边缘必须与X，Y轴平行。 约翰的土地里一共包含N单位的三叶草，每单位三叶草位于一个1 x 1的土地区域内，区域位置由其左下角坐标表示，并且区域左下角的X,Y坐标都为整数，范围在$1$到$10000$以内。 多个单位的三叶草可能会位于">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-03-24T08:41:03.906Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="AcWing 121. 赶牛入圈">
+<meta name="twitter:description" content="原题连接更好的阅读体验 题目描述农夫约翰希望为他的奶牛们建立一个畜栏。 这些挑剔的畜生要求畜栏必须是正方形的，而且至少要包含C单位的三叶草，来当做它们的下午茶。 畜栏的边缘必须与X，Y轴平行。 约翰的土地里一共包含N单位的三叶草，每单位三叶草位于一个1 x 1的土地区域内，区域位置由其左下角坐标表示，并且区域左下角的X,Y坐标都为整数，范围在$1$到$10000$以内。 多个单位的三叶草可能会位于">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://gzh-red.github.io/2019/03/24/cWing-121-赶牛入圈/">
+
+
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入密码') !== ''){
+                alert('密码错误');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+
+
+  <title>AcWing 121. 赶牛入圈 | 秦淮岸灯火阑珊'blog</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?25dad7ccff5338a032af7b69cd47250a";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">秦淮岸灯火阑珊'blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://gzh-red.github.io/2019/03/24/cWing-121-赶牛入圈/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="秦淮岸灯火阑珊">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://www.acwing.com/media/user/profile/photo/1130_md_37170c4e16.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="秦淮岸灯火阑珊'blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">AcWing 121. 赶牛入圈</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-24T16:11:00+08:00">
+                2019-03-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法竞赛进阶指南/" itemprop="url" rel="index">
+                    <span itemprop="name">算法竞赛进阶指南</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><a href="https://www.acwing.com/problem/content/description/123/" target="_blank" rel="noopener">原题连接</a><br><a href="">更好的阅读体验</a></p>
+<h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>农夫约翰希望为他的奶牛们建立一个畜栏。</p>
+<p>这些挑剔的畜生要求畜栏<strong>必须是正方形的</strong>，而且<strong>至少要包含C单位的三叶草</strong>，来当做它们的下午茶。</p>
+<p><strong>畜栏的边缘必须与X，Y轴平行。</strong></p>
+<p>约翰的土地里一共包含N单位的三叶草，每单位三叶草位于一个1 x 1的土地区域内，区域位置由其左下角坐标表示，并且区域左下角的X,Y坐标都为整数，范围在$1$到$10000$以内。</p>
+<p><strong>多个单位的三叶草可能会位于同一个1 x 1的区域内</strong>,因为这个原因，在接下来的输入中，同一个区域坐标可能出现多次。</p>
+<p>只有一个区域完全位于修好的畜栏之中，才认为这个区域内的三叶草在畜栏之中。</p>
+<p>请你帮约翰计算一下，能包含至少C单位面积三叶草的情况下，畜栏的<strong>最小边长</strong>是多少。</p>
+<p>输入格式<br>第一行输入两个整数 C 和 N。<br>接下来 N 行，每行输入两个整数 X 和 Y，代表三叶草所在的区域的X,Y坐标。</p>
+<p>同一行数据用空格隔开。</p>
+<p>输出格式<br>输出一个整数，代表畜栏的最小边长。</p>
+<p>数据范围<br>$1 \le C \le 500$,<br>$C \le N \le 500$</p>
+<h4 id="样例"><a href="#样例" class="headerlink" title="样例"></a>样例</h4><p>输入样例：<br><figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">3 </span><span class="number">4</span></span><br><span class="line"><span class="symbol">1 </span><span class="number">2</span></span><br><span class="line"><span class="symbol">2 </span><span class="number">1</span></span><br><span class="line"><span class="symbol">4 </span><span class="number">1</span></span><br><span class="line"><span class="symbol">5 </span><span class="number">2</span></span><br></pre></td></tr></table></figure></p>
+<p>输出样例：<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">4</span></span><br></pre></td></tr></table></figure></p>
+<hr>
+<h3 id="二分-双指针"><a href="#二分-双指针" class="headerlink" title="二分+双指针"></a>二分+双指针</h3><h5 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h5><h6 id="怎么想到用二分"><a href="#怎么想到用二分" class="headerlink" title="怎么想到用二分?"></a>怎么想到用二分?</h6><p>这道题目显然是要用二分的,因为我们要找到<strong>长度最小的栅栏</strong>.</p>
+<h6 id="用二分怎么做"><a href="#用二分怎么做" class="headerlink" title="用二分怎么做?"></a>用二分怎么做?</h6><p>我们首先按照题目意思,要我们找到一种栅栏,使它边长最小,所以我们肯定是要<strong>二分这个矩阵的长度</strong>!</p>
+<h6 id="二分判定怎么判定"><a href="#二分判定怎么判定" class="headerlink" title="二分判定怎么判定?"></a>二分判定怎么判定?</h6><p>可以<strong>手动跳转到双指针枚举</strong>,但是为了思路一步步升级完善,建议看完下面的,虽然对于解题帮助不是很大.</p>
+<p>现在我们已经确定了当前矩阵的长度为mid,但是我们<strong>不知道这个矩阵的右上角坐标以及左下角坐标.</strong></p>
+<p>温馨提示:</p>
+<ol>
+<li>一个矩阵(正方形是矩阵的一种)可以被<strong>唯一确定</strong>,当且仅当,你知道它的<strong>右上角坐标和左下角坐标</strong></li>
+<li>我们只需要求出右上角坐标$(x,y)$,因为左下角坐标可以通过$(x+len,y+len)$得出,其中len就是上文提到的mid,只不过为了形象理解为正方形长度,所以<strong>mid改名为len</strong>.</li>
+</ol>
+<p>那么我们只需要枚举这个右上角坐标就好了,但是现在我们又面临了一个问题.<strong>我们怎么求出这个给定矩阵的三叶草个数</strong></p>
+<p>有以下三种做法</p>
+<ol>
+<li>暴力枚举找出矩阵内部有多少株三叶草.单点查询复杂度$O(n^2)$</li>
+<li><strong>二维前缀和,进行预处理</strong>有多少株三叶草,总时间复杂度为$O(n^2)$,单点查询复杂度为$O(1)$,空间复杂度$O(10000^{2})$</li>
+<li>双指针判定,只需要枚举点集,不需要枚举右上角坐标,时间复杂度为$O(n^2)$</li>
+</ol>
+<p>综上所述,我们只能采用,<strong>不需要枚举右上角坐标的双指针判定</strong><br><del>是不是觉得上面的长篇大论很废话啊</del></p>
+<h6 id="双指针判定是什么"><a href="#双指针判定是什么" class="headerlink" title="双指针判定是什么?"></a>双指针判定是什么?</h6><p>双指针判定:大致就是,我们有一个指针i和一个指针j,他们两个负责记录,满足条件的区间的左端点,和右端点.<br>我们这里显然就是要,检测x坐标在指定区域,y坐标在指定区域.<br><strong>请记住下面的x坐标已经从小到大排好序了,而且x坐标相同时,y坐标从小到大.</strong><br><figure class="highlight gcode"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span><span class="comment">(j&lt;=n &amp;&amp; a[j].first-a[i].first&lt;=now)</span>   </span><br><span class="line">            j++;</span><br><span class="line"><span class="comment">//a[j].first为点a[j]的x坐标.</span></span><br><span class="line"><span class="comment">//now为我们二分判定的len,即正方形的边长</span></span><br><span class="line"><span class="comment">//j&lt;=n说明在有三叶草的点集之中.</span></span><br><span class="line"><span class="comment">//a[j].first-a[i].first说明为满足在指定长度的条件</span></span><br><span class="line"><span class="comment">//最后求出来的[i,j]集合,就是我们所有点必须满足的x坐标范围.</span></span><br></pre></td></tr></table></figure></p>
+<p>上面的代码就是关于x坐标的双指针判定.<br><figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="built_in">int</span> k=i;k&lt;=j;k++)<span class="comment">//在指定坐标内的点</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">int</span> l=a[k].<span class="built_in">second</span>,r=a[k].<span class="built_in">second</span>+now,ans=<span class="number">0</span>;<span class="comment">//同样的y坐标区间</span></span><br><span class="line">            <span class="keyword">for</span>(<span class="built_in">int</span> u=i;u&lt;=j;u++)</span><br><span class="line">                <span class="keyword">if</span> (a[u].<span class="built_in">second</span>&gt;=l &amp;&amp; a[u].<span class="built_in">second</span>&lt;=r)<span class="comment">//在指定区域内</span></span><br><span class="line">                    ans++;<span class="comment">//记录三叶草个数</span></span><br><span class="line">            <span class="keyword">if</span> (ans&gt;=c)<span class="comment">//满足我们目标的c株三叶草</span></span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">true</span>; </span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure></p>
+<h5 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h5><p>博主已经在题目描述中加黑了.</p>
+<h4 id="C-代码"><a href="#C-代码" class="headerlink" title="C++ 代码"></a>C++ 代码</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">510</span>;</span><br><span class="line"><span class="keyword">int</span> n,m,c,i,j,k;</span><br><span class="line">pair&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt; a[N];</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">check</span><span class="params">(<span class="keyword">int</span> now)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">int</span> j=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(j&lt;=n &amp;&amp; a[j].first-a[i].first&lt;=now)   </span><br><span class="line">            j++;</span><br><span class="line">        j--;</span><br><span class="line">        <span class="keyword">if</span> (j-i+<span class="number">1</span>&lt;c)</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> k=i;k&lt;=j;k++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">int</span> l=a[k].second,r=a[k].second+now,ans=<span class="number">0</span>;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> u=i;u&lt;=j;u++)</span><br><span class="line">                <span class="keyword">if</span> (a[u].second&gt;=l &amp;&amp; a[u].second&lt;=r)</span><br><span class="line">                    ans++;</span><br><span class="line">            <span class="keyword">if</span> (ans&gt;=c)</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">true</span>; </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">cin</span>&gt;&gt;c&gt;&gt;n;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">        <span class="built_in">cin</span>&gt;&gt;a[i].first&gt;&gt;a[i].second;</span><br><span class="line">    sort(a+<span class="number">1</span>,a+<span class="number">1</span>+n);</span><br><span class="line">    <span class="keyword">int</span> l=<span class="number">0</span>,r=<span class="number">10000</span>;</span><br><span class="line">    <span class="keyword">while</span>(l&lt;r)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">int</span> mid=(l+r)&gt;&gt;<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span> (check(mid<span class="number">-1</span>))</span><br><span class="line">            r=mid;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            l=mid+<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;r;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    秦淮岸灯火阑珊
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://gzh-red.github.io/2019/03/24/cWing-121-赶牛入圈/" title="AcWing 121. 赶牛入圈">https://gzh-red.github.io/2019/03/24/cWing-121-赶牛入圈/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/二分/" rel="tag"># 二分</a>
+          
+            <a href="/tags/双指针/" rel="tag"># 双指针</a>
+          
+        </div>
+      
+		<div>
+      
+        
+
+      
+</div>
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/23/背包问题学习笔记/" rel="next" title="背包问题学习笔记">
+                <i class="fa fa-chevron-left"></i> 背包问题学习笔记
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://www.acwing.com/media/user/profile/photo/1130_md_37170c4e16.jpg" alt="秦淮岸灯火阑珊">
+            
+              <p class="site-author-name" itemprop="name">秦淮岸灯火阑珊</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">38</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.chicago01.top/" title="chicago01" target="_blank">chicago01</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#题目描述"><span class="nav-number">1.</span> <span class="nav-text">题目描述</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#样例"><span class="nav-number">1.1.</span> <span class="nav-text">样例</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二分-双指针"><span class="nav-number">2.</span> <span class="nav-text">二分+双指针</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#思路"><span class="nav-number">2.0.1.</span> <span class="nav-text">思路</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#怎么想到用二分"><span class="nav-number">2.0.1.1.</span> <span class="nav-text">怎么想到用二分?</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#用二分怎么做"><span class="nav-number">2.0.1.2.</span> <span class="nav-text">用二分怎么做?</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#二分判定怎么判定"><span class="nav-number">2.0.1.3.</span> <span class="nav-text">二分判定怎么判定?</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#双指针判定是什么"><span class="nav-number">2.0.1.4.</span> <span class="nav-text">双指针判定是什么?</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#注意事项"><span class="nav-number">2.0.2.</span> <span class="nav-text">注意事项</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#C-代码"><span class="nav-number">2.1.</span> <span class="nav-text">C++ 代码</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">秦淮岸灯火阑珊</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+  
+
+  
+
+</body>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/clicklove.js"></script>
+</html>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/clicklove.js"></script>
