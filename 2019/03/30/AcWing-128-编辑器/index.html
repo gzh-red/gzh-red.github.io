@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Acwing,栈,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="原题连接 更好的阅读体验 题目描述你将要实现一个功能强大的整数序列编辑器。 在开始时，序列是空的。 编辑器共有五种指令，如下：  “I x”，在光标处插入数值x。 “D”，将光标前面的第一个元素删除，如果前面没有元素，则忽略此操作。 “L”，将光标向左移动，跳过一个元素，如果左边没有元素，则忽略此操作。 “R”，将光标向右移动，跳过一个元素，如果右边没有元素，则忽略次操作。 “Q k”，假设此刻光">
+<meta name="keywords" content="Acwing,栈">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AcWing 128. 编辑器">
+<meta property="og:url" content="https://gzh-red.github.io/2019/03/30/AcWing-128-编辑器/index.html">
+<meta property="og:site_name" content="秦淮岸灯火阑珊&#39;blog">
+<meta property="og:description" content="原题连接 更好的阅读体验 题目描述你将要实现一个功能强大的整数序列编辑器。 在开始时，序列是空的。 编辑器共有五种指令，如下：  “I x”，在光标处插入数值x。 “D”，将光标前面的第一个元素删除，如果前面没有元素，则忽略此操作。 “L”，将光标向左移动，跳过一个元素，如果左边没有元素，则忽略此操作。 “R”，将光标向右移动，跳过一个元素，如果右边没有元素，则忽略次操作。 “Q k”，假设此刻光">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://www.acwing.com/media/article/image/2019/01/22/19_e0778ec41d-C464-1004-2.jpg">
+<meta property="og:updated_time" content="2019-03-29T22:57:08.639Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="AcWing 128. 编辑器">
+<meta name="twitter:description" content="原题连接 更好的阅读体验 题目描述你将要实现一个功能强大的整数序列编辑器。 在开始时，序列是空的。 编辑器共有五种指令，如下：  “I x”，在光标处插入数值x。 “D”，将光标前面的第一个元素删除，如果前面没有元素，则忽略此操作。 “L”，将光标向左移动，跳过一个元素，如果左边没有元素，则忽略此操作。 “R”，将光标向右移动，跳过一个元素，如果右边没有元素，则忽略次操作。 “Q k”，假设此刻光">
+<meta name="twitter:image" content="https://www.acwing.com/media/article/image/2019/01/22/19_e0778ec41d-C464-1004-2.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://gzh-red.github.io/2019/03/30/AcWing-128-编辑器/">
+
+
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入密码') !== ''){
+                alert('密码错误');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+
+
+  <title>AcWing 128. 编辑器 | 秦淮岸灯火阑珊'blog</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?25dad7ccff5338a032af7b69cd47250a";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">秦淮岸灯火阑珊'blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://gzh-red.github.io/2019/03/30/AcWing-128-编辑器/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="秦淮岸灯火阑珊">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://www.acwing.com/media/user/profile/photo/1130_md_37170c4e16.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="秦淮岸灯火阑珊'blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">AcWing 128. 编辑器</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-30T06:43:00+08:00">
+                2019-03-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法竞赛进阶指南/" itemprop="url" rel="index">
+                    <span itemprop="name">算法竞赛进阶指南</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><a href="https://www.acwing.com/problem/content/description/130/" target="_blank" rel="noopener">原题连接</a></p>
+<p><a href="gzh-red.cf">更好的阅读体验</a></p>
+<h4 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h4><p>你将要实现一个功能强大的整数序列编辑器。</p>
+<p>在开始时，序列是空的。</p>
+<p>编辑器共有五种指令，如下：</p>
+<ol>
+<li>“I x”，在光标处插入数值x。</li>
+<li>“D”，将光标前面的第一个元素删除，如果前面没有元素，则忽略此操作。</li>
+<li>“L”，将光标向左移动，跳过一个元素，如果左边没有元素，则忽略此操作。</li>
+<li>“R”，将光标向右移动，跳过一个元素，如果右边没有元素，则忽略次操作。</li>
+<li>“Q k”，假设此刻光标之前的序列为$a_1,a_2,…,a_n$,输出$max_{1 \le i \le k}S_i$，其中$S_i=a_1+a_2+…+a_i$。</li>
+</ol>
+<p>输入格式<br>第一行包含一个整数Q，表示指令的总数。</p>
+<p>接下来Q行，每行一个指令，具体指令格式如题目描述。</p>
+<p>输出格式<br>每一个“Q k”指令，输出一个整数作为结果，每个结果占一行。</p>
+<h5 id="数据范围"><a href="#数据范围" class="headerlink" title="数据范围"></a>数据范围</h5><p>$1 \le Q \le 10^6$,<br>$|x| \le 10^3$,<br>$1 \le k \le n$</p>
+<h5 id="输入样例："><a href="#输入样例：" class="headerlink" title="输入样例："></a>输入样例：</h5><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">8</span></span><br><span class="line">I <span class="number">2</span></span><br><span class="line">I <span class="number">-1</span></span><br><span class="line">I <span class="number">1</span></span><br><span class="line">Q <span class="number">3</span></span><br><span class="line">L</span><br><span class="line">D</span><br><span class="line">R</span><br><span class="line">Q <span class="number">2</span></span><br></pre></td></tr></table></figure>
+<h5 id="输出样例："><a href="#输出样例：" class="headerlink" title="输出样例："></a>输出样例：</h5><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">2</span></span><br><span class="line"><span class="number">3</span></span><br></pre></td></tr></table></figure>
+<p>样例解释<br>下图包含了对样例的过程描述：<br><img src="https://www.acwing.com/media/article/image/2019/01/22/19_e0778ec41d-C464-1004-2.jpg" alt="C464-1004-2.jpg"></p>
+<h4 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h4><h5 id="题意解析"><a href="#题意解析" class="headerlink" title="题意解析"></a>题意解析</h5><p>分析题目意思,我们发现,这道题目需要我们资瓷,<strong>插入,删除,左移,右移,以及$[1,k]$区间最大值查询</strong></p>
+<h5 id="思路思索"><a href="#思路思索" class="headerlink" title="思路思索"></a>思路思索</h5><p>对于这道题目而言,我们完全可以确定它是一道数据结构的题目,那么到底是什么具体的数据结构呢?</p>
+<p>插入从<strong>最后一位</strong>插入,删除从<strong>最后一位</strong>删除,我们发现几乎重点的操作,统统都是和<strong>最后一位</strong>有关联.</p>
+<p>于是我们大胆猜测,小心观察,就会发现这道题目,就是数据结构入门结构之<strong>栈</strong><br>所有思路代码中,完美地注释了.</p>
+<h4 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h4><figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">1e6</span>+<span class="number">100</span>;</span><br><span class="line"><span class="keyword">int</span> t,x,sum[N],f[N],now;</span><br><span class="line">stack&lt;<span class="keyword">int</span>&gt; a,b,c;</span><br><span class="line"><span class="keyword">int</span> main()</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">while</span>(scanf(<span class="string">"%d\n"</span>,&amp;t)!=EOF)<span class="comment">//之前在HDU提交,所以是多组数据</span></span><br><span class="line">    &#123;</span><br><span class="line">        a=c;<span class="comment">//STL特性,这里就是清空操作</span></span><br><span class="line">        b=c;</span><br><span class="line">        f[<span class="number">0</span>]=<span class="number">-1e7</span>;<span class="comment">//初始化</span></span><br><span class="line">        sum[<span class="number">0</span>]=<span class="number">0</span>;</span><br><span class="line">        <span class="built_in">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=t;i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">char</span> ch=getchar();<span class="comment">//读入</span></span><br><span class="line">            <span class="built_in">if</span> (ch==<span class="string">'I'</span>)<span class="comment">//插入操作</span></span><br><span class="line">            &#123;</span><br><span class="line">                scanf(<span class="string">" %d"</span>,&amp;x);</span><br><span class="line">                a.push(x);<span class="comment">//将a插入栈中</span></span><br><span class="line">                sum[a.<span class="built_in">size</span>()]=sum[a.<span class="built_in">size</span>()<span class="number">-1</span>]+a.top();<span class="comment">//前1~a.size()-1的前缀和,加上这个一个新来的,构成1~a.size()</span></span><br><span class="line">                f[a.<span class="built_in">size</span>()]=<span class="built_in">max</span>(f[a.<span class="built_in">size</span>()<span class="number">-1</span>],sum[a.<span class="built_in">size</span>()]);<span class="comment">//看是之前的最大值大,还是新来的最大值大</span></span><br><span class="line">            &#125;</span><br><span class="line">            <span class="built_in">if</span> (ch==<span class="string">'D'</span>)</span><br><span class="line">                <span class="built_in">if</span> (!a.empty())<span class="comment">//只要栈不为空,就删除</span></span><br><span class="line">                    a.pop();</span><br><span class="line">            <span class="built_in">if</span> (ch==<span class="string">'L'</span>)<span class="comment">//左倾思想(博古+文化大革命)(手动滑稽)</span></span><br><span class="line">                <span class="built_in">if</span>(!a.empty())<span class="comment">//只要不为空</span></span><br><span class="line">                    b.push(a.top()),a.pop();<span class="comment">//a+b等于整个插入序列,b负责管理当前光标右边的序列.</span></span><br><span class="line">            <span class="built_in">if</span> (ch==<span class="string">'R'</span>)<span class="comment">//右倾思想(陈独秀)(手动滑稽)</span></span><br><span class="line">            &#123;</span><br><span class="line">                <span class="built_in">if</span> (!b.empty())<span class="comment">//b不为空</span></span><br><span class="line">                &#123;</span><br><span class="line">                    a.push(b.top());<span class="comment">//a负责管理1~当前光标.所以现在a往右了,那么必然是要加入b栈的开头,因为b栈管理当前光标的右边.</span></span><br><span class="line">                    b.pop();</span><br><span class="line">                    sum[a.<span class="built_in">size</span>()]=sum[a.<span class="built_in">size</span>()<span class="number">-1</span>]+a.top();<span class="comment">//同样的还是重新定义.</span></span><br><span class="line">                    f[a.<span class="built_in">size</span>()]=<span class="built_in">max</span>(f[a.<span class="built_in">size</span>()<span class="number">-1</span>],sum[a.<span class="built_in">size</span>()]);<span class="comment">//见插入操作.</span></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="built_in">if</span> (ch==<span class="string">'Q'</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                scanf(<span class="string">" %d"</span>,&amp;x);</span><br><span class="line">                printf(<span class="string">"%d\n"</span>,f[x]);<span class="comment">//输出当前最大值区间.</span></span><br><span class="line">            &#125;</span><br><span class="line">            getchar();<span class="comment">//换行符读入</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    秦淮岸灯火阑珊
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://gzh-red.github.io/2019/03/30/AcWing-128-编辑器/" title="AcWing 128. 编辑器">https://gzh-red.github.io/2019/03/30/AcWing-128-编辑器/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Acwing/" rel="tag"># Acwing</a>
+          
+            <a href="/tags/栈/" rel="tag"># 栈</a>
+          
+        </div>
+      
+		<div>
+      
+        
+
+      
+</div>
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/28/洛谷1284-三角形牧场/" rel="next" title="洛谷P1284 三角形牧场">
+                <i class="fa fa-chevron-left"></i> 洛谷P1284 三角形牧场
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://www.acwing.com/media/user/profile/photo/1130_md_37170c4e16.jpg" alt="秦淮岸灯火阑珊">
+            
+              <p class="site-author-name" itemprop="name">秦淮岸灯火阑珊</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">43</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">26</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.chicago01.top/" title="chicago01" target="_blank">chicago01</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#题目描述"><span class="nav-number">1.</span> <span class="nav-text">题目描述</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#数据范围"><span class="nav-number">1.1.</span> <span class="nav-text">数据范围</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#输入样例："><span class="nav-number">1.2.</span> <span class="nav-text">输入样例：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#输出样例："><span class="nav-number">1.3.</span> <span class="nav-text">输出样例：</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解题思路"><span class="nav-number">2.</span> <span class="nav-text">解题思路</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#题意解析"><span class="nav-number">2.1.</span> <span class="nav-text">题意解析</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#思路思索"><span class="nav-number">2.2.</span> <span class="nav-text">思路思索</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#代码实现"><span class="nav-number">3.</span> <span class="nav-text">代码实现</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">秦淮岸灯火阑珊</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+  
+
+  
+
+</body>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/clicklove.js"></script>
+</html>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/clicklove.js"></script>
