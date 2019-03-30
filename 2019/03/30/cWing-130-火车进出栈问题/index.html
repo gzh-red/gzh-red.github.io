@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Acwing,栈,卡特兰数,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="原题连接更好的阅读体验 题目描述一列火车n节车厢，依次编号为$1,2,3,…,n$。 每节车厢有两种运动方式，进栈与出栈，问n节车厢出栈的可能排列方式有多少种。 输入格式输入一个整数n，代表火车的车厢数。 输出格式输出一个整数s表示n节车厢出栈的可能排列方式数量。 数据范围$1 \le n \le 60000$ 输入样例：13 输出样例：15 解题思路题意分析首先这道题目,就是上一道火车进出问题的">
+<meta name="keywords" content="Acwing,栈,卡特兰数">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AcWing 130. 火车进出栈问题">
+<meta property="og:url" content="https://gzh-red.github.io/2019/03/30/cWing-130-火车进出栈问题/index.html">
+<meta property="og:site_name" content="秦淮岸灯火阑珊&#39;blog">
+<meta property="og:description" content="原题连接更好的阅读体验 题目描述一列火车n节车厢，依次编号为$1,2,3,…,n$。 每节车厢有两种运动方式，进栈与出栈，问n节车厢出栈的可能排列方式有多少种。 输入格式输入一个整数n，代表火车的车厢数。 输出格式输出一个整数s表示n节车厢出栈的可能排列方式数量。 数据范围$1 \le n \le 60000$ 输入样例：13 输出样例：15 解题思路题意分析首先这道题目,就是上一道火车进出问题的">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-03-30T08:58:41.660Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="AcWing 130. 火车进出栈问题">
+<meta name="twitter:description" content="原题连接更好的阅读体验 题目描述一列火车n节车厢，依次编号为$1,2,3,…,n$。 每节车厢有两种运动方式，进栈与出栈，问n节车厢出栈的可能排列方式有多少种。 输入格式输入一个整数n，代表火车的车厢数。 输出格式输出一个整数s表示n节车厢出栈的可能排列方式数量。 数据范围$1 \le n \le 60000$ 输入样例：13 输出样例：15 解题思路题意分析首先这道题目,就是上一道火车进出问题的">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://gzh-red.github.io/2019/03/30/cWing-130-火车进出栈问题/">
+
+
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入密码') !== ''){
+                alert('密码错误');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+
+
+  <title>AcWing 130. 火车进出栈问题 | 秦淮岸灯火阑珊'blog</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?25dad7ccff5338a032af7b69cd47250a";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">秦淮岸灯火阑珊'blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://gzh-red.github.io/2019/03/30/cWing-130-火车进出栈问题/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="秦淮岸灯火阑珊">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://www.acwing.com/media/user/profile/photo/1130_md_37170c4e16.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="秦淮岸灯火阑珊'blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">AcWing 130. 火车进出栈问题</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-30T16:57:00+08:00">
+                2019-03-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法竞赛进阶指南/" itemprop="url" rel="index">
+                    <span itemprop="name">算法竞赛进阶指南</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><a href="https://www.acwing.com/problem/content/description/132/" target="_blank" rel="noopener">原题连接</a><br><a href="">更好的阅读体验</a></p>
+<h4 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h4><p>一列火车n节车厢，依次编号为$1,2,3,…,n$。</p>
+<p>每节车厢有两种运动方式，<strong>进栈与出栈</strong>，问n节车厢出栈的可能排列方式有多少种。</p>
+<p>输入格式<br>输入一个整数n，代表火车的车厢数。</p>
+<p>输出格式<br>输出一个整数s表示n节车厢出栈的可能排列方式数量。</p>
+<h5 id="数据范围"><a href="#数据范围" class="headerlink" title="数据范围"></a>数据范围</h5><p>$1 \le n \le 60000$</p>
+<h5 id="输入样例："><a href="#输入样例：" class="headerlink" title="输入样例："></a>输入样例：</h5><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">3</span></span><br></pre></td></tr></table></figure>
+<h5 id="输出样例："><a href="#输出样例：" class="headerlink" title="输出样例："></a>输出样例：</h5><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">5</span></span><br></pre></td></tr></table></figure>
+<h4 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h4><h6 id="题意分析"><a href="#题意分析" class="headerlink" title="题意分析"></a>题意分析</h6><p>首先这道题目,就是<a href="https://www.acwing.com/solution/acwing/content/882/" target="_blank" rel="noopener">上一道火车进出问题</a>的统计方案数版本.<br>题目意思分析后:就是让我们求出按照题目所说的顺序进入栈,一共有多少种入栈顺序.</p>
+<h6 id="算法解析"><a href="#算法解析" class="headerlink" title="算法解析"></a>算法解析</h6><p>首先看到$n=60000$,我们肯定要脱口而出<del>WOC这道题目居然要用高精度,然后Python同学们丝毫不慌.</del><br>首先我们要简化或者说是,转化题目意思,我们可以将一个入栈顺序,改成+-号顺序问题.<br>+-号顺序问题,也就是对于一个入栈顺序,将其入栈操作, 视为+号,出栈操作,视为-号</p>
+<ol>
+<li>对于加号而言,我们相当于当前这个火车入栈.</li>
+<li>对于减号而言,我们相当于当前栈的栈顶火车出栈.</li>
+</ol>
+<p>然后我们接着这道题目就转化为了统计+-号顺序问题.而最后的答案,我们称之为卡特兰数.</p>
+<h6 id="什么是卡特兰数"><a href="#什么是卡特兰数" class="headerlink" title="什么是卡特兰数"></a>什么是卡特兰数</h6><blockquote>
+<p>出栈次序<br>一个栈(无穷大)的进栈序列为1，2，3，…，n，有多少个不同的出栈序列? [5-6]<br>常规分析<br>首先，我们设f（n）=序列个数为n的出栈序列种数。（我们假定，最后出栈的元素为k，显然，k取不同值时的情况是相互独立的，也就是求出每种k最后出栈的情况数后可用加法原则，由于k最后出栈，因此，在k入栈之前，比k小的值均出栈，此处情况有f(k-1)种，而之后比k大的值入栈，且都在k之前出栈，因此有f(n-k)种方式，由于比k小和比k大的值入栈出栈情况是相互独立的，此处可用乘法原则，f(n-k)*f(k-1)种，求和便是Catalan递归式。ps.author.陶百百）<br>首次出空之前第一个出栈的序数k将1~n的序列分成两个序列，其中一个是1~k-1，序列个数为k-1，另外一个是k+1~n，序列个数是n-k。<br>此时，我们若把k视为确定一个序数，那么根据乘法原理，f（n）的问题就等价于——序列个数为k-1的出栈序列种数乘以序列个数为n - k的出栈序列种数，即选择k这个序数的f（n）=f（k-1）×f（n-k）。而k可以选1到n，所以再根据加法原理，将k取不同值的序列种数相加，得到的总序列种数为：f（n）=f（0）f（n-1）+f（1）f（n-2）+……+f（n-1）f（0）。<br>看到此处，再看看卡特兰数的递推式，答案不言而喻，即为f（n）=h（n）= C（2n,n）/（n+1）= c（2n,n）-c（2n,n-1）（n=0，1，2，……）。<br>最后，令f（0）=1，f（1）=1。<br>非常规分析<br>对于每一个数来说，必须进栈一次、出栈一次。我们把进栈设为状态‘1’，出栈设为状态‘0’。n个数的所有状态对应n个1和n个0组成的2n位二进制数。由于等待入栈的操作数按照1‥n的顺序排列、入栈的操作数b大于等于出栈的操作数a(a≤b)，因此输出序列的总数目=由左而右扫描由n个1和n个0组成的2n位二进制数，1的累计数不小于0的累计数的方案种数。<br>在2n位二进制数中填入n个1的方案数为c(2n,n),不填1的其余n位自动填0。从中减去不符合要求（由左而右扫描，0的累计数大于1的累计数）的方案数即为所求。<br>不符合要求的数的特征是由左而右扫描时，必然在某一奇数位2m+1位上首先出现m+1个0的累计数和m个1的累计数，此后的2(n-m)-1位上有n-m个 1和n-m-1个0。如若把后面这2(n-m)-1位上的0和1互换，使之成为n-m个0和n-m-1个1，结果得1个由n+1个0和n-1个1组成的2n位数，即一个不合要求的数对应于一个由n+1个0和n-1个1组成的排列。<br>反过来，任何一个由n+1个0和n-1个1组成的2n位二进制数，由于0的个数多2个，2n为偶数，故必在某一个奇数位上出现0的累计数超过1的累计数。同样在后面部分0和1互换，使之成为由n个0和n个1组成的2n位数，即n+1个0和n-1个1组成的2n位数必对应一个不符合要求的数。<br>因而不合要求的2n位数与n+1个0，n－1个1组成的排列一一对应。<br>显然，不符合要求的方案数为c(2n,n+1)。由此得出输出序列的总数目=c(2n,n)-c(2n,n-1)=c(2n,n)/(n+1)=h(n)。</p>
+</blockquote>
+<p>以上引用百度百科,<a href="https://baike.baidu.com/item/%E5%8D%A1%E7%89%B9%E5%85%B0%E6%95%B0/6125746?fr=aladdin" target="_blank" rel="noopener">原址</a></p>
+<h5 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h5><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> fir(i,a,b) for(int i=a;i&lt;=b;i++)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> ll long long</span></span><br><span class="line"><span class="keyword">const</span> ll M=<span class="number">1e9</span>;<span class="comment">//M为压位的最大值</span></span><br><span class="line">ll a[<span class="number">60004</span>],l,sum[<span class="number">120004</span>];</span><br><span class="line"><span class="keyword">int</span> n;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Prime</span><span class="params">(<span class="keyword">int</span> b,<span class="keyword">int</span> f)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">2</span>;j*j&lt;=b &amp;&amp; b!=<span class="number">1</span>;j++)<span class="comment">//质因数分解.</span></span><br><span class="line">        <span class="keyword">while</span>(b%j==<span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            sum[j]+=f;</span><br><span class="line">            b/=j;</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="keyword">if</span>(b) </span><br><span class="line">        sum[b]+=f;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">High</span><span class="params">(ll c)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=l;i++)</span><br><span class="line">        a[i]*=c;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=l;i++)</span><br><span class="line">        a[i+<span class="number">1</span>]+=a[i]/M,a[i]%=M;<span class="comment">//我们需要压缩位置快速处理</span></span><br><span class="line">    <span class="keyword">while</span>(a[l+<span class="number">1</span>])</span><br><span class="line">        ++l;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    a[<span class="number">1</span>]=<span class="number">1</span>,l=<span class="number">1</span>;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;n);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)<span class="comment">//对于两个组合数相除,我们这道题目必须使用快速的质因数分解法,去处理.</span></span><br><span class="line">        Prime(n+i,<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">2</span>;i&lt;=n+<span class="number">1</span>;i++)</span><br><span class="line">        Prime(i,<span class="number">-1</span>);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">2</span>;i&lt;=<span class="number">2</span>*n;i++)</span><br><span class="line">        <span class="keyword">for</span>(ll j=<span class="number">0</span>;j&lt;sum[i];++j) </span><br><span class="line">            High(i);<span class="comment">//高精度</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%lld"</span>,a[l]);</span><br><span class="line">    <span class="keyword">for</span>(ll i=l<span class="number">-1</span>;i;--i) </span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%09lld"</span>,a[i]);<span class="comment">//输出</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    秦淮岸灯火阑珊
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://gzh-red.github.io/2019/03/30/cWing-130-火车进出栈问题/" title="AcWing 130. 火车进出栈问题">https://gzh-red.github.io/2019/03/30/cWing-130-火车进出栈问题/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Acwing/" rel="tag"># Acwing</a>
+          
+            <a href="/tags/栈/" rel="tag"># 栈</a>
+          
+            <a href="/tags/卡特兰数/" rel="tag"># 卡特兰数</a>
+          
+        </div>
+      
+		<div>
+      
+        
+
+      
+</div>
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/30/AcWing-128-编辑器/" rel="next" title="AcWing 128. 编辑器">
+                <i class="fa fa-chevron-left"></i> AcWing 128. 编辑器
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://www.acwing.com/media/user/profile/photo/1130_md_37170c4e16.jpg" alt="秦淮岸灯火阑珊">
+            
+              <p class="site-author-name" itemprop="name">秦淮岸灯火阑珊</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">44</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">27</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.chicago01.top/" title="chicago01" target="_blank">chicago01</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#题目描述"><span class="nav-number">1.</span> <span class="nav-text">题目描述</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#数据范围"><span class="nav-number">1.1.</span> <span class="nav-text">数据范围</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#输入样例："><span class="nav-number">1.2.</span> <span class="nav-text">输入样例：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#输出样例："><span class="nav-number">1.3.</span> <span class="nav-text">输出样例：</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解题思路"><span class="nav-number">2.</span> <span class="nav-text">解题思路</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#题意分析"><span class="nav-number">2.0.1.</span> <span class="nav-text">题意分析</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#算法解析"><span class="nav-number">2.0.2.</span> <span class="nav-text">算法解析</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#什么是卡特兰数"><span class="nav-number">2.0.3.</span> <span class="nav-text">什么是卡特兰数</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#代码实现"><span class="nav-number">2.1.</span> <span class="nav-text">代码实现</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">秦淮岸灯火阑珊</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+  
+
+  
+
+</body>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/clicklove.js"></script>
+</html>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/clicklove.js"></script>
