@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="题目描述约翰有N头奶牛，编号为1到N。 现在这N头奶牛按编号从小到大的顺序站成了一排，其中奶牛 i 的身高为Hi。 现在，每头奶牛都向它的右侧望向那些编号较大的奶牛，对于奶牛 i 如果存在一头奶牛 j 满足 $i&amp;lt;j$ 并且 $H_i&amp;lt;H_j$，那么我们称奶牛 i 需要仰视奶牛 j。 请你求出每头奶牛的最近仰视对象。 输入格式第一行包含整数N。 接下来N行，每行包含一个整数$H_i$，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Acwing 600. 仰视奶牛">
+<meta property="og:url" content="https://gzh-red.github.io/2019/04/06/Acwing 600. 仰视奶牛/index.html">
+<meta property="og:site_name" content="秦淮岸灯火阑珊&#39;blog">
+<meta property="og:description" content="题目描述约翰有N头奶牛，编号为1到N。 现在这N头奶牛按编号从小到大的顺序站成了一排，其中奶牛 i 的身高为Hi。 现在，每头奶牛都向它的右侧望向那些编号较大的奶牛，对于奶牛 i 如果存在一头奶牛 j 满足 $i&amp;lt;j$ 并且 $H_i&amp;lt;H_j$，那么我们称奶牛 i 需要仰视奶牛 j。 请你求出每头奶牛的最近仰视对象。 输入格式第一行包含整数N。 接下来N行，每行包含一个整数$H_i$，">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-04-06T06:50:36.897Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Acwing 600. 仰视奶牛">
+<meta name="twitter:description" content="题目描述约翰有N头奶牛，编号为1到N。 现在这N头奶牛按编号从小到大的顺序站成了一排，其中奶牛 i 的身高为Hi。 现在，每头奶牛都向它的右侧望向那些编号较大的奶牛，对于奶牛 i 如果存在一头奶牛 j 满足 $i&amp;lt;j$ 并且 $H_i&amp;lt;H_j$，那么我们称奶牛 i 需要仰视奶牛 j。 请你求出每头奶牛的最近仰视对象。 输入格式第一行包含整数N。 接下来N行，每行包含一个整数$H_i$，">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://gzh-red.github.io/2019/04/06/Acwing 600. 仰视奶牛/">
+
+
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入密码') !== ''){
+                alert('密码错误');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+
+
+  <title>Acwing 600. 仰视奶牛 | 秦淮岸灯火阑珊'blog</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?25dad7ccff5338a032af7b69cd47250a";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">秦淮岸灯火阑珊'blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://gzh-red.github.io/2019/04/06/Acwing 600. 仰视奶牛/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="秦淮岸灯火阑珊">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://www.acwing.com/media/user/profile/photo/1130_md_37170c4e16.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="秦淮岸灯火阑珊'blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Acwing 600. 仰视奶牛</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-06T14:20:56+08:00">
+                2019-04-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h4><p>约翰有N头奶牛，编号为1到N。</p>
+<p>现在这N头奶牛按编号从小到大的顺序站成了一排，其中奶牛 i 的身高为Hi。</p>
+<p>现在，每头奶牛都向它的<strong>右侧望</strong>向那些编号较大的奶牛，<strong>对于奶牛 i 如果存在一头奶牛 j 满足 $i&lt;j$ 并且 $H_i&lt;H_j$，那么我们称奶牛 i 需要仰视奶牛 j。</strong></p>
+<p>请你求出每头奶牛的最近仰视对象。</p>
+<p>输入格式<br>第一行包含整数N。</p>
+<p>接下来N行，每行包含一个整数$H_i$，其中第 i 行的数为编号为 i 的奶牛的高度。</p>
+<p>输出格式<br>共 N 行，每行输出一个整数，其中第 i 行的输出整数表示编号为 i 的奶牛的<strong>最近仰视对象的编号，如果不存在仰视对象，则输出0</strong>。</p>
+<p>数据范围<br>$1 \le N \le 10^5$<br>$1 \le H_i \le 10^6$<br>输入样例：<br><figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">6 </span></span><br><span class="line"><span class="symbol">3 </span></span><br><span class="line"><span class="symbol">2 </span></span><br><span class="line"><span class="symbol">6 </span></span><br><span class="line"><span class="symbol">1 </span></span><br><span class="line"><span class="symbol">1 </span></span><br><span class="line"><span class="number">2</span></span><br></pre></td></tr></table></figure></p>
+<p>输出样例：<br><figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">3 </span></span><br><span class="line"><span class="symbol">3 </span></span><br><span class="line"><span class="symbol">0 </span></span><br><span class="line"><span class="symbol">6 </span></span><br><span class="line"><span class="symbol">6 </span></span><br><span class="line"><span class="number">0</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h4><h5 id="题意分析"><a href="#题意分析" class="headerlink" title="题意分析"></a>题意分析</h5><p>这道题目大致意思是:<strong>每一头奶牛往右看,找到离自己最近,而且比自己身高高的牛,</strong><br>如果没有比自己高的牛,那么<strong>输出0</strong>即可.也就是无解判断</p>
+<h5 id="算法分析"><a href="#算法分析" class="headerlink" title="算法分析"></a>算法分析</h5><p>首先我们知道程序=数据结构+算法,这道题目算法,我们除了暴力+模拟,实在想不到任何解题思路.<del>可能是我太蠢了</del></p>
+<p>所以我们考虑如何通过数据结构来优化这道题目.</p>
+<h5 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h5><p>对于一道题目而言,我们需要对于<strong>条件,性质</strong>两处地方动手,来思考算法或者数据结构的突破口,显然这道题目数据结构的确定,同样离不开这条不定的定律.</p>
+<p>对于这道题目而言,我们主要是<strong>分析条件</strong>,因为我们发现这道题目所有的奶牛,都在<strong>找离着自己最近的奶牛</strong>,那么我们不得不思考,<strong>是不是要用到后进先出的栈</strong></p>
+<p>既然现在我们已经确定,数据结构大致为栈,那么现在我们就需要分析性质了.</p>
+<h5 id="分析性质"><a href="#分析性质" class="headerlink" title="分析性质"></a>分析性质</h5><p>这道题目,最有用的性质,就是<strong>离自己最近,而且比自己身高高</strong>.</p>
+<ol>
+<li><strong>离自己最近</strong>:这个性质其实就是我们所谓的栈的必备性质.</li>
+<li><strong>身高高</strong>:看到这种类型的词汇,一定要第一时间反应,这道题目是不是拥有单调性.</li>
+</ol>
+<p>经过上面的讨论,我们大致可以确定,这道题目的确<strong>拥有单调性</strong>,那么想让我们的数据结构栈,就<strong>进化</strong>成为了单调栈.</p>
+<h5 id="算法整合"><a href="#算法整合" class="headerlink" title="算法整合"></a>算法整合</h5><p>我们可以一步步读入奶牛,对于每一头奶牛而言,<strong>判断这一头奶牛可以成为哪些奶牛的仰视对象</strong>.<br>于是,我们可以将当前奶牛,不断地和栈顶奶牛比较,如果说它<strong>身高大于栈顶奶牛</strong>,那么栈顶奶牛的<strong>仰视对象一定是当前奶牛,然后将栈顶奶牛出栈,进行下一次比较,直到栈为空或者栈顶奶牛身高高于它.最后再将我们当前奶牛的身高入栈.</strong></p>
+<p>之所以仰视对象是当前奶牛,因为它是<strong>离栈顶奶牛最近的奶牛,而且满足身高大于它</strong>.</p>
+<p>可以略微证明一下,因为<strong>如果说</strong>栈顶奶牛的仰视对象<strong>不是当前这头奶牛</strong>,那么在这头奶牛之前,栈顶奶牛肯定<strong>已经出栈</strong>了,因为<strong>必然在此之前</strong>,会有奶牛成为栈顶奶牛的<strong>仰视对象</strong>,然而现在它<strong>还在栈中</strong>,那么栈顶奶牛的仰视对象,必然是<strong>当前这头奶牛.</strong></p>
+<h5 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h5><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">101000</span>;</span><br><span class="line"><span class="keyword">int</span> n,m,i,j,k,a[N],s[N];</span><br><span class="line"><span class="built_in">stack</span>&lt;pair&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt; &gt; q;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ios::sync_with_stdio(<span class="literal">false</span>);<span class="comment">//优化不可少</span></span><br><span class="line">    <span class="built_in">cin</span>&gt;&gt;n;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;=n; i++)</span><br><span class="line">        <span class="built_in">cin</span>&gt;&gt;a[i];</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">while</span> (q.size() &amp;&amp; a[i]&gt;q.top().first)<span class="comment">//栈内有奶牛,且身高大于栈顶的奶牛</span></span><br><span class="line">        &#123;</span><br><span class="line">            s[q.top().second]=i;<span class="comment">//仰视对象</span></span><br><span class="line">            q.pop();</span><br><span class="line">        &#125;</span><br><span class="line">        q.push(make_pair(a[i],i));<span class="comment">//加入栈中</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">        <span class="built_in">cout</span>&lt;&lt;s[i]&lt;&lt;<span class="built_in">endl</span>;<span class="comment">//输出即可</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    秦淮岸灯火阑珊
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://gzh-red.github.io/2019/04/06/Acwing 600. 仰视奶牛/" title="Acwing 600. 仰视奶牛">https://gzh-red.github.io/2019/04/06/Acwing 600. 仰视奶牛/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+		<div>
+      
+        
+
+      
+</div>
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/04/06/Acwing 599. 发射站/" rel="next" title="Acwing 599. 发射站">
+                <i class="fa fa-chevron-left"></i> Acwing 599. 发射站
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/04/11/2019年4月11日单调队列讲义/" rel="prev" title="2019年4月11日单调队列讲义">
+                2019年4月11日单调队列讲义 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://www.acwing.com/media/user/profile/photo/1130_md_37170c4e16.jpg" alt="秦淮岸灯火阑珊">
+            
+              <p class="site-author-name" itemprop="name">秦淮岸灯火阑珊</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">47</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">28</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.chicago01.top/" title="chicago01" target="_blank">chicago01</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#题目描述"><span class="nav-number">1.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解题思路"><span class="nav-number">2.</span> <span class="nav-text">解题思路</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#题意分析"><span class="nav-number">2.1.</span> <span class="nav-text">题意分析</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#算法分析"><span class="nav-number">2.2.</span> <span class="nav-text">算法分析</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#数据结构"><span class="nav-number">2.3.</span> <span class="nav-text">数据结构</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#分析性质"><span class="nav-number">2.4.</span> <span class="nav-text">分析性质</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#算法整合"><span class="nav-number">2.5.</span> <span class="nav-text">算法整合</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#代码"><span class="nav-number">2.6.</span> <span class="nav-text">代码</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">秦淮岸灯火阑珊</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+  
+
+  
+
+</body>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/clicklove.js"></script>
+</html>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/clicklove.js"></script>
