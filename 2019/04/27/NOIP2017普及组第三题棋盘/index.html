@@ -89,7 +89,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://cdn.luogu.org/upload/pic/10841.png">
 <meta property="og:image" content="https://cdn.luogu.org/upload/pic/10842.png">
-<meta property="og:updated_time" content="2019-04-27T05:15:04.468Z">
+<meta property="og:updated_time" content="2019-04-27T10:38:26.630Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="NOIP2017普及组第三题棋盘">
 <meta name="twitter:description" content="题目描述有一个$m \times m$的棋盘，棋盘上每一个格子可能是红色、黄色或没有任何颜色的。你现在要从棋盘的最左上角走到棋盘的最右下角。 任何一个时刻，你所站在的位置必须是有颜色的（不能是无色的）， 你只能向上、 下、左、 右四个方向前进。当你从一个格子走向另一个格子时，如果两个格子的颜色相同，那你不需要花费金币；如果不同，则你需要花费 $1 $个金币。 另外， 你可以花费 $2$ 个金币施展">
@@ -417,7 +417,14 @@
 <h4 id="数据规模与约定"><a href="#数据规模与约定" class="headerlink" title="数据规模与约定"></a>数据规模与约定</h4><p>对于 $30\%$的数据, $1 \le m \le 5, 1 \le n \le 10$。</p>
 <p>对于 $60\%$的数据, $1 \le m \le 20, 1 \le n \le 200$。</p>
 <p>对于 $100\%$的数据, $1 \le m \le 100, 1 \le n \le 1,000$。</p>
-<h3 id="解题报告"><a href="#解题报告" class="headerlink" title="解题报告"></a>解题报告</h3><h4 id="判断算法"><a href="#判断算法" class="headerlink" title="判断算法"></a>判断算法</h4><p>一般来说,我们面对类似于<strong>迷宫</strong>这类,也就是具有非常明确的<strong>图像显示</strong>的题目,而言我们需要第一时间思考到<strong>这道题目是不是要用到搜索算法</strong></p>
+<h3 id="解题报告"><a href="#解题报告" class="headerlink" title="解题报告"></a>解题报告</h3><h4 id="题意理解"><a href="#题意理解" class="headerlink" title="题意理解"></a>题意理解</h4><p>这道题目的一句话题意是:</p>
+<p>让你从$(1,1)$走到$(n,n)$,要求路上的花费代价<strong>最少</strong>.<br>如果你从A走到B,那么走一步的代价有三种:</p>
+<ol>
+<li>若方格A的颜色<strong>等于</strong>方格B的颜色,那么花费代价为0</li>
+<li>若方格A的颜色<strong>不同于</strong>方格B的颜色,那么花费代价为1.</li>
+<li>若<strong>方格B</strong>的颜色为<strong>无色</strong>,那么相当于<strong>使用一次魔法</strong>,且花费的代价为<em>2</em>,并且<strong>下一步不可以</strong>使用魔法.</li>
+</ol>
+<h4 id="判断算法"><a href="#判断算法" class="headerlink" title="判断算法"></a>判断算法</h4><p>一般来说,我们面对类似于<strong>迷宫</strong>这类,也就是具有非常明确的<strong>图像显示</strong>的题目,而言我们需要第一时间思考到<strong>这道题目是不是要用到搜索算法</strong></p>
 <h4 id="算法选择"><a href="#算法选择" class="headerlink" title="算法选择"></a>算法选择</h4><p>搜索的算法有很多种.比如说深度优先搜索,广度优先搜索,A<em>搜索,IDA</em>搜索,但是对于$m \le 100$的数据范围,而言我们并不需要多么高级的搜索,只需要一点点<strong>记忆化剪枝+深度优先搜索</strong>即可</p>
 <h4 id="思路确定"><a href="#思路确定" class="headerlink" title="思路确定"></a>思路确定</h4><p>首先对于一道搜索题目而言的话,我们有<strong>基本</strong>的<strong>三点目标</strong></p>
 <p><strong>目标一:方向指示数组</strong>,这个数组在迷宫问题中,你可以认为是<strong>走路方式</strong>,在动态规划问题中,你可以认为是<strong>拓展状态的决策</strong>.</p>
@@ -500,6 +507,10 @@
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/2019/04/27/NOIP2017提高组Day2T1奶酪/" rel="prev" title="NOIP2017提高组Day2T1奶酪">
+                NOIP2017提高组Day2T1奶酪 <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -577,7 +588,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">48</span>
+                  <span class="site-state-item-count">49</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -588,7 +599,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -646,7 +657,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#题目描述"><span class="nav-number">1.</span> <span class="nav-text">题目描述</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#输入输出格式"><span class="nav-number">1.1.</span> <span class="nav-text">输入输出格式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#输入输出样例"><span class="nav-number">1.2.</span> <span class="nav-text">输入输出样例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#说明"><span class="nav-number">1.3.</span> <span class="nav-text">说明</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#输入输出样例-1-说明"><span class="nav-number">1.3.1.</span> <span class="nav-text">输入输出样例 1 说明</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#输入输出样例-2-说明"><span class="nav-number">1.3.2.</span> <span class="nav-text">输入输出样例 2 说明</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据规模与约定"><span class="nav-number">1.4.</span> <span class="nav-text">数据规模与约定</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解题报告"><span class="nav-number">2.</span> <span class="nav-text">解题报告</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#判断算法"><span class="nav-number">2.1.</span> <span class="nav-text">判断算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#算法选择"><span class="nav-number">2.2.</span> <span class="nav-text">算法选择</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#思路确定"><span class="nav-number">2.3.</span> <span class="nav-text">思路确定</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#细节处理"><span class="nav-number">2.4.</span> <span class="nav-text">细节处理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#代码演示"><span class="nav-number">2.5.</span> <span class="nav-text">代码演示</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#题目描述"><span class="nav-number">1.</span> <span class="nav-text">题目描述</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#输入输出格式"><span class="nav-number">1.1.</span> <span class="nav-text">输入输出格式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#输入输出样例"><span class="nav-number">1.2.</span> <span class="nav-text">输入输出样例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#说明"><span class="nav-number">1.3.</span> <span class="nav-text">说明</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#输入输出样例-1-说明"><span class="nav-number">1.3.1.</span> <span class="nav-text">输入输出样例 1 说明</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#输入输出样例-2-说明"><span class="nav-number">1.3.2.</span> <span class="nav-text">输入输出样例 2 说明</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据规模与约定"><span class="nav-number">1.4.</span> <span class="nav-text">数据规模与约定</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解题报告"><span class="nav-number">2.</span> <span class="nav-text">解题报告</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#题意理解"><span class="nav-number">2.1.</span> <span class="nav-text">题意理解</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#判断算法"><span class="nav-number">2.2.</span> <span class="nav-text">判断算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#算法选择"><span class="nav-number">2.3.</span> <span class="nav-text">算法选择</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#思路确定"><span class="nav-number">2.4.</span> <span class="nav-text">思路确定</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#细节处理"><span class="nav-number">2.5.</span> <span class="nav-text">细节处理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#代码演示"><span class="nav-number">2.6.</span> <span class="nav-text">代码演示</span></a></li></ol></li></ol></div>
             
 
           </div>
