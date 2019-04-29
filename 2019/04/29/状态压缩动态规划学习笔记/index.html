@@ -87,7 +87,9 @@
 <meta property="og:description" content="状态压缩动态规划学习笔记算法介绍 状态压缩动态规划是近些年来NOIP提高组常考的算法,也是日后ACM必备的算法之一,因此我们有必须要学习此类高级算法.而且此类算法往往是NP算法的最强优化之一.   算法思想状态压缩动态规划,顾名思义也就是,将动态规划中的状态数组进行了压缩.那么想到压缩,我们不免就要想到一种常用的时间空间优化技巧,或者说一种特殊的算法,也就是位运算. 卡常算法就是它,高端暴力就是它">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://cdn.acwing.com/media/article/image/2019/04/29/1130_d74b057c6a-QQ截图20190429202509.png">
-<meta property="og:updated_time" content="2019-04-29T12:26:02.860Z">
+<meta property="og:image" content="https://www.acwing.com/media/article/image/2019/01/26/19_4dd1644c20-2411_1.jpg">
+<meta property="og:image" content="https://cdn.acwing.com/media/article/image/2019/04/29/1130_8dc010186a-状态压缩动态规划学习笔记1.png">
+<meta property="og:updated_time" content="2019-04-29T13:42:03.343Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="状态压缩动态规划学习笔记">
 <meta name="twitter:description" content="状态压缩动态规划学习笔记算法介绍 状态压缩动态规划是近些年来NOIP提高组常考的算法,也是日后ACM必备的算法之一,因此我们有必须要学习此类高级算法.而且此类算法往往是NP算法的最强优化之一.   算法思想状态压缩动态规划,顾名思义也就是,将动态规划中的状态数组进行了压缩.那么想到压缩,我们不免就要想到一种常用的时间空间优化技巧,或者说一种特殊的算法,也就是位运算. 卡常算法就是它,高端暴力就是它">
@@ -341,7 +343,7 @@
       
 
       
-        <h3 id="状态压缩动态规划学习笔记"><a href="#状态压缩动态规划学习笔记" class="headerlink" title="状态压缩动态规划学习笔记"></a>状态压缩动态规划学习笔记</h3><h4 id="算法介绍"><a href="#算法介绍" class="headerlink" title="算法介绍"></a>算法介绍</h4><blockquote>
+        <h3 id="状态压缩动态规划学习笔记"><a href="#状态压缩动态规划学习笔记" class="headerlink" title="状态压缩动态规划学习笔记"></a><strong>状态压缩动态规划学习笔记</strong></h3><h4 id="算法介绍"><a href="#算法介绍" class="headerlink" title="算法介绍"></a>算法介绍</h4><blockquote>
 <p>状态压缩动态规划是近些年来NOIP提高组常考的算法,也是日后ACM必备的算法之一,因此我们有必须要学习此类高级算法.而且此类算法往往是NP算法的最强优化之一.</p>
 </blockquote>
 <hr>
@@ -350,7 +352,7 @@
 <p>位运算,也就是<strong>二进制的运算</strong>,而且我们的二进制,是一种计算机中<strong>最为核心的编码</strong>,这也就是为什么,电脑对于这种编码运算速度最快.</p>
 <p>状态压缩动态规划,就是<strong>利用了位运算</strong>,的这<strong>三大优化性质</strong>,来起到简化代码,优化代码,解决难题的目的.</p>
 <hr>
-<h3 id="位运算基础"><a href="#位运算基础" class="headerlink" title="位运算基础"></a>位运算基础</h3><p><img src="https://cdn.acwing.com/media/article/image/2019/04/29/1130_d74b057c6a-QQ截图20190429202509.png" alt="QQ截图20190429202509.png"> </p>
+<h4 id="位运算基础"><a href="#位运算基础" class="headerlink" title="位运算基础"></a>位运算基础</h4><p><img src="https://cdn.acwing.com/media/article/image/2019/04/29/1130_d74b057c6a-QQ截图20190429202509.png" alt="QQ截图20190429202509.png"> </p>
 <h4 id="判断算法"><a href="#判断算法" class="headerlink" title="判断算法"></a>判断算法</h4><p>首先拿到一道题目,我们第一步就是要看<strong>数据范围,题目描述.</strong> 而且当你发现数据范围和题目描述具有<strong>以下三大特点</strong>的时候,那么我们就可以<strong>初步判断</strong>这道题目需要使用状态压缩动态规划.</p>
 <ol>
 <li>数据中的N,M范围很小,<strong>基本上不超过30,20</strong>.(N,M广义理解)</li>
@@ -374,9 +376,46 @@
 <p>11000的十进制表示为24,而我们10000表示为16.那么我们进行&amp;运算.</p>
 <p>24&amp;16 ==&gt; 11000 &amp; 10000 ==&gt; 16 ==&gt; 10000</p>
 <p><strong>总结:所以说我们可以通过&amp;运算,进行判断是否选择.同理,如果题目说必须选择,显然&amp;运算也可以发挥作用.</strong></p>
-<hr>
 <p>其他运算操作以后再慢慢补充吧,我们先来几道题目感受感受.</p>
-
+<hr>
+<h3 id="题目选讲"><a href="#题目选讲" class="headerlink" title="题目选讲"></a><strong>题目选讲</strong></h3><hr>
+<h4 id="第一题"><a href="#第一题" class="headerlink" title="第一题"></a>第一题</h4><hr>
+<h5 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h5><p>求把$N \times M$的棋盘分割成若干个$1 \times 2$的的长方形，有多少种方案。</p>
+<p>例如当$N=2，M=4$时，共有5种方案。当$N=2，M=3$时，共有3种方案。</p>
+<p>如下图所示：</p>
+<p><img src="https://www.acwing.com/media/article/image/2019/01/26/19_4dd1644c20-2411_1.jpg" alt="2411_1.jpg"></p>
+<h6 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h6><p>输入包含多组测试用例。</p>
+<p>每组测试用例占一行，包含两个整数N和M。</p>
+<p>当输入用例</p>
+<p>$N=0 M=0$时，表示输入终止，且该用例无需处理。</p>
+<h6 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h6><p>每个测试用例输出一个结果，每个结果占一行。</p>
+<h6 id="数据范围"><a href="#数据范围" class="headerlink" title="数据范围"></a>数据范围</h6><p>$$<br>1 \le N,M \le 11<br>$$</p>
+<p>输入样例：</p>
+<figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">1 </span><span class="number">2</span></span><br><span class="line"><span class="symbol">1 </span><span class="number">3</span></span><br><span class="line"><span class="symbol">1 </span><span class="number">4</span></span><br><span class="line"><span class="symbol">2 </span><span class="number">2</span></span><br><span class="line"><span class="symbol">2 </span><span class="number">3</span></span><br><span class="line"><span class="symbol">2 </span><span class="number">4</span></span><br><span class="line"><span class="symbol">2 </span><span class="number">11</span></span><br><span class="line"><span class="symbol">4 </span><span class="number">11</span></span><br><span class="line"><span class="symbol">0 </span><span class="number">0</span></span><br></pre></td></tr></table></figure>
+<p>输出样例：</p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span></span><br><span class="line"><span class="number">0</span></span><br><span class="line"><span class="number">1</span></span><br><span class="line"><span class="number">2</span></span><br><span class="line"><span class="number">3</span></span><br><span class="line"><span class="number">5</span></span><br><span class="line"><span class="number">144</span></span><br><span class="line"><span class="number">51205</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h5 id="题意解析"><a href="#题意解析" class="headerlink" title="题意解析"></a>题意解析</h5><p>首先这道题目题意很好理解,我就不说一句话题意了,但是我们要明确这道题目给我们的信息.</p>
+<ol>
+<li>条件:<strong>1*2的长方形</strong>,有<strong>竖着</strong>的,也有<strong>横着</strong>的.</li>
+<li>性质:棋盘性质,数据范围很小</li>
+<li>最后答案 所有的合法方案数</li>
+</ol>
+<p>通过上面给我们的信息,我们不难判断这道题目是一道状态压缩动态规划算法,那么接下来我们按照上面所说的,我们现在需要处理<strong>如何二进制化状态</strong>.</p>
+<hr>
+<h5 id="算法解析"><a href="#算法解析" class="headerlink" title="算法解析"></a>算法解析</h5><p>我们发现,对于任何一个方案而言,假如说我们现在目光定格在,<strong>某一行</strong>的话,换句话说把<strong>棋盘分成两部分</strong>,那么我们似乎会发现什么有趣的东西.<br><img src="https://cdn.acwing.com/media/article/image/2019/04/29/1130_8dc010186a-状态压缩动态规划学习笔记1.png" alt="状态压缩动态规划学习笔记1.png"></p>
+<p>我们发现如果说我们<strong>确定了第一排的红色</strong>,那么显然<strong>绿色也随着确定了.</strong></p>
+<p>而且如果我们确定了第一排的红色,那么同样的我们的第二排<strong>一部分</strong>红色也就<strong>绝对确定</strong>了.切记不是<strong>所有</strong>的红色.</p>
+<p>因此我们显然可以认为红色为1,绿色为0,因为这道题目除了红色摆放,就是绿色摆放了,所以说这就是这道题目二进制的状态转化.</p>
+<hr>
+<h5 id="状态处理"><a href="#状态处理" class="headerlink" title="状态处理"></a>状态处理</h5><p>综上所述,我们就可以把行号看作阶段.<br>接着我们可以设$f[i][j]$表示为第i行决策集合为j.(j为二进制集合,不过用十进制存储)</p>
+<p>那么接下来我们就要看决策的条件了.</p>
+<p>对于$f[i-1][k]$转移到$f[i][j]$显然是有两个条件的.</p>
+<ol>
+<li>j&amp;k==0 也就是说每个数字1的下面必须是数字0,否则无法放入1*2的竖着长方形</li>
+<li>j|k的二进制表示中,每一段连续的0个数必须为偶数,否则无法放入1*2的横着长方形.</li>
+</ol>
+<h5 id="代码解法"><a href="#代码解法" class="headerlink" title="代码解法"></a>代码解法</h5><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">11</span>;</span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> f[<span class="number">12</span>][<span class="number">1</span>&lt;&lt;N];</span><br><span class="line"><span class="keyword">int</span> n,m;</span><br><span class="line"><span class="keyword">bool</span> st[<span class="number">1</span>&lt;&lt;N];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ios::sync_with_stdio(<span class="literal">false</span>);</span><br><span class="line">    <span class="keyword">while</span>(<span class="built_in">cin</span>&gt;&gt;n&gt;&gt;m &amp;&amp; n)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">1</span>&lt;&lt;m;i++)<span class="comment">//预处理,处理所有[0,2^m -1]内所有满足二进制表示下每一段连续01都有偶数个的整数.</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">bool</span> cnt=<span class="number">0</span>,odd=<span class="number">0</span>;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;m;j++)</span><br><span class="line">                <span class="keyword">if</span> (i&gt;&gt;j &amp; <span class="number">1</span>)<span class="comment">//判断第j是否选择了</span></span><br><span class="line">                    odd|=cnt,cnt=<span class="number">0</span>;</span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                    cnt^=<span class="number">1</span>;</span><br><span class="line">            st[i]=odd|cnt?<span class="number">0</span>:<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        f[<span class="number">0</span>][<span class="number">0</span>]=<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;(<span class="number">1</span>&lt;&lt;m);j++)<span class="comment">//枚举状态.</span></span><br><span class="line">            &#123;</span><br><span class="line">                f[i][j]=<span class="number">0</span>;<span class="comment">//初始化</span></span><br><span class="line">                <span class="keyword">for</span>(<span class="keyword">int</span> k=<span class="number">0</span>;k&lt;(<span class="number">1</span>&lt;&lt;m);k++)</span><br><span class="line">                    <span class="keyword">if</span> ((j&amp;k)==<span class="number">0</span> &amp;&amp; st[j|k])<span class="comment">//满足上面说的条件</span></span><br><span class="line">                        f[i][j]+=f[i<span class="number">-1</span>][k];<span class="comment">//转移过来了</span></span><br><span class="line">            &#125;</span><br><span class="line">        <span class="built_in">cout</span>&lt;&lt;f[n][<span class="number">0</span>]&lt;&lt;<span class="built_in">endl</span>;<span class="comment">//最后的结果</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -580,7 +619,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#状态压缩动态规划学习笔记"><span class="nav-number">1.</span> <span class="nav-text">状态压缩动态规划学习笔记</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#算法介绍"><span class="nav-number">1.1.</span> <span class="nav-text">算法介绍</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#算法思想"><span class="nav-number">1.2.</span> <span class="nav-text">算法思想</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#位运算基础"><span class="nav-number">2.</span> <span class="nav-text">位运算基础</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#判断算法"><span class="nav-number">2.1.</span> <span class="nav-text">判断算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#算法处理"><span class="nav-number">2.2.</span> <span class="nav-text">算法处理</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#状态压缩动态规划学习笔记"><span class="nav-number">1.</span> <span class="nav-text">状态压缩动态规划学习笔记</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#算法介绍"><span class="nav-number">1.1.</span> <span class="nav-text">算法介绍</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#算法思想"><span class="nav-number">1.2.</span> <span class="nav-text">算法思想</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#位运算基础"><span class="nav-number">1.3.</span> <span class="nav-text">位运算基础</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#判断算法"><span class="nav-number">1.4.</span> <span class="nav-text">判断算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#算法处理"><span class="nav-number">1.5.</span> <span class="nav-text">算法处理</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#题目选讲"><span class="nav-number">2.</span> <span class="nav-text">题目选讲</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#第一题"><span class="nav-number">2.1.</span> <span class="nav-text">第一题</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#题目描述"><span class="nav-number">2.1.1.</span> <span class="nav-text">题目描述</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#输入格式"><span class="nav-number">2.1.1.1.</span> <span class="nav-text">输入格式</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#输出格式"><span class="nav-number">2.1.1.2.</span> <span class="nav-text">输出格式</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#数据范围"><span class="nav-number">2.1.1.3.</span> <span class="nav-text">数据范围</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#题意解析"><span class="nav-number">2.1.2.</span> <span class="nav-text">题意解析</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#算法解析"><span class="nav-number">2.1.3.</span> <span class="nav-text">算法解析</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#状态处理"><span class="nav-number">2.1.4.</span> <span class="nav-text">状态处理</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#代码解法"><span class="nav-number">2.1.5.</span> <span class="nav-text">代码解法</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
