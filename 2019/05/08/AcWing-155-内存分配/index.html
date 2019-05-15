@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="题目描述内存是计算机重要的资源之一，程序运行的过程中必须对内存进行分配。 经典的内存分配过程是这样进行的： 1、 内存以内存单元为基本单位，每个内存单元用一个固定的整数作为标识，称为地址。地址从$0$开始连续排列，地址相邻的内存单元被认为是逻辑上连续的。我们把从地址$i$开始的$s$个连续的内存单元称为首地址为i长度为s的地址片。 2、 运行过程中有若干进程需要占用内存，对于每个进程有一个申请时刻">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AcWing 155. 内存分配">
+<meta property="og:url" content="https://gzh-red.github.io/2019/05/08/AcWing-155-内存分配/index.html">
+<meta property="og:site_name" content="秦淮岸灯火阑珊&#39;blog">
+<meta property="og:description" content="题目描述内存是计算机重要的资源之一，程序运行的过程中必须对内存进行分配。 经典的内存分配过程是这样进行的： 1、 内存以内存单元为基本单位，每个内存单元用一个固定的整数作为标识，称为地址。地址从$0$开始连续排列，地址相邻的内存单元被认为是逻辑上连续的。我们把从地址$i$开始的$s$个连续的内存单元称为首地址为i长度为s的地址片。 2、 运行过程中有若干进程需要占用内存，对于每个进程有一个申请时刻">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://www.acwing.com/media/article/image/2019/01/15/19_42f2e01618-%E5%86%85%E5%AD%98.png">
+<meta property="og:image" content="https://cdn.acwing.com/media/article/image/2019/05/08/1130_de90726671-%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D1.png">
+<meta property="og:image" content="https://cdn.acwing.com/media/article/image/2019/05/08/1130_98445d3471-内存分配2.png">
+<meta property="og:updated_time" content="2019-05-08T09:48:44.696Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="AcWing 155. 内存分配">
+<meta name="twitter:description" content="题目描述内存是计算机重要的资源之一，程序运行的过程中必须对内存进行分配。 经典的内存分配过程是这样进行的： 1、 内存以内存单元为基本单位，每个内存单元用一个固定的整数作为标识，称为地址。地址从$0$开始连续排列，地址相邻的内存单元被认为是逻辑上连续的。我们把从地址$i$开始的$s$个连续的内存单元称为首地址为i长度为s的地址片。 2、 运行过程中有若干进程需要占用内存，对于每个进程有一个申请时刻">
+<meta name="twitter:image" content="https://www.acwing.com/media/article/image/2019/01/15/19_42f2e01618-%E5%86%85%E5%AD%98.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://gzh-red.github.io/2019/05/08/AcWing-155-内存分配/">
+
+
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入密码') !== ''){
+                alert('密码错误');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+
+
+  <title>AcWing 155. 内存分配 | 秦淮岸灯火阑珊'blog</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?25dad7ccff5338a032af7b69cd47250a";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">秦淮岸灯火阑珊'blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://gzh-red.github.io/2019/05/08/AcWing-155-内存分配/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="秦淮岸灯火阑珊">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://www.acwing.com/media/user/profile/photo/1130_md_37170c4e16.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="秦淮岸灯火阑珊'blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">AcWing 155. 内存分配</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-08T16:48:08+08:00">
+                2019-05-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a><strong>题目描述</strong></h3><p>内存是计算机重要的资源之一，程序运行的过程中必须对内存进行分配。</p>
+<p>经典的内存分配过程是这样进行的：</p>
+<p>1、 内存以内存单元为基本单位，每个内存单元用一个固定的整数作为标识，称为地址。地址从$0$开始连续排列，地址相邻的内存单元被认为是逻辑上<strong>连续的</strong>。我们把从地址$i$开始的$s$个连续的内存单元称为首地址为i长度为s的地址片。</p>
+<p>2、 运行过程中有若干进程需要占用内存，对于每个进程有一个申请时刻$T$，需要内存单元数$M$及运行时间$P$。在运行时间$P$内（即$T$时刻开始，$T+P$时刻结束），这$M$个被占用的内存单元<strong>不能再被其他进程使用</strong>。</p>
+<p>3、假设在$T$时刻有一个进程申请$M$个单元，且运行时间为$P$，则：</p>
+<ol>
+<li>若$T$时刻内存中存在长度为$M$的空闲地址片，则系统将这$M$个空闲单元分配给该进程。若存在多个长度为$M$个空闲地址片，则系统<strong>将首地址最小的</strong>那个空闲地址片分配给该进程。</li>
+<li>如果$T$时刻不存在长度为M的空闲地址片，则该进程被<strong>放入一个等待队列</strong>。对于处于等待队列队头的进程，只要在<strong>任一时刻</strong>，存在长度为$M$的空闲地址片，系统<strong>马上将该进程取出队列</strong>，并为它分配内存单元。注意，在进行内存分配处理过程中，处于等待队列队头的进程的处理优先级最高，队列中的其它进程不能先于队头进程被处理。</li>
+</ol>
+<p>现在给出一系列描述进程的数据，请编写一程序<strong>模拟</strong>系统分配内存的过程。</p>
+<h4 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h4><p>第一行是一个数$N$，表示总内存单元数（即地址范围从$0$到$N-1$）。</p>
+<p>从第二行开始每行描述一个进程的三个整数$T$、$M$、$P$（$M \le N$）。</p>
+<p>最后一行用三个$0$表示结束。</p>
+<p>数据已按$T$从小到大排序。</p>
+<p>输入文件最多$10000$行，且所有数据都小于$10^9$。</p>
+<p>输入文件中同一行相邻两项之间用一个或多个空格隔开。</p>
+<h4 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h4><p>输出包括2行。</p>
+<p>第一行是全部进程都运行完毕的时刻。</p>
+<p>第二行是被放入过等待队列的进程总数。</p>
+<h4 id="输入样例："><a href="#输入样例：" class="headerlink" title="输入样例："></a>输入样例：</h4><figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">10</span></span><br><span class="line"><span class="symbol">1 </span><span class="number">3</span> <span class="number">10</span></span><br><span class="line"><span class="symbol">2 </span><span class="number">4</span> <span class="number">3</span></span><br><span class="line"><span class="symbol">3 </span><span class="number">4</span> <span class="number">4</span></span><br><span class="line"><span class="symbol">4 </span><span class="number">1</span> <span class="number">4</span></span><br><span class="line"><span class="symbol">5 </span><span class="number">3</span> <span class="number">4</span></span><br><span class="line"><span class="symbol">0 </span><span class="number">0</span> <span class="number">0</span></span><br></pre></td></tr></table></figure>
+<h4 id="输出样例："><a href="#输出样例：" class="headerlink" title="输出样例："></a>输出样例：</h4><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">12</span></span><br><span class="line"><span class="number">2</span></span><br></pre></td></tr></table></figure>
+<h4 id="提示"><a href="#提示" class="headerlink" title="提示"></a>提示</h4><p><img src="https://www.acwing.com/media/article/image/2019/01/15/19_42f2e01618-%E5%86%85%E5%AD%98.png" alt="内存.png"></p>
+<h3 id="题意理解"><a href="#题意理解" class="headerlink" title="题意理解"></a><strong>题意理解</strong></h3><p>这道题目的题目描述特别特别长,看的人脑袋痛,博主尽量精简.</p>
+<p>首先题目中有很多进程,每一个进程它都有$t,m,p$三个表示,表示这个进程<strong>在第T时刻开始申请要使用内存</strong>,而且要使用<strong>长度为M的连续内存地址</strong>,然后这段内存<strong>要花费P个时间</strong>.</p>
+<p>举个例子T=1,M=2,P=3.表示第一秒的时候,我们申请要使用内存,然后要一段长度为2的连续内存地址段,要求使用三秒钟.<strong>使用完后会自动释放掉.</strong></p>
+<hr>
+<p>对于每一个申请的进程而言,有两种情况.</p>
+<table>
+<thead>
+<tr>
+<th>情况</th>
+<th>先决条件</th>
+<th>处理方式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>可以存储</td>
+<td>在当前空闲内存中存在一个<strong>长度为M的连续空闲内存</strong></td>
+<td>找到<strong>满足条件</strong>的空闲内存中,<strong>地址开头最小</strong>的地址</td>
+</tr>
+<tr>
+<td>不可以存储</td>
+<td><strong>不存在</strong>一个长度为M的连续空闲内存</td>
+<td>加入<strong>候选队列</strong>的<strong>队尾</strong>,且如果<strong>任意时刻</strong>,候选队列的<strong>队头可以存储</strong>,那么<strong>立即</strong>存储.</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="算法详细"><a href="#算法详细" class="headerlink" title="算法详细"></a><strong>算法详细</strong></h3><p>这道题目的算法,题目中很明显的告诉我们了是一道模拟题目.<del>博主将题目描述的暗示已经加黑了.</del></p>
+<p>这道题目的模拟,非常有特色,因为统统都是在数据结构上进行的模拟,我们来一步步地<strong>剖分</strong>这道题目,<del>就像树链剖分的轻重链剖分一样.</del></p>
+<p>在这道题目有很多要点,我们先来列个大纲康康.</p>
+<p>首先这道题目有两种关键性的操作,那就是<strong>使用(插入)操作</strong>和<strong>释放(删除)操作</strong>.</p>
+<p>对于使用操作而言,我们可以通过以下这个数据结构达成目标.</p>
+<p>如果说我们可以存储当前进程的话,那么显然有两种情况.</p>
+<ol>
+<li>当前内存表中<strong>本来就存在</strong>一个长度为$M$的空闲内存</li>
+<li>我们<strong>经过了删除操作</strong>,使得内存表中出现了一个长度为$M$的空闲内存.</li>
+</ol>
+<p>我们可以将内存表看作是一个区间,那么对于这个区间而言,那么显然每一个<strong>占用内存的进程</strong>,就是<strong>一个阻碍物</strong>.我们来一个图片来揭示真相.</p>
+<p><img src="https://cdn.acwing.com/media/article/image/2019/05/08/1130_de90726671-%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D1.png" alt="图片1.png"></p>
+<p><strong>Hint:红色部分为占用内存,白色部分为空闲内存.下文都以红色白色代替.</strong></p>
+<p>我们发现,<strong>一段连续的白色部分</strong>可以表示为<strong>,第$i$个红色部分的结尾处到第$i+1$个红色部分的开头.</strong></p>
+<p>这里特别注意以下,我们要处理边界,可以将<strong>$-1$处</strong>染成红色,<strong>$n$处</strong>染成白色.请记住这里的内存表,是$[0,N-1]$</p>
+<p>根据上面的表示,我们的图片就变成下图所示.</p>
+<p><img src="https://cdn.acwing.com/media/article/image/2019/05/08/1130_98445d3471-内存分配2.png" alt="内存分配2.png"></p>
+<p>所以说我们这道题目就可以用双向链表处理了,来保存每一段红色部分,最后取存储白色部分,不过呢,我们使用STL的大佬们,肯定会想到一个点,那就是我们可以使用Set(平衡树)数据结构来达到我们的目的.</p>
+<blockquote>
+<p>Hint:平衡树,具有排序性质,资瓷O(log)级别的插入,删除,求前驱,求后继等操作.是一款强大的数据结构</p>
+</blockquote>
+<hr>
+<p>既然我们的使用操作都完成完毕了,那么接下来就是我们的释放操作的处理.</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    秦淮岸灯火阑珊
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://gzh-red.github.io/2019/05/08/AcWing-155-内存分配/" title="AcWing 155. 内存分配">https://gzh-red.github.io/2019/05/08/AcWing-155-内存分配/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+		<div>
+      
+        
+
+      
+</div>
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/05/07/计数型动态规划算法学习笔记/" rel="next" title="计数型动态规划算法学习笔记">
+                <i class="fa fa-chevron-left"></i> 计数型动态规划算法学习笔记
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/05/15/2019年5月16日并查集讲义/" rel="prev" title="2019年5月16日并查集讲义">
+                2019年5月16日并查集讲义 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://www.acwing.com/media/user/profile/photo/1130_md_37170c4e16.jpg" alt="秦淮岸灯火阑珊">
+            
+              <p class="site-author-name" itemprop="name">秦淮岸灯火阑珊</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">56</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">33</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.chicago01.top/" title="chicago01" target="_blank">chicago01</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#题目描述"><span class="nav-number">1.</span> <span class="nav-text">题目描述</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#输入格式"><span class="nav-number">1.1.</span> <span class="nav-text">输入格式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#输出格式"><span class="nav-number">1.2.</span> <span class="nav-text">输出格式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#输入样例："><span class="nav-number">1.3.</span> <span class="nav-text">输入样例：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#输出样例："><span class="nav-number">1.4.</span> <span class="nav-text">输出样例：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#提示"><span class="nav-number">1.5.</span> <span class="nav-text">提示</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#题意理解"><span class="nav-number">2.</span> <span class="nav-text">题意理解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#算法详细"><span class="nav-number">3.</span> <span class="nav-text">算法详细</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">秦淮岸灯火阑珊</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+  
+
+  
+
+</body>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/clicklove.js"></script>
+</html>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/clicklove.js"></script>
