@@ -1,0 +1,992 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="动态规划,最短路,拓扑排序,SPFA,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="题目概括题目描述策策同学特别喜欢逛公园。公园可以看成一张$N$个点$M$条边构成的有向图，且没有 自环和重边。其中1号点是公园的入口，$N$号点是公园的出口，每条边有一个非负权值， 代表策策经过这条边所要花的时间。 策策每天都会去逛公园，他总是从1号点进去，从$N$号点出来。 策策喜欢新鲜的事物，它不希望有两天逛公园的路线完全一样，同时策策还是一个 特别热爱学习的好孩子，它不希望每天在逛公园这件事">
+<meta name="keywords" content="动态规划,最短路,拓扑排序,SPFA">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NOIP2017 Day1 T3 逛公园">
+<meta property="og:url" content="https://gzh-red.github.io/2019/06/07/NOIP2017-Day1-T3-逛公园/index.html">
+<meta property="og:site_name" content="秦淮岸灯火阑珊&#39;blog">
+<meta property="og:description" content="题目概括题目描述策策同学特别喜欢逛公园。公园可以看成一张$N$个点$M$条边构成的有向图，且没有 自环和重边。其中1号点是公园的入口，$N$号点是公园的出口，每条边有一个非负权值， 代表策策经过这条边所要花的时间。 策策每天都会去逛公园，他总是从1号点进去，从$N$号点出来。 策策喜欢新鲜的事物，它不希望有两天逛公园的路线完全一样，同时策策还是一个 特别热爱学习的好孩子，它不希望每天在逛公园这件事">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://cdn.acwing.com/media/article/image/2019/06/07/1130_7c2a973e88-逛公园1.png">
+<meta property="og:image" content="https://cdn.acwing.com/media/article/image/2019/06/07/1130_b9124e1c88-逛公园2.png">
+<meta property="og:updated_time" content="2019-06-07T02:41:13.393Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="NOIP2017 Day1 T3 逛公园">
+<meta name="twitter:description" content="题目概括题目描述策策同学特别喜欢逛公园。公园可以看成一张$N$个点$M$条边构成的有向图，且没有 自环和重边。其中1号点是公园的入口，$N$号点是公园的出口，每条边有一个非负权值， 代表策策经过这条边所要花的时间。 策策每天都会去逛公园，他总是从1号点进去，从$N$号点出来。 策策喜欢新鲜的事物，它不希望有两天逛公园的路线完全一样，同时策策还是一个 特别热爱学习的好孩子，它不希望每天在逛公园这件事">
+<meta name="twitter:image" content="https://cdn.acwing.com/media/article/image/2019/06/07/1130_7c2a973e88-逛公园1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://gzh-red.github.io/2019/06/07/NOIP2017-Day1-T3-逛公园/">
+
+
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入密码') !== ''){
+                alert('密码错误');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+
+
+  <title>NOIP2017 Day1 T3 逛公园 | 秦淮岸灯火阑珊'blog</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?25dad7ccff5338a032af7b69cd47250a";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">秦淮岸灯火阑珊'blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://gzh-red.github.io/2019/06/07/NOIP2017-Day1-T3-逛公园/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="秦淮岸灯火阑珊">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://www.acwing.com/media/user/profile/photo/1130_md_37170c4e16.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="秦淮岸灯火阑珊'blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">NOIP2017 Day1 T3 逛公园</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-07T09:31:00+08:00">
+                2019-06-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/NOIP/" itemprop="url" rel="index">
+                    <span itemprop="name">NOIP</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="题目概括"><a href="#题目概括" class="headerlink" title="题目概括"></a>题目概括</h3><h4 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h4><p>策策同学特别喜欢逛公园。公园可以看成一张$N$个点$M$条边构成的有向图，且没有 自环和重边。其中1号点是公园的入口，$N$号点是公园的出口，每条边有一个非负权值， 代表策策经过这条边所要花的时间。</p>
+<p>策策每天都会去逛公园，他总是从1号点进去，从$N$号点出来。</p>
+<p>策策喜欢新鲜的事物，它不希望有两天逛公园的路线完全一样，同时策策还是一个 特别热爱学习的好孩子，它不希望每天在逛公园这件事上花费太多的时间。如果1号点 到$N$号点的最短路长为$d$，那么策策只会喜欢长度不超过$d + K$的路线。</p>
+<p>策策同学想知道总共有多少条满足条件的路线，你能帮帮它吗？</p>
+<p>为避免输出过大，答案对$P$取模。</p>
+<p>如果有无穷多条合法的路线，请输出$-1$。</p>
+<h4 id="输入输出格式"><a href="#输入输出格式" class="headerlink" title="输入输出格式"></a>输入输出格式</h4><h5 id="输入格式："><a href="#输入格式：" class="headerlink" title="输入格式："></a>输入格式：</h5><p>第一行包含一个整数 $T$, 代表数据组数。</p>
+<p>接下来$T$组数据，对于每组数据： 第一行包含四个整数 $N,M,K,P$，每两个整数之间用一个空格隔开。</p>
+<p>接下来$M$行，每行三个整数$a_i,b_i,c_i$，代表编号为$a_i,b_i$的点之间有一条权值为 $c_i$的有向边，每两个整数之间用一个空格隔开。</p>
+<h5 id="输出格式："><a href="#输出格式：" class="headerlink" title="输出格式："></a>输出格式：</h5><p>输出文件包含 $T$ 行，每行一个整数代表答案。</p>
+<h5 id="输入输出样例"><a href="#输入输出样例" class="headerlink" title="输入输出样例"></a>输入输出样例</h5><h6 id="输入样例-1："><a href="#输入样例-1：" class="headerlink" title="输入样例#1："></a>输入样例#1：</h6><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">2</span></span><br><span class="line"><span class="number">5</span> <span class="number">7</span> <span class="number">2</span> <span class="number">10</span></span><br><span class="line"><span class="number">1</span> <span class="number">2</span> <span class="number">1</span></span><br><span class="line"><span class="number">2</span> <span class="number">4</span> <span class="number">0</span></span><br><span class="line"><span class="number">4</span> <span class="number">5</span> <span class="number">2</span></span><br><span class="line"><span class="number">2</span> <span class="number">3</span> <span class="number">2</span></span><br><span class="line"><span class="number">3</span> <span class="number">4</span> <span class="number">1</span></span><br><span class="line"><span class="number">3</span> <span class="number">5</span> <span class="number">2</span></span><br><span class="line"><span class="number">1</span> <span class="number">5</span> <span class="number">3</span></span><br><span class="line"><span class="number">2</span> <span class="number">2</span> <span class="number">0</span> <span class="number">10</span></span><br><span class="line"><span class="number">1</span> <span class="number">2</span> <span class="number">0</span></span><br><span class="line"><span class="number">2</span> <span class="number">1</span> <span class="number">0</span></span><br></pre></td></tr></table></figure>
+<h6 id="输出样例-1："><a href="#输出样例-1：" class="headerlink" title="输出样例#1："></a>输出样例#1：</h6><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">3</span></span><br><span class="line"><span class="number">-1</span></span><br></pre></td></tr></table></figure>
+<h5 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h5><h6 id="样例解释1"><a href="#样例解释1" class="headerlink" title="样例解释1"></a>样例解释1</h6><p>对于第一组数据，最短路为 $3$。 $1 – 5, 1 – 2 – 4 – 5, 1 – 2 – 3 – 5$ 为 $3$ 条合法路径。</p>
+<h6 id="测试数据与约定"><a href="#测试数据与约定" class="headerlink" title="测试数据与约定"></a>测试数据与约定</h6><p>对于不同的测试点，我们约定各种参数的规模不会超过如下</p>
+<table>
+<thead>
+<tr>
+<th>测试点编号</th>
+<th>$T$</th>
+<th>$N$</th>
+<th>$M$</th>
+<th>$K$</th>
+<th>是否有0边</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>1</strong></td>
+<td>5</td>
+<td>5</td>
+<td>10</td>
+<td><strong>0</strong></td>
+<td>否</td>
+</tr>
+<tr>
+<td><strong>2</strong></td>
+<td>5</td>
+<td>1000</td>
+<td>2000</td>
+<td><strong>0</strong></td>
+<td>否</td>
+</tr>
+<tr>
+<td>3</td>
+<td>5</td>
+<td>1000</td>
+<td>2000</td>
+<td>50</td>
+<td>否</td>
+</tr>
+<tr>
+<td>4</td>
+<td>5</td>
+<td>1000</td>
+<td>2000</td>
+<td>50</td>
+<td>否</td>
+</tr>
+<tr>
+<td>5</td>
+<td>5</td>
+<td>1000</td>
+<td>2000</td>
+<td>50</td>
+<td>否</td>
+</tr>
+<tr>
+<td>6</td>
+<td>5</td>
+<td>1000</td>
+<td>2000</td>
+<td>50</td>
+<td>是</td>
+</tr>
+<tr>
+<td><strong>7</strong></td>
+<td>5</td>
+<td>100000</td>
+<td>200000</td>
+<td><strong>0</strong></td>
+<td>否</td>
+</tr>
+<tr>
+<td>8</td>
+<td>3</td>
+<td>100000</td>
+<td>200000</td>
+<td>50</td>
+<td>否</td>
+</tr>
+<tr>
+<td>9</td>
+<td>3</td>
+<td>100000</td>
+<td>200000</td>
+<td>50</td>
+<td>是</td>
+</tr>
+<tr>
+<td>10</td>
+<td>3</td>
+<td>100000</td>
+<td>200000</td>
+<td>50</td>
+<td>是</td>
+</tr>
+</tbody>
+</table>
+<p>对于 100%的数据, $1 \le P \le 10^9,1 \le a_i,b_i \le N ,0 \le c_i \le 1000$。</p>
+<p>数据保证：至少存在一条合法的路线。</p>
+<hr>
+<h3 id="解题报告"><a href="#解题报告" class="headerlink" title="解题报告"></a>解题报告</h3><h4 id="题意理解"><a href="#题意理解" class="headerlink" title="题意理解"></a>题意理解</h4><p>这道题目题意就是让你,统计一下长度为$[d,d+k]$这个区间内从$1-&gt;n$的路径总数.</p>
+<h4 id="30pts"><a href="#30pts" class="headerlink" title="30pts"></a>30pts</h4><h5 id="暴力统计"><a href="#暴力统计" class="headerlink" title="暴力统计"></a>暴力统计</h5><p>我们发现这道题目有三个点,也即是<strong>数据点1,2,7</strong>这三个点<strong>都是只需要我们找最短路的路径个数.</strong></p>
+<p>既然如此的话,我们不妨在最短路算法中,再开一个额外的数组统计路径个数,去拿到这三十分.</p>
+<p>1.如果发现松弛操作的两种路径相等,也就是<strong>a-&gt;c=a-&gt;b+b-&gt;c</strong>，那么我们就将搜索到的点的路径数加上当前点的路径数，即：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(dis[i]==dis[k]+ver[k][i])</span><br><span class="line">    cnt[i]+=cnt[k];</span><br></pre></td></tr></table></figure>
+<p>2.如果我们更新了搜索到的点到起点的最短距离,也就是<strong>a-&gt;c &lt; a-&gt;b+b-&gt;c</strong> ，那么我们将到达改点的路径数改为当前点的路径数，也就是</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(dis[i]&gt;dis[k]+ver[k][i])&#123;</span><br><span class="line">    dis[i]=dis[k]+ver[k][i];</span><br><span class="line">    cnt[i]=cnt[k];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h4 id="70pts"><a href="#70pts" class="headerlink" title="70pts"></a>70pts</h4><h5 id="暴力思想"><a href="#暴力思想" class="headerlink" title="暴力思想"></a>暴力思想</h5><p>我们其实可以惊奇地发现,就是我们的$k \le 50$,这说明什么就是我们完全可以<strong>暴力地去统计</strong>,长度为$d,d+1,d+2,d+3,…,d+K$的所有路径.</p>
+<p>综上所述我们可以通过<strong>搜索算法</strong>,去一步步暴力地搜索,找到符合条件的路径.</p>
+<p>但是我们发现这个搜索显然<strong>复杂度太高了.</strong></p>
+<h5 id="各大剪枝"><a href="#各大剪枝" class="headerlink" title="各大剪枝"></a>各大剪枝</h5><p>我们对于当前这一步而言,如果说它花费了$w$点代价,然后接下来我们统统都以<strong>最优秀的最短路走到终点</strong>,花费$s$点费用.</p>
+<p>然后我们惊奇地发现$w+s&gt;d+k$,那么显然这一步是不合法的,因为它的<strong>最小花费代价都大于了我们的最大上限路径长度.</strong></p>
+<p>综上所述,第一个剪枝,就是我们的可行性剪枝.</p>
+<p>但是我们<strong>如何统计一个点到终点的距离呢?难道我们要每一次都跑一遍最短路算法统计吗</strong></p>
+<p>其实我们可以通过<strong>建立一个反向图</strong>,来达到目的地.</p>
+<ol>
+<li>什么是反向图?</li>
+</ol>
+<p>我们<strong>以样例为例子.</strong></p>
+<p><img src="https://cdn.acwing.com/media/article/image/2019/06/07/1130_7c2a973e88-逛公园1.png" alt="逛公园1.png"> </p>
+<p>这张图叫做<strong>原图</strong>.</p>
+<p><img src="https://cdn.acwing.com/media/article/image/2019/06/07/1130_b9124e1c88-逛公园2.png" alt="逛公园2.png"> </p>
+<p>这张图就是我们的<strong>反向图.</strong></p>
+<p>所谓的反向图就是将方向统统反过来,<strong>原来是a-&gt;b,现在改成b-&gt;a</strong></p>
+<ol start="2">
+<li>反向图有什么用处</li>
+</ol>
+<p>我们发现反向图最大的用处,就是<strong>统计一个点到终点的距离</strong>.</p>
+<p>因为此时我们的起点是原来的终点N,而现在的终点变成了原来的起点1.所以我们最短路过后,<strong>每一个$dis[i]$表示为节点$N$到$i$的距离.</strong></p>
+<p>综上所述,我们就这么巧妙地处理了第一个可行性剪枝.</p>
+<hr>
+<p>但是我们现在依旧发现了一个问题,我们的时间复杂度还是太高了,所以我们不得不<strong>进行记忆化剪枝,也就是利用了了动态规划的思想.</strong></p>
+<p>首先我们观察一下,路径长度为$d+1,d+2,d+3,d+4,…,d+K$的路径,他们具有以下特征.</p>
+<ol>
+<li><p>对于长度为$d+1$的路径而言,我们可以认为它<strong>是最短路</strong>情况下,<strong>多走了一点冤枉路.</strong></p>
+</li>
+<li><p>对于长度为$d+2$的路径而言,我们可以认为它<strong>是最短路</strong>情况下,<strong>多走了二点冤枉路.</strong></p>
+</li>
+<li><p>对于长度为$d+3$的路径而言,我们可以认为它<strong>是最短路</strong>情况下,<strong>多走了三点冤枉路.</strong></p>
+</li>
+</ol>
+<p>将以上路径转化后,我们发现完全可以<strong>通过动态规划的思想</strong>去处理本问题.</p>
+<p>我们设$f[i][j]$表示为,当前到达了点$i$,已经多走了冤枉路$j$.</p>
+<p>那么我们发现状态转移方程也迎刃而解了.<br>$$<br>f[u][w]=∑f[v][w+dis[u]−(dis[v]+ver[u][v])] \<br>0 \le w \le K \<br>(u,v)为一条边 \<br>ver[u][v]表示u到v的距离.\<br>w表示当前走了w点冤枉路<br>$$<br>我们解释一下上面的状态转移方程的核心点.<br>$$<br>w+dis[u]-(dis[v]+ver[u][v]);<br>$$<br>对于下面这个式子而言,它表示为<strong>从起点走到$v$</strong>所需要花费的最少长度.<br>$$<br>dis[v]<br>$$<br>那么我们的一条最短路径,且是<strong>从$u$走到$v$</strong>所花费长度为.<br>$$<br>dis[v]+ver[u][v]<br>$$<br>然后我们的<strong>从起点走到$u$</strong>所花费的最短长度显然为.<br>$$<br>dis[u]<br>$$<br>既然如此那么我们<strong>从起点走到$v</strong>$的最短路径,减去,我们从起点<strong>走到$u$然后再走到$v$</strong>的最短路径,<strong>就是我们的多走冤枉路.</strong><br>$$<br>dis[u]-(dis[v]+ver[u][v]);<br>$$<br>综上所述,这就是我们的思路,那么最后的答案,显然就是.<br>$$<br>Ans=\sum_{i=0}^{K}{f[n][i]}<br>$$</p>
+<hr>
+<h4 id="100pts"><a href="#100pts" class="headerlink" title="100pts"></a>100pts</h4><p>经历了千辛万苦的你,发现如果按照楼上的思路写代码的话,你发现居然只有<strong>70pts</strong>.</p>
+<p>那是因为你<strong>忽略掉了-1这种无解的情况.</strong></p>
+<p>而-1这个点,其实就是题目中<strong>出现了长度为0的一个环</strong>       <strong>简称0环</strong>.</p>
+<p>如何判断呢?</p>
+<ol>
+<li>拓扑排序判断</li>
+<li>Tarjan算法判断</li>
+<li>搜索的过程中,如果一个点两次进入我们的最短路,那么显然就是0环.</li>
+</ol>
+<p>显然这道题目我们使用第三个算法判断.</p>
+<hr>
+<h4 id="代码解释"><a href="#代码解释" class="headerlink" title="代码解释"></a>代码解释</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">1e5</span>+<span class="number">5</span>;<span class="comment">//数据范围</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> inf=<span class="number">1e9</span>;<span class="comment">//最大值</span></span><br><span class="line"><span class="keyword">int</span> t,n,m,k,p,ans,flag,vis[N],dis[N],dp[N][<span class="number">55</span>],vis_dp[N][<span class="number">55</span>],x,y,z;<span class="comment">//变量</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">node</span>//最近<span class="title">get</span>到的结构体内置,好好玩啊.模板标记 </span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="keyword">int</span> cnt,edge[N&lt;&lt;<span class="number">1</span>],ver[N&lt;&lt;<span class="number">1</span>],Next[N&lt;&lt;<span class="number">1</span>],head[N];<span class="comment">//记得边要乘以2,因为要建立反向图</span></span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">()</span><span class="comment">//初始化</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		cnt=<span class="number">0</span>;</span><br><span class="line">		<span class="built_in">memset</span>(head,<span class="number">0</span>,<span class="keyword">sizeof</span>(head));</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">add_edge</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y,<span class="keyword">int</span> z)</span><span class="comment">//建图</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		edge[++cnt]=y;</span><br><span class="line">		ver[cnt]=z;</span><br><span class="line">		Next[cnt]=head[x];</span><br><span class="line">		head[x]=cnt;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">spfa</span><span class="params">(<span class="keyword">int</span> s)</span><span class="comment">//SPFA,NOIP是不会卡掉我们的.</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">int</span> i,x;</span><br><span class="line">		<span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt;q;</span><br><span class="line">		<span class="keyword">for</span>(i=<span class="number">1</span>; i&lt;=n; i++)</span><br><span class="line">		&#123;</span><br><span class="line">			vis[i]=<span class="number">0</span>;</span><br><span class="line">			dis[i]=inf;</span><br><span class="line">		&#125;</span><br><span class="line">		q.push(s),vis[s]=<span class="number">1</span>,dis[s]=<span class="number">0</span>;</span><br><span class="line">		<span class="keyword">while</span>(q.size())</span><br><span class="line">		&#123;</span><br><span class="line">			x=q.front();</span><br><span class="line">			q.pop();</span><br><span class="line">			vis[x]=<span class="number">0</span>;<span class="comment">//出来了</span></span><br><span class="line">			<span class="keyword">for</span>(i=head[x]; i; i=Next[i])<span class="comment">//遍历所有的出边</span></span><br><span class="line">			&#123;</span><br><span class="line">				<span class="keyword">int</span> y=edge[i],z=ver[i];</span><br><span class="line">				<span class="keyword">if</span>(dis[x]+z&lt;dis[y])</span><br><span class="line">				&#123;</span><br><span class="line">					dis[y]=dis[x]+z;<span class="comment">//更新</span></span><br><span class="line">					<span class="keyword">if</span>(vis[y]==<span class="number">0</span>)</span><br><span class="line">					&#123;</span><br><span class="line">						q.push(y);</span><br><span class="line">						vis[y]=<span class="number">1</span>;<span class="comment">//标记</span></span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125; g1,g2;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">clear</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	ans=<span class="number">0</span>;</span><br><span class="line">	flag=<span class="number">1</span>;</span><br><span class="line">	g1.init();<span class="comment">//初始化很重要</span></span><br><span class="line">	g2.init();</span><br><span class="line">	<span class="built_in">memset</span>(dp,<span class="number">-1</span>,<span class="keyword">sizeof</span>(dp));</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> k)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> i,j;</span><br><span class="line">	<span class="keyword">if</span>(~dp[x][k])<span class="comment">//记忆化搜索</span></span><br><span class="line">		<span class="keyword">return</span> dp[x][k];</span><br><span class="line">	vis_dp[x][k]=<span class="number">1</span>;<span class="comment">//标记进入了最短路径</span></span><br><span class="line">	dp[x][k]=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(i=g2.head[x]; i; i=g2.Next[i])</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">int</span> y=g2.edge[i],z=k+dis[x]-(dis[y]+g2.ver[i]);</span><br><span class="line">		<span class="keyword">if</span>(z&gt;=<span class="number">0</span>)<span class="comment">//如果是在指定偏差区间内的</span></span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">if</span>(vis_dp[y][z])<span class="comment">//之前已经进入过最短路径了,那么显然是无解了.</span></span><br><span class="line">				flag=<span class="number">0</span>;</span><br><span class="line">			dp[x][k]+=dfs(y,z);<span class="comment">//统计</span></span><br><span class="line">			dp[x][k]%=p;<span class="comment">//取得取模</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	vis_dp[x][k]=<span class="number">0</span>;<span class="comment">//已经从最短路径中出来了.</span></span><br><span class="line">	<span class="keyword">return</span> dp[x][k];<span class="comment">//该返回了</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;t);</span><br><span class="line">	<span class="keyword">while</span>(t--)</span><br><span class="line">	&#123;</span><br><span class="line">		clear();</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d%d%d%d"</span>,&amp;n,&amp;m,&amp;k,&amp;p);</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;=m; i++)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="built_in">scanf</span>(<span class="string">"%d%d%d"</span>,&amp;x,&amp;y,&amp;z);</span><br><span class="line">			g1.add_edge(x,y,z);</span><br><span class="line">			g2.add_edge(y,x,z);<span class="comment">//不是无向边,是建立反向图</span></span><br><span class="line">		&#125;</span><br><span class="line">		g1.spfa(<span class="number">1</span>);</span><br><span class="line">		dp[<span class="number">1</span>][<span class="number">0</span>]=<span class="number">1</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;=k; i++)</span><br><span class="line">		&#123;</span><br><span class="line">			ans+=dfs(n,i);<span class="comment">//每一个有冤枉路的路径都要加入</span></span><br><span class="line">			ans%=p;<span class="comment">//取模快乐 </span></span><br><span class="line">		&#125;</span><br><span class="line">		dfs(n,k+<span class="number">1</span>);<span class="comment">//再来一下判断</span></span><br><span class="line">		<span class="keyword">if</span>(!flag)<span class="comment">//无解了</span></span><br><span class="line">			<span class="built_in">puts</span>(<span class="string">"-1"</span>);</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">"%lld\n"</span>,ans);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    秦淮岸灯火阑珊
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://gzh-red.github.io/2019/06/07/NOIP2017-Day1-T3-逛公园/" title="NOIP2017 Day1 T3 逛公园">https://gzh-red.github.io/2019/06/07/NOIP2017-Day1-T3-逛公园/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/动态规划/" rel="tag"># 动态规划</a>
+          
+            <a href="/tags/最短路/" rel="tag"># 最短路</a>
+          
+            <a href="/tags/拓扑排序/" rel="tag"># 拓扑排序</a>
+          
+            <a href="/tags/SPFA/" rel="tag"># SPFA</a>
+          
+        </div>
+      
+		<div>
+      
+        
+
+      
+</div>
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/06/07/贪心算法学习笔记(二)/" rel="next" title="贪心算法学习笔记(二)">
+                <i class="fa fa-chevron-left"></i> 贪心算法学习笔记(二)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://www.acwing.com/media/user/profile/photo/1130_md_37170c4e16.jpg" alt="秦淮岸灯火阑珊">
+            
+              <p class="site-author-name" itemprop="name">秦淮岸灯火阑珊</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">68</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">38</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.chicago01.top/" title="chicago01" target="_blank">chicago01</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#题目概括"><span class="nav-number">1.</span> <span class="nav-text">题目概括</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#题目描述"><span class="nav-number">1.1.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#输入输出格式"><span class="nav-number">1.2.</span> <span class="nav-text">输入输出格式</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#输入格式："><span class="nav-number">1.2.1.</span> <span class="nav-text">输入格式：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#输出格式："><span class="nav-number">1.2.2.</span> <span class="nav-text">输出格式：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#输入输出样例"><span class="nav-number">1.2.3.</span> <span class="nav-text">输入输出样例</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#输入样例-1："><span class="nav-number">1.2.3.1.</span> <span class="nav-text">输入样例#1：</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#输出样例-1："><span class="nav-number">1.2.3.2.</span> <span class="nav-text">输出样例#1：</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#说明"><span class="nav-number">1.2.4.</span> <span class="nav-text">说明</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#样例解释1"><span class="nav-number">1.2.4.1.</span> <span class="nav-text">样例解释1</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#测试数据与约定"><span class="nav-number">1.2.4.2.</span> <span class="nav-text">测试数据与约定</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解题报告"><span class="nav-number">2.</span> <span class="nav-text">解题报告</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#题意理解"><span class="nav-number">2.1.</span> <span class="nav-text">题意理解</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#30pts"><span class="nav-number">2.2.</span> <span class="nav-text">30pts</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#暴力统计"><span class="nav-number">2.2.1.</span> <span class="nav-text">暴力统计</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#70pts"><span class="nav-number">2.3.</span> <span class="nav-text">70pts</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#暴力思想"><span class="nav-number">2.3.1.</span> <span class="nav-text">暴力思想</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#各大剪枝"><span class="nav-number">2.3.2.</span> <span class="nav-text">各大剪枝</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#100pts"><span class="nav-number">2.4.</span> <span class="nav-text">100pts</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#代码解释"><span class="nav-number">2.5.</span> <span class="nav-text">代码解释</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">秦淮岸灯火阑珊</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+  
+
+  
+
+</body>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/clicklove.js"></script>
+</html>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/clicklove.js"></script>
